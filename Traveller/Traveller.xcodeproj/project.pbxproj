@@ -15,6 +15,7 @@
 		A4CF85282C297F7C0037EE27 /* TravellerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85272C297F7C0037EE27 /* TravellerTests.swift */; };
 		A4CF85322C297F7C0037EE27 /* TravellerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85312C297F7C0037EE27 /* TravellerUITests.swift */; };
 		A4CF85342C297F7C0037EE27 /* TravellerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85332C297F7C0037EE27 /* TravellerUITestsLaunchTests.swift */; };
+		A4CF85422C29850B0037EE27 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85412C29850B0037EE27 /* Trip.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		A4CF852D2C297F7C0037EE27 /* TravellerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TravellerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4CF85312C297F7C0037EE27 /* TravellerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellerUITests.swift; sourceTree = "<group>"; };
 		A4CF85332C297F7C0037EE27 /* TravellerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellerUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		A4CF85412C29850B0037EE27 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		A4CF85122C297F7A0037EE27 /* Traveller */ = {
 			isa = PBXGroup;
 			children = (
+				A4CF85402C2985030037EE27 /* Models */,
 				A4CF85132C297F7A0037EE27 /* TravellerApp.swift */,
 				A4CF85152C297F7A0037EE27 /* ContentView.swift */,
 				A4CF85172C297F7A0037EE27 /* Item.swift */,
@@ -130,6 +133,14 @@
 				A4CF85332C297F7C0037EE27 /* TravellerUITestsLaunchTests.swift */,
 			);
 			path = TravellerUITests;
+			sourceTree = "<group>";
+		};
+		A4CF85402C2985030037EE27 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A4CF85412C29850B0037EE27 /* Trip.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +273,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4CF85422C29850B0037EE27 /* Trip.swift in Sources */,
 				A4CF85162C297F7A0037EE27 /* ContentView.swift in Sources */,
 				A4CF85182C297F7A0037EE27 /* Item.swift in Sources */,
 				A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */,
