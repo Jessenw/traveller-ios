@@ -6,14 +6,15 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct Trip {
-    var id: UUID
+struct Trip: Identifiable {
+    var id = UUID()
     var name: String
     var detail: String?
     var startDate: Date?
     var endDate: Date?
-    var members: [String] // TODO: Create Member model
-    var places: [String] // TODO: Create Place model
-    var tasks: [String] // TODO: Create Task model
+    var members: [Color] = [] // TODO: Create Member model
+    var places: [String] = [] // TODO: Create Place model
+    var tasks: [String] = [] // TODO: Create Task model
 }

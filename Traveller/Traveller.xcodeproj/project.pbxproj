@@ -16,6 +16,8 @@
 		A4CF85322C297F7C0037EE27 /* TravellerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85312C297F7C0037EE27 /* TravellerUITests.swift */; };
 		A4CF85342C297F7C0037EE27 /* TravellerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85332C297F7C0037EE27 /* TravellerUITestsLaunchTests.swift */; };
 		A4CF85422C29850B0037EE27 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85412C29850B0037EE27 /* Trip.swift */; };
+		A4CF85482C2986860037EE27 /* TripListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85472C2986860037EE27 /* TripListView.swift */; };
+		A4CF854A2C29886A0037EE27 /* TripRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85492C29886A0037EE27 /* TripRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		A4CF85312C297F7C0037EE27 /* TravellerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellerUITests.swift; sourceTree = "<group>"; };
 		A4CF85332C297F7C0037EE27 /* TravellerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A4CF85412C29850B0037EE27 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
+		A4CF85472C2986860037EE27 /* TripListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripListView.swift; sourceTree = "<group>"; };
+		A4CF85492C29886A0037EE27 /* TripRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +103,9 @@
 		A4CF85122C297F7A0037EE27 /* Traveller */ = {
 			isa = PBXGroup;
 			children = (
+				A4CF85432C2985B70037EE27 /* Views */,
 				A4CF85402C2985030037EE27 /* Models */,
 				A4CF85132C297F7A0037EE27 /* TravellerApp.swift */,
-				A4CF85152C297F7A0037EE27 /* ContentView.swift */,
 				A4CF85172C297F7A0037EE27 /* Item.swift */,
 				A4CF85192C297F7B0037EE27 /* Assets.xcassets */,
 				A4CF851B2C297F7B0037EE27 /* Traveller.entitlements */,
@@ -141,6 +145,24 @@
 				A4CF85412C29850B0037EE27 /* Trip.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A4CF85432C2985B70037EE27 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A4CF85442C2986290037EE27 /* Trips */,
+				A4CF85152C297F7A0037EE27 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A4CF85442C2986290037EE27 /* Trips */ = {
+			isa = PBXGroup;
+			children = (
+				A4CF85472C2986860037EE27 /* TripListView.swift */,
+				A4CF85492C29886A0037EE27 /* TripRow.swift */,
+			);
+			path = Trips;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,10 +295,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4CF85482C2986860037EE27 /* TripListView.swift in Sources */,
 				A4CF85422C29850B0037EE27 /* Trip.swift in Sources */,
 				A4CF85162C297F7A0037EE27 /* ContentView.swift in Sources */,
 				A4CF85182C297F7A0037EE27 /* Item.swift in Sources */,
 				A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */,
+				A4CF854A2C29886A0037EE27 /* TripRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
