@@ -29,8 +29,7 @@ struct CreateTripDialog: View {
                         Text("Include Dates")
                     }
                     if includeDates {
-                        DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
-                        DatePicker("End Date", selection: $endDate, displayedComponents: .date)
+                        DateSelectionForm(startDate: $startDate, endDate: $endDate)
                     }
                 }
 
@@ -51,5 +50,23 @@ struct CreateTripDialog: View {
         let newTrip = Trip(name: name, detail: detail, startDate: includeDates ? startDate : nil, endDate: includeDates ? endDate : nil)
         trips.append(newTrip)
         presentationMode.wrappedValue.dismiss()
+    }
+}
+
+struct DateSelectionForm: View {
+    @Binding var startDate: Date
+    @Binding var endDate: Date
+    
+    var body: some View {
+        VStack {
+            DatePicker("Start Date", selection: $startDate, displayedComponents: .date)
+                .onChange(of: startDate) { _, newValue in
+                    // Ensure the end date is later than the start date
+                    if (newValue > endDate) {
+                        endDate = newValue
+                    }
+                }
+            DatePicker("End Date", selection: $endDate, in: startDate..., displayedComponents: .date)
+        }
     }
 }
