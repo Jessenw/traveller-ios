@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TripListView: View {
     @State var trips: [Trip] = []
+    @State private var showingCreateTripDialog = false
     
     var body: some View {
         NavigationView {
@@ -18,9 +19,16 @@ struct TripListView: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                     Spacer()
+                    Button(action: {
+                        showingCreateTripDialog = true
+                    }) {
+                        Image(systemName: "plus.circle.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                    }
                 }
                 .padding()
-
+                
                 List {
                     ForEach(trips) { trip in
                         VStack(alignment: .leading) {
@@ -29,6 +37,10 @@ struct TripListView: View {
                     }
                 }
             }
+        }
+        .navigationBarHidden(true)
+        .sheet(isPresented: $showingCreateTripDialog) {
+            CreateTripDialog(trips: $trips)
         }
     }
 }
