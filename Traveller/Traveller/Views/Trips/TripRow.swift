@@ -33,7 +33,7 @@ struct TripRow: View {
                 HStack(spacing: 8) {
                     ForEach(members.prefix(5), id: \.self) { color in
                         Circle()
-                            .fill(color)
+                            .fill(randomColor())
                             .frame(width: 30, height: 30)
                     }
                     if members.count > 5 {
@@ -45,8 +45,7 @@ struct TripRow: View {
                 .padding(.top, 16)
             }
         }
-        .padding(.vertical, 8)
-        .padding(.horizontal)
+        .padding()
     }
 }
 
@@ -55,3 +54,11 @@ private let dateFormatter: DateFormatter = {
     formatter.dateFormat = "d MMM"
     return formatter
 }()
+
+private func randomColor() -> Color {
+    let red = Double.random(in: 0...1)
+    let green = Double.random(in: 0...1)
+    let blue = Double.random(in: 0...1)
+    
+    return Color(red: red, green: green, blue: blue)
+}

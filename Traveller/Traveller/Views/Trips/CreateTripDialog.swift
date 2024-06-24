@@ -5,11 +5,12 @@
 //  Created by Jesse Williams on 24/06/2024.
 //
 
+import SwiftData
 import SwiftUI
 
 struct CreateTripDialog: View {
     @Environment(\.presentationMode) var presentationMode
-    @Binding var trips: [Trip]
+    @Environment(\.modelContext) private var modelContext: ModelContext
     @State private var name: String = ""
     @State private var detail: String = ""
     @State private var startDate: Date = Date()
@@ -47,8 +48,13 @@ struct CreateTripDialog: View {
     }
 
     private func createTrip() {
-        let newTrip = Trip(name: name, detail: detail, startDate: includeDates ? startDate : nil, endDate: includeDates ? endDate : nil)
-        trips.append(newTrip)
+        let newTrip = Trip(
+            name: name,
+            detail: detail,
+            startDate: includeDates ? startDate : nil,
+            endDate: includeDates ? endDate : nil,
+            members: [String].init(repeating: "", count: Int.random(in: 1...5)))
+        modelContext.insert(newTrip)
         presentationMode.wrappedValue.dismiss()
     }
 }

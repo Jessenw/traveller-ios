@@ -5,10 +5,12 @@
 //  Created by Jesse Williams on 24/06/2024.
 //
 
+import SwiftData
 import SwiftUI
 
 struct TripListView: View {
-    @State var trips: [Trip] = []
+    @Environment(\.modelContext) private var modelContext: ModelContext
+    @Query private var trips: [Trip]
     @State private var showingCreateTripDialog = false
     
     var body: some View {
@@ -35,16 +37,19 @@ struct TripListView: View {
                     }
                     .onDelete(perform: deleteTrip)
                 }
+                .listRowSpacing(8)
             }
         }
         .navigationBarHidden(true)
         .sheet(isPresented: $showingCreateTripDialog) {
-            CreateTripDialog(trips: $trips)
+            CreateTripDialog()
         }
     }
     
     private func deleteTrip(at offsets: IndexSet) {
-        trips.remove(atOffsets: offsets)
+        for index in offsets {
+            modelContext.delete(trips[index])
+        }
     }
 }
 
