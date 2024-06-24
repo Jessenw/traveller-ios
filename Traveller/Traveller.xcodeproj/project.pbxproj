@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85132C297F7A0037EE27 /* TravellerApp.swift */; };
 		A4CF85162C297F7A0037EE27 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85152C297F7A0037EE27 /* ContentView.swift */; };
-		A4CF85182C297F7A0037EE27 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85172C297F7A0037EE27 /* Item.swift */; };
 		A4CF851A2C297F7B0037EE27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4CF85192C297F7B0037EE27 /* Assets.xcassets */; };
 		A4CF851E2C297F7B0037EE27 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4CF851D2C297F7B0037EE27 /* Preview Assets.xcassets */; };
 		A4CF85282C297F7C0037EE27 /* TravellerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85272C297F7C0037EE27 /* TravellerTests.swift */; };
@@ -43,7 +42,6 @@
 		A4CF85102C297F7A0037EE27 /* Traveller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Traveller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4CF85132C297F7A0037EE27 /* TravellerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellerApp.swift; sourceTree = "<group>"; };
 		A4CF85152C297F7A0037EE27 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		A4CF85172C297F7A0037EE27 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		A4CF85192C297F7B0037EE27 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A4CF851B2C297F7B0037EE27 /* Traveller.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Traveller.entitlements; sourceTree = "<group>"; };
 		A4CF851D2C297F7B0037EE27 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -110,7 +108,6 @@
 				A4CF85432C2985B70037EE27 /* Views */,
 				A4CF85402C2985030037EE27 /* Models */,
 				A4CF85132C297F7A0037EE27 /* TravellerApp.swift */,
-				A4CF85172C297F7A0037EE27 /* Item.swift */,
 				A4CF85192C297F7B0037EE27 /* Assets.xcassets */,
 				A4CF851B2C297F7B0037EE27 /* Traveller.entitlements */,
 				A4CF851C2C297F7B0037EE27 /* Preview Content */,
@@ -304,7 +301,6 @@
 				A4CF85482C2986860037EE27 /* TripListView.swift in Sources */,
 				A4CF85422C29850B0037EE27 /* Trip.swift in Sources */,
 				A4CF85162C297F7A0037EE27 /* ContentView.swift in Sources */,
-				A4CF85182C297F7A0037EE27 /* Item.swift in Sources */,
 				A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */,
 				A4CF854E2C299D640037EE27 /* TripDetail.swift in Sources */,
 				A4CF854C2C298DCC0037EE27 /* CreateTripDialog.swift in Sources */,
