@@ -19,6 +19,7 @@
 		A4CF85482C2986860037EE27 /* TripListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85472C2986860037EE27 /* TripListView.swift */; };
 		A4CF854A2C29886A0037EE27 /* TripRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85492C29886A0037EE27 /* TripRow.swift */; };
 		A4CF854C2C298DCC0037EE27 /* CreateTripDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF854B2C298DCC0037EE27 /* CreateTripDialog.swift */; };
+		A4CF854E2C299D640037EE27 /* TripDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF854D2C299D640037EE27 /* TripDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		A4CF85472C2986860037EE27 /* TripListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripListView.swift; sourceTree = "<group>"; };
 		A4CF85492C29886A0037EE27 /* TripRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRow.swift; sourceTree = "<group>"; };
 		A4CF854B2C298DCC0037EE27 /* CreateTripDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripDialog.swift; sourceTree = "<group>"; };
+		A4CF854D2C299D640037EE27 /* TripDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				A4CF85472C2986860037EE27 /* TripListView.swift */,
 				A4CF85492C29886A0037EE27 /* TripRow.swift */,
 				A4CF854B2C298DCC0037EE27 /* CreateTripDialog.swift */,
+				A4CF854D2C299D640037EE27 /* TripDetail.swift */,
 			);
 			path = Trips;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				A4CF85162C297F7A0037EE27 /* ContentView.swift in Sources */,
 				A4CF85182C297F7A0037EE27 /* Item.swift in Sources */,
 				A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */,
+				A4CF854E2C299D640037EE27 /* TripDetail.swift in Sources */,
 				A4CF854C2C298DCC0037EE27 /* CreateTripDialog.swift in Sources */,
 				A4CF854A2C29886A0037EE27 /* TripRow.swift in Sources */,
 			);
