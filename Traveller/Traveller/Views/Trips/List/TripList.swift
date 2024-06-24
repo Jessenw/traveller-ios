@@ -1,5 +1,5 @@
 //
-//  TripListView.swift
+//  TripList.swift
 //  Traveller
 //
 //  Created by Jesse Williams on 24/06/2024.
@@ -8,7 +8,7 @@
 import SwiftData
 import SwiftUI
 
-struct TripListView: View {
+struct TripList: View {
     @Environment(\.modelContext) private var modelContext: ModelContext
     @Query private var trips: [Trip]
     @State private var showingCreateTripDialog = false
@@ -51,8 +51,4 @@ struct TripListView: View {
             modelContext.delete(trips[index])
         }
     }
-}
-
-#Preview {
-    TripListView()
 }

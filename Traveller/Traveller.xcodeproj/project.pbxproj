@@ -15,7 +15,7 @@
 		A4CF85322C297F7C0037EE27 /* TravellerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85312C297F7C0037EE27 /* TravellerUITests.swift */; };
 		A4CF85342C297F7C0037EE27 /* TravellerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85332C297F7C0037EE27 /* TravellerUITestsLaunchTests.swift */; };
 		A4CF85422C29850B0037EE27 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85412C29850B0037EE27 /* Trip.swift */; };
-		A4CF85482C2986860037EE27 /* TripListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85472C2986860037EE27 /* TripListView.swift */; };
+		A4CF85482C2986860037EE27 /* TripList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85472C2986860037EE27 /* TripList.swift */; };
 		A4CF854A2C29886A0037EE27 /* TripRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85492C29886A0037EE27 /* TripRow.swift */; };
 		A4CF854C2C298DCC0037EE27 /* CreateTripDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF854B2C298DCC0037EE27 /* CreateTripDialog.swift */; };
 		A4CF854E2C299D640037EE27 /* TripDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF854D2C299D640037EE27 /* TripDetail.swift */; };
@@ -51,7 +51,7 @@
 		A4CF85312C297F7C0037EE27 /* TravellerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellerUITests.swift; sourceTree = "<group>"; };
 		A4CF85332C297F7C0037EE27 /* TravellerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A4CF85412C29850B0037EE27 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
-		A4CF85472C2986860037EE27 /* TripListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripListView.swift; sourceTree = "<group>"; };
+		A4CF85472C2986860037EE27 /* TripList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripList.swift; sourceTree = "<group>"; };
 		A4CF85492C29886A0037EE27 /* TripRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRow.swift; sourceTree = "<group>"; };
 		A4CF854B2C298DCC0037EE27 /* CreateTripDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripDialog.swift; sourceTree = "<group>"; };
 		A4CF854D2C299D640037EE27 /* TripDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetail.swift; sourceTree = "<group>"; };
@@ -160,12 +160,28 @@
 		A4CF85442C2986290037EE27 /* Trips */ = {
 			isa = PBXGroup;
 			children = (
-				A4CF85472C2986860037EE27 /* TripListView.swift */,
-				A4CF85492C29886A0037EE27 /* TripRow.swift */,
+				A4CF85582C2A12E50037EE27 /* Detail */,
+				A4CF85572C2A12C40037EE27 /* List */,
 				A4CF854B2C298DCC0037EE27 /* CreateTripDialog.swift */,
-				A4CF854D2C299D640037EE27 /* TripDetail.swift */,
 			);
 			path = Trips;
+			sourceTree = "<group>";
+		};
+		A4CF85572C2A12C40037EE27 /* List */ = {
+			isa = PBXGroup;
+			children = (
+				A4CF85472C2986860037EE27 /* TripList.swift */,
+				A4CF85492C29886A0037EE27 /* TripRow.swift */,
+			);
+			path = List;
+			sourceTree = "<group>";
+		};
+		A4CF85582C2A12E50037EE27 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				A4CF854D2C299D640037EE27 /* TripDetail.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -298,7 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A4CF85482C2986860037EE27 /* TripListView.swift in Sources */,
+				A4CF85482C2986860037EE27 /* TripList.swift in Sources */,
 				A4CF85422C29850B0037EE27 /* Trip.swift in Sources */,
 				A4CF85162C297F7A0037EE27 /* ContentView.swift in Sources */,
 				A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */,
