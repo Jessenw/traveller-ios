@@ -31,10 +31,9 @@ struct TripListView: View {
                 
                 List {
                     ForEach(trips) { trip in
-                        VStack(alignment: .leading) {
-                            TripRow(trip: trip)
-                        }
+                        TripRow(trip: trip)
                     }
+                    .onDelete(perform: deleteTrip)
                 }
             }
         }
@@ -42,6 +41,10 @@ struct TripListView: View {
         .sheet(isPresented: $showingCreateTripDialog) {
             CreateTripDialog(trips: $trips)
         }
+    }
+    
+    private func deleteTrip(at offsets: IndexSet) {
+        trips.remove(atOffsets: offsets)
     }
 }
 
