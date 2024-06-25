@@ -1,5 +1,5 @@
 //
-//  TripDetail.swift
+//  TripDetailView.swift
 //  Traveller
 //
 //  Created by Jesse Williams on 25/06/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TripDetail: View {
+struct TripDetailView: View {
     var trip: Trip
     @State private var isShowingSheet = true
     
@@ -22,6 +22,17 @@ struct TripDetail: View {
 }
 
 struct TripDetailSheet: View {
+    @State private var selectedSegment = 0
+    @State private var placesTodoItems: [TodoItem] = [
+        TodoItem(title: "Visit Eiffel Tower", subheading: "Paris, France", additionalSubheading: "Buy tickets online", isChecked: false, imageName: "eiffel_tower"),
+        TodoItem(title: "See the Colosseum", subheading: "Rome, Italy", additionalSubheading: "Check opening hours", isChecked: true, imageName: "colosseum")
+    ]
+    @State private var tasksTodoItems: [TodoItem] = [
+        TodoItem(title: "Buy groceries", subheading: "Milk, Bread, Eggs", additionalSubheading: "Remember to check for discounts", isChecked: false, imageName: "groceries"),
+        TodoItem(title: "Walk the dog", subheading: "30 minutes around the park", additionalSubheading: "Bring water and treats", isChecked: true, imageName: "dog"),
+        TodoItem(title: "Read a book", subheading: "Finish reading 'SwiftUI for Beginners'", additionalSubheading: "Take notes for each chapter", isChecked: false, imageName: "book")
+    ]
+    
     var trip: Trip
     
     var body: some View {
@@ -71,7 +82,22 @@ struct TripDetailSheet: View {
                     Spacer()
                 }
             }
-            .padding()
+            .padding([.horizontal, .top])
+            
+            VStack {
+                Picker("Select List", selection: $selectedSegment) {
+                    Text("Places").tag(0)
+                    Text("Tasks").tag(1)
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding(.horizontal)
+
+                if selectedSegment == 0 {
+                    TodoListView(todoItems: $placesTodoItems, additionalSubheadingStyle: .footnote, additionalSubheadingColor: .blue)
+                } else {
+                    TodoListView(todoItems: $tasksTodoItems, additionalSubheadingStyle: .footnote, additionalSubheadingColor: .blue)
+                }
+            }
             
             Spacer()
         }
@@ -79,7 +105,7 @@ struct TripDetailSheet: View {
 }
 
 #Preview {
-    TripDetail(
+    TripDetailView(
         trip: Trip(
             name: "My cool adventure",
             detail: "Where are we going?",
