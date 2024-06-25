@@ -5,3 +5,4 @@ xcuserdata/
 *.dSYM
 Packages/
 .build/
+/Traveller/Traveller/Configuration.swift
