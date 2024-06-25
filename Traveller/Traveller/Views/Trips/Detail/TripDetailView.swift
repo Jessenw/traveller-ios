@@ -1,5 +1,5 @@
 //
-//  TripDetail.swift
+//  TripDetailView.swift
 //  Traveller
 //
 //  Created by Jesse Williams on 25/06/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TripDetail: View {
+struct TripDetailView: View {
     var trip: Trip
     @State private var isShowingSheet = true
     
@@ -90,7 +90,7 @@ struct TripDetailSheet: View {
                     Text("Tasks").tag(1)
                 }
                 .pickerStyle(SegmentedPickerStyle())
-                .padding()
+                .padding(.horizontal)
 
                 if selectedSegment == 0 {
                     TodoListView(todoItems: $placesTodoItems, additionalSubheadingStyle: .footnote, additionalSubheadingColor: .blue)
@@ -105,7 +105,7 @@ struct TripDetailSheet: View {
 }
 
 #Preview {
-    TripDetail(
+    TripDetailView(
         trip: Trip(
             name: "My cool adventure",
             detail: "Where are we going?",

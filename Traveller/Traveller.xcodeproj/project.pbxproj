@@ -15,6 +15,7 @@
 		A42CADEA2C2AA20D00F6E936 /* TodoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADE92C2AA20D00F6E936 /* TodoItemView.swift */; };
 		A42CADEC2C2AA2A400F6E936 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADEB2C2AA2A400F6E936 /* TodoItem.swift */; };
 		A42CADEE2C2AA3B400F6E936 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADED2C2AA3B400F6E936 /* TodoListView.swift */; };
+		A42CADF12C2AB72A00F6E936 /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = A42CADF02C2AB72A00F6E936 /* GooglePlaces */; };
 		A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85132C297F7A0037EE27 /* TravellerApp.swift */; };
 		A4CF85162C297F7A0037EE27 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85152C297F7A0037EE27 /* ContentView.swift */; };
 		A4CF851A2C297F7B0037EE27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4CF85192C297F7B0037EE27 /* Assets.xcassets */; };
@@ -26,7 +27,7 @@
 		A4CF85482C2986860037EE27 /* TripList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85472C2986860037EE27 /* TripList.swift */; };
 		A4CF854A2C29886A0037EE27 /* TripRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85492C29886A0037EE27 /* TripRow.swift */; };
 		A4CF854C2C298DCC0037EE27 /* CreateTripDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF854B2C298DCC0037EE27 /* CreateTripDialog.swift */; };
-		A4CF854E2C299D640037EE27 /* TripDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF854D2C299D640037EE27 /* TripDetail.swift */; };
+		A4CF854E2C299D640037EE27 /* TripDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF854D2C299D640037EE27 /* TripDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +70,7 @@
 		A4CF85472C2986860037EE27 /* TripList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripList.swift; sourceTree = "<group>"; };
 		A4CF85492C29886A0037EE27 /* TripRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRow.swift; sourceTree = "<group>"; };
 		A4CF854B2C298DCC0037EE27 /* CreateTripDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripDialog.swift; sourceTree = "<group>"; };
-		A4CF854D2C299D640037EE27 /* TripDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetail.swift; sourceTree = "<group>"; };
+		A4CF854D2C299D640037EE27 /* TripDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +79,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A42CADDB2C2A8C5000F6E936 /* GoogleMaps in Frameworks */,
+				A42CADF12C2AB72A00F6E936 /* GooglePlaces in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,7 +210,7 @@
 		A4CF85582C2A12E50037EE27 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				A4CF854D2C299D640037EE27 /* TripDetail.swift */,
+				A4CF854D2C299D640037EE27 /* TripDetailView.swift */,
 				A42CADE92C2AA20D00F6E936 /* TodoItemView.swift */,
 				A42CADED2C2AA3B400F6E936 /* TodoListView.swift */,
 			);
@@ -233,6 +235,7 @@
 			name = Traveller;
 			packageProductDependencies = (
 				A42CADDA2C2A8C5000F6E936 /* GoogleMaps */,
+				A42CADF02C2AB72A00F6E936 /* GooglePlaces */,
 			);
 			productName = Traveller;
 			productReference = A4CF85102C297F7A0037EE27 /* Traveller.app */;
@@ -308,6 +311,7 @@
 			mainGroup = A4CF85072C297F7A0037EE27;
 			packageReferences = (
 				A42CADD92C2A8C5000F6E936 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */,
+				A42CADEF2C2AB72A00F6E936 /* XCRemoteSwiftPackageReference "ios-places-sdk" */,
 			);
 			productRefGroup = A4CF85112C297F7A0037EE27 /* Products */;
 			projectDirPath = "";
@@ -361,7 +365,7 @@
 				A42CADE02C2A8DA600F6E936 /* MapViewController.swift in Sources */,
 				A42CADE22C2A8DC300F6E936 /* MapContainerView.swift in Sources */,
 				A42CADE42C2A8EF400F6E936 /* Configuration.swift in Sources */,
-				A4CF854E2C299D640037EE27 /* TripDetail.swift in Sources */,
+				A4CF854E2C299D640037EE27 /* TripDetailView.swift in Sources */,
 				A4CF854C2C298DCC0037EE27 /* CreateTripDialog.swift in Sources */,
 				A42CADEC2C2AA2A400F6E936 /* TodoItem.swift in Sources */,
 				A4CF854A2C29886A0037EE27 /* TripRow.swift in Sources */,
@@ -731,6 +735,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		A42CADEF2C2AB72A00F6E936 /* XCRemoteSwiftPackageReference "ios-places-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googlemaps/ios-places-sdk";
+			requirement = {
+				kind = exactVersion;
+				version = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -738,6 +750,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A42CADD92C2A8C5000F6E936 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */;
 			productName = GoogleMaps;
+		};
+		A42CADF02C2AB72A00F6E936 /* GooglePlaces */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A42CADEF2C2AB72A00F6E936 /* XCRemoteSwiftPackageReference "ios-places-sdk" */;
+			productName = GooglePlaces;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
