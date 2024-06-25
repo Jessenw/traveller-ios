@@ -6,3 +6,4 @@ xcuserdata/
 Packages/
 .build/
 /Traveller/Traveller/Configuration.swift
+/Traveller/Traveller.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved
