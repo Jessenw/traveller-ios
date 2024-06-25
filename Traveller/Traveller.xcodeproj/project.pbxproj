@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A42CADDB2C2A8C5000F6E936 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = A42CADDA2C2A8C5000F6E936 /* GoogleMaps */; };
 		A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85132C297F7A0037EE27 /* TravellerApp.swift */; };
 		A4CF85162C297F7A0037EE27 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85152C297F7A0037EE27 /* ContentView.swift */; };
 		A4CF851A2C297F7B0037EE27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4CF85192C297F7B0037EE27 /* Assets.xcassets */; };
@@ -62,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A42CADDB2C2A8C5000F6E936 /* GoogleMaps in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,6 +202,9 @@
 			dependencies = (
 			);
 			name = Traveller;
+			packageProductDependencies = (
+				A42CADDA2C2A8C5000F6E936 /* GoogleMaps */,
+			);
 			productName = Traveller;
 			productReference = A4CF85102C297F7A0037EE27 /* Traveller.app */;
 			productType = "com.apple.product-type.application";
@@ -272,6 +277,9 @@
 				Base,
 			);
 			mainGroup = A4CF85072C297F7A0037EE27;
+			packageReferences = (
+				A42CADD92C2A8C5000F6E936 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */,
+			);
 			productRefGroup = A4CF85112C297F7A0037EE27 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -677,6 +685,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A42CADD92C2A8C5000F6E936 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googlemaps/ios-maps-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A42CADDA2C2A8C5000F6E936 /* GoogleMaps */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A42CADD92C2A8C5000F6E936 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */;
+			productName = GoogleMaps;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A4CF85082C297F7A0037EE27 /* Project object */;
 }
