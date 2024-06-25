@@ -11,6 +11,6 @@ struct TripDetail: View {
     var trip: Trip
     
     var body: some View {
-        Text(trip.name)
+        MapContainerView()
     }
 }

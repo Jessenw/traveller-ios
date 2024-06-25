@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		A42CADDB2C2A8C5000F6E936 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = A42CADDA2C2A8C5000F6E936 /* GoogleMaps */; };
 		A42CADDD2C2A8C7E00F6E936 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADDC2C2A8C7E00F6E936 /* Configuration.swift */; };
+		A42CADE02C2A8DA600F6E936 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADDF2C2A8DA600F6E936 /* MapViewController.swift */; };
+		A42CADE22C2A8DC300F6E936 /* MapContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADE12C2A8DC300F6E936 /* MapContainerView.swift */; };
 		A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85132C297F7A0037EE27 /* TravellerApp.swift */; };
 		A4CF85162C297F7A0037EE27 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85152C297F7A0037EE27 /* ContentView.swift */; };
 		A4CF851A2C297F7B0037EE27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4CF85192C297F7B0037EE27 /* Assets.xcassets */; };
@@ -42,6 +44,8 @@
 
 /* Begin PBXFileReference section */
 		A42CADDC2C2A8C7E00F6E936 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		A42CADDF2C2A8DA600F6E936 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		A42CADE12C2A8DC300F6E936 /* MapContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapContainerView.swift; sourceTree = "<group>"; };
 		A4CF85102C297F7A0037EE27 /* Traveller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Traveller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4CF85132C297F7A0037EE27 /* TravellerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellerApp.swift; sourceTree = "<group>"; };
 		A4CF85152C297F7A0037EE27 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -86,6 +90,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A42CADDE2C2A8D9300F6E936 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				A42CADDF2C2A8DA600F6E936 /* MapViewController.swift */,
+				A42CADE12C2A8DC300F6E936 /* MapContainerView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		A4CF85072C297F7A0037EE27 = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +169,7 @@
 		A4CF85432C2985B70037EE27 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A42CADDE2C2A8D9300F6E936 /* Map */,
 				A4CF85442C2986290037EE27 /* Trips */,
 				A4CF85152C297F7A0037EE27 /* ContentView.swift */,
 			);
@@ -329,6 +343,8 @@
 				A4CF85422C29850B0037EE27 /* Trip.swift in Sources */,
 				A4CF85162C297F7A0037EE27 /* ContentView.swift in Sources */,
 				A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */,
+				A42CADE02C2A8DA600F6E936 /* MapViewController.swift in Sources */,
+				A42CADE22C2A8DC300F6E936 /* MapContainerView.swift in Sources */,
 				A4CF854E2C299D640037EE27 /* TripDetail.swift in Sources */,
 				A4CF854C2C298DCC0037EE27 /* CreateTripDialog.swift in Sources */,
 				A42CADDD2C2A8C7E00F6E936 /* Configuration.swift in Sources */,
