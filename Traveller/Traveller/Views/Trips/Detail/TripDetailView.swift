@@ -15,7 +15,8 @@ struct TripDetailView: View {
         MapContainerView()
             .sheet(isPresented: $isShowingSheet) {
                 TripDetailSheet(trip: trip)
-                    .presentationDetents([.medium, .large])
+                    .presentationDetents([.fraction(1/3), .fraction(0.999)])
+                    .presentationBackgroundInteraction(.enabled)
                     .interactiveDismissDisabled()
             }
     }
