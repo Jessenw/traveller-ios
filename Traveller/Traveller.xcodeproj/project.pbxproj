@@ -11,6 +11,7 @@
 		A42CADE02C2A8DA600F6E936 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADDF2C2A8DA600F6E936 /* MapViewController.swift */; };
 		A42CADE22C2A8DC300F6E936 /* MapContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADE12C2A8DC300F6E936 /* MapContainerView.swift */; };
 		A42CADE42C2A8EF400F6E936 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADE32C2A8EF400F6E936 /* Configuration.swift */; };
+		A42CADE62C2A908F00F6E936 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADE52C2A908F00F6E936 /* Utilities.swift */; };
 		A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85132C297F7A0037EE27 /* TravellerApp.swift */; };
 		A4CF85162C297F7A0037EE27 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85152C297F7A0037EE27 /* ContentView.swift */; };
 		A4CF851A2C297F7B0037EE27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4CF85192C297F7B0037EE27 /* Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		A42CADDF2C2A8DA600F6E936 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		A42CADE12C2A8DC300F6E936 /* MapContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapContainerView.swift; sourceTree = "<group>"; };
 		A42CADE32C2A8EF400F6E936 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		A42CADE52C2A908F00F6E936 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		A4CF85102C297F7A0037EE27 /* Traveller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Traveller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4CF85132C297F7A0037EE27 /* TravellerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellerApp.swift; sourceTree = "<group>"; };
 		A4CF85152C297F7A0037EE27 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				A4CF85192C297F7B0037EE27 /* Assets.xcassets */,
 				A4CF851B2C297F7B0037EE27 /* Traveller.entitlements */,
 				A4CF851C2C297F7B0037EE27 /* Preview Content */,
+				A42CADE52C2A908F00F6E936 /* Utilities.swift */,
 			);
 			path = Traveller;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 			files = (
 				A4CF85482C2986860037EE27 /* TripList.swift in Sources */,
 				A4CF85422C29850B0037EE27 /* Trip.swift in Sources */,
+				A42CADE62C2A908F00F6E936 /* Utilities.swift in Sources */,
 				A4CF85162C297F7A0037EE27 /* ContentView.swift in Sources */,
 				A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */,
 				A42CADE02C2A8DA600F6E936 /* MapViewController.swift in Sources */,

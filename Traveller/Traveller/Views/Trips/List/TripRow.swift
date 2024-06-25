@@ -35,7 +35,7 @@ struct TripRow: View {
                         ForEach(members.prefix(5), id: \.self) { color in
                             Circle()
                                 .fill(randomColor())
-                                .frame(width: 30, height: 30)
+                                .frame(width: 24, height: 24)
                         }
                         if members.count > 5 {
                             Text("+ \(members.count - 5) more")
