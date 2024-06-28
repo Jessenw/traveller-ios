@@ -18,7 +18,7 @@ struct TaskRow: View {
                 task.isChecked.toggle()
             }) {
                 Image(systemName: isChecked ? "checkmark.circle.fill" : "circle")
-                    .foregroundColor(isChecked ? .green : .gray)
+                    .foregroundColor(isChecked ? .green : .secondary)
             }
             .buttonStyle(PlainButtonStyle())
             
@@ -27,7 +27,7 @@ struct TaskRow: View {
                     .font(.headline)
                 Text(task.subtitle)
                     .font(.subheadline)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.secondary)
                 Text(task.additionalSubtitle)
                     .font(.subheadline)
                     .foregroundColor(.secondary)

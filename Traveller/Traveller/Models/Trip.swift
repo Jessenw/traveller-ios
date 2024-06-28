@@ -9,7 +9,7 @@ import Foundation
 import SwiftData
 import SwiftUI
 
-@Model class Trip {
+@Model class Trip: Identifiable {
     var id = UUID()
     var name: String
     var detail: String?

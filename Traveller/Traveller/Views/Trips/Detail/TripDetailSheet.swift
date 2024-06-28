@@ -1,26 +1,11 @@
 //
-//  TripDetailView.swift
+//  TripDetailSheet.swift
 //  Traveller
 //
-//  Created by Jesse Williams on 25/06/2024.
+//  Created by Jesse Williams on 29/06/2024.
 //
 
 import SwiftUI
-
-struct TripDetailView: View {
-    var trip: Trip
-    @State private var isShowingSheet = true
-    
-    var body: some View {
-        MapContainerView()
-            .sheet(isPresented: $isShowingSheet) {
-                TripDetailSheet(trip: trip)
-                    .presentationDetents([.fraction(1/3), .fraction(0.999)])
-                    .presentationBackgroundInteraction(.enabled)
-                    .interactiveDismissDisabled()
-            }
-    }
-}
 
 struct TripDetailSheet: View {
     @State private var selectedSegment = 0
@@ -96,16 +81,4 @@ struct TripDetailSheet: View {
             Spacer()
         }
     }
-}
-
-#Preview {
-    TripDetailView(
-        trip: Trip(
-            name: "My cool adventure",
-            detail: "Where are we going?",
-            startDate: Date.distantPast,
-            endDate: Date.now,
-            members: ["", ""],
-            places: [],
-            tasks: []))
 }
