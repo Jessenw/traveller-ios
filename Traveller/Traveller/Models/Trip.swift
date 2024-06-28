@@ -15,9 +15,9 @@ import SwiftUI
     var detail: String?
     var startDate: Date?
     var endDate: Date?
-    var members: [String] // TODO: Create Member model
-    var places: [String] // TODO: Create Place model
-    var tasks: [String] // TODO: Create Task model
+    var members: [String]
+    var places: [String]
+    var tasks: [String]
     
     init(
         name: String,

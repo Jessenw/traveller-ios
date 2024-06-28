@@ -1,5 +1,5 @@
 //
-//  TodoItem.swift
+//  Task.swift
 //  Traveller
 //
 //  Created by Jesse Williams on 25/06/2024.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct TodoItem: Identifiable {
+struct Task: Identifiable {
     var id = UUID()
     var title: String
-    var subheading: String
-    var additionalSubheading: String
+    var subtitle: String
+    var additionalSubtitle: String
     var isChecked: Bool
     var imageName: String
 }

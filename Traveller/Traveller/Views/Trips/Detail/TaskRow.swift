@@ -1,5 +1,5 @@
 //
-//  TodoItemView.swift
+//  TaskRow.swift
 //  Traveller
 //
 //  Created by Jesse Williams on 25/06/2024.
@@ -7,35 +7,35 @@
 
 import SwiftUI
 
-struct TodoItemView: View {
-    @Binding var item: TodoItem
-    var additionalSubheadingStyle: Font = .subheadline
-    var additionalSubheadingColor: Color = .gray
+struct TaskRow: View {
+    @Binding var task: Task
 
     var body: some View {
+        let isChecked = task.isChecked
+        
         HStack {
             Button(action: {
-                item.isChecked.toggle()
+                task.isChecked.toggle()
             }) {
-                Image(systemName: item.isChecked ? "checkmark.circle.fill" : "circle")
-                    .foregroundColor(item.isChecked ? .green : .gray)
+                Image(systemName: isChecked ? "checkmark.circle.fill" : "circle")
+                    .foregroundColor(isChecked ? .green : .gray)
             }
             .buttonStyle(PlainButtonStyle())
             
             VStack(alignment: .leading) {
-                Text(item.title)
+                Text(task.title)
                     .font(.headline)
-                Text(item.subheading)
+                Text(task.subtitle)
                     .font(.subheadline)
                     .foregroundColor(.gray)
-                Text(item.additionalSubheading)
-                    .font(additionalSubheadingStyle)
-                    .foregroundColor(additionalSubheadingColor)
+                Text(task.additionalSubtitle)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
             }
             
             Spacer()
             
-            Image(item.imageName)
+            Image(task.imageName)
                 .resizable()
                 .frame(width: 40, height: 40)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
