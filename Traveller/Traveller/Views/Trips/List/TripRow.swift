@@ -21,10 +21,10 @@ struct TripRow: View {
                 if let startDate = trip.startDate, let endDate = trip.endDate {
                     HStack {
                         Image(systemName: "calendar")
-                            .foregroundColor(.gray)
+                            .foregroundColor(.secondary)
                         Text("\(startDate, formatter: dateFormatter) - \(endDate, formatter: dateFormatter)")
                             .font(.subheadline)
-                            .foregroundColor(.gray)
+                            .foregroundColor(.secondary)
                     }
                 }
                 
@@ -40,7 +40,7 @@ struct TripRow: View {
                         if members.count > 5 {
                             Text("+ \(members.count - 5) more")
                                 .font(.subheadline)
-                                .foregroundColor(.gray)
+                                .foregroundColor(.secondary)
                         }
                     }
                     .padding(.top, 16)
