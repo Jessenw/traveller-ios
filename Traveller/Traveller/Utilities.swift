@@ -22,3 +22,20 @@ class Utilities {
         return Color(red: red, green: green, blue: blue)
     }
 }
+
+extension Collection {
+    func separate(predicate: (Element) -> Bool) -> (matching: [Element], notMatching: [Element]) {
+        var matching: [Element] = []
+        var notMatching: [Element] = []
+        
+        for element in self {
+            if predicate(element) {
+                matching.append(element)
+            } else {
+                notMatching.append(element)
+            }
+        }
+        
+        return (matching, notMatching)
+    }
+}

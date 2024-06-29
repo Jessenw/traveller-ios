@@ -10,7 +10,6 @@ import SwiftData
 
 struct TaskList: View {
     @Environment(\.modelContext) private var modelContext
-    @Query var tasks: [Task]
     @State var showingCreateDialog: Bool = false
     
     var tripId: PersistentIdentifier
@@ -18,14 +17,32 @@ struct TaskList: View {
     var body: some View {
         ZStack {
             List {
-                ForEach(tasks) { task in
-                    TaskRow(task: task)
+                if let trip: Trip = modelContext.registeredModel(for: tripId) {
+                    let tasks = trip.tasks
+                    let seperatedTasks = trip.tasks.separate { $0.isChecked }
+                    
+                    // Not completed tasks
+                    Section {
+                        ForEach(seperatedTasks.notMatching) { task in
+                            TaskRow(task: task)
+                        }
+                    } header: {
+                        HStack(alignment: .center) {
+                            Text("Outstanding")
+                            Spacer()
+                            CreateTaskButton(showingCreateDialog: $showingCreateDialog)
+                        }
+                    }
+                    
+                    // Completed tasks
+                    Section("Completed") {
+                        ForEach(seperatedTasks.matching) { task in
+                            TaskRow(task: task)
+                        }
+                    }
                 }
             }
             .listStyle(PlainListStyle())
-            
-            // Create task button
-            CreateTaskButton(showingCreateDialog: $showingCreateDialog)
         }
         .sheet(isPresented: $showingCreateDialog) {
             CreateTaskDialog(tripId: tripId)
@@ -50,6 +67,5 @@ fileprivate struct CreateTaskButton: View {
                 }
             }
         }
-        .padding()
     }
 }
