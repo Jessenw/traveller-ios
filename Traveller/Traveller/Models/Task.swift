@@ -6,12 +6,23 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Task: Identifiable {
-    var id = UUID()
+@Model class Task {
     var title: String
-    var subtitle: String
-    var additionalSubtitle: String
+    var notes: String?
+    var deadline: Date?
     var isChecked: Bool
-    var imageName: String
+    
+    init(
+        title: String,
+        notes: String? = nil,
+        deadline: Date? = nil,
+        isChecked: Bool = false
+    ) {
+        self.title = title
+        self.notes = notes
+        self.deadline = deadline
+        self.isChecked = isChecked
+    }
 }

@@ -17,7 +17,7 @@ import SwiftUI
     var endDate: Date?
     var members: [String]
     var places: [String]
-    var tasks: [String]
+    @Relationship var tasks: [Task]
     
     init(
         name: String,
@@ -26,7 +26,7 @@ import SwiftUI
         endDate: Date? = nil,
         members: [String] = [],
         places: [String] = [],
-        tasks: [String] = []
+        tasks: [Task] = []
     ) {
         self.id = UUID()
         self.name = name

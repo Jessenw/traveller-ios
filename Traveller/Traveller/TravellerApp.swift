@@ -22,7 +22,8 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct TravellerApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Trip.self
+            Trip.self,
+            Task.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

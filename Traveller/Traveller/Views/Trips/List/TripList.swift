@@ -9,9 +9,9 @@ import SwiftData
 import SwiftUI
 
 struct TripList: View {
-    @Environment(\.modelContext) private var modelContext: ModelContext
+    @Environment(\.modelContext) private var modelContext
     @Query private var trips: [Trip]
-    @State private var showingCreateTripDialog = false
+    @State private var showingCreateDialog = false
     
     var body: some View {
         NavigationView {
@@ -22,7 +22,7 @@ struct TripList: View {
                         .fontWeight(.bold)
                     Spacer()
                     Button(action: {
-                        showingCreateTripDialog = true
+                        showingCreateDialog = true
                     }) {
                         Image(systemName: "plus.circle.fill")
                             .resizable()
@@ -39,10 +39,6 @@ struct TripList: View {
                 }
                 .listRowSpacing(8)
             }
-        }
-        .navigationBarHidden(true)
-        .sheet(isPresented: $showingCreateTripDialog) {
-            CreateTripDialog()
         }
     }
     

@@ -9,8 +9,6 @@ import SwiftUI
 
 struct TripDetailSheet: View {
     @State private var selectedSegment = 0
-    @State private var places = [Task]()
-    @State private var tasks = [Task]()
     
     var trip: Trip
     
@@ -58,6 +56,7 @@ struct TripDetailSheet: View {
                         .padding(.top)
                     }
                     .padding()
+                    
                     Spacer()
                 }
             }
@@ -72,9 +71,9 @@ struct TripDetailSheet: View {
                 .padding(.horizontal)
 
                 if selectedSegment == 0 {
-                    TaskList(tasks: $places)
+                    // PlaceList(tripId: trip.persistentModelId)
                 } else {
-                    TaskList(tasks: $tasks)
+                    TaskList(tripId: trip.persistentModelID)
                 }
             }
             
