@@ -30,6 +30,8 @@
 		A4CF854E2C299D640037EE27 /* TripDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF854D2C299D640037EE27 /* TripDetail.swift */; };
 		A4EA6EA92C2F80040058D9BE /* TripDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EA82C2F80040058D9BE /* TripDetailSheet.swift */; };
 		A4EA6EAF2C2F87E20058D9BE /* CreateTaskDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EAE2C2F87E20058D9BE /* CreateTaskDialog.swift */; };
+		A4EA6EB22C2FCF1F0058D9BE /* Date+Formatted.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EB12C2FCF1F0058D9BE /* Date+Formatted.swift */; };
+		A4EA6EB42C2FD0450058D9BE /* Collection+Separate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EB32C2FD0450058D9BE /* Collection+Separate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		A4CF854D2C299D640037EE27 /* TripDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetail.swift; sourceTree = "<group>"; };
 		A4EA6EA82C2F80040058D9BE /* TripDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailSheet.swift; sourceTree = "<group>"; };
 		A4EA6EAE2C2F87E20058D9BE /* CreateTaskDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskDialog.swift; sourceTree = "<group>"; };
+		A4EA6EB12C2FCF1F0058D9BE /* Date+Formatted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatted.swift"; sourceTree = "<group>"; };
+		A4EA6EB32C2FD0450058D9BE /* Collection+Separate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Separate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +140,7 @@
 		A4CF85122C297F7A0037EE27 /* Traveller */ = {
 			isa = PBXGroup;
 			children = (
+				A4EA6EB02C2FCF100058D9BE /* Extensions */,
 				A4CF85402C2985030037EE27 /* Models */,
 				A4CF85432C2985B70037EE27 /* Views */,
 				A4CF85132C297F7A0037EE27 /* TravellerApp.swift */,
@@ -245,6 +250,15 @@
 				A4EA6EAE2C2F87E20058D9BE /* CreateTaskDialog.swift */,
 			);
 			path = Create;
+			sourceTree = "<group>";
+		};
+		A4EA6EB02C2FCF100058D9BE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A4EA6EB12C2FCF1F0058D9BE /* Date+Formatted.swift */,
+				A4EA6EB32C2FD0450058D9BE /* Collection+Separate.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,6 +399,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4EA6EB42C2FD0450058D9BE /* Collection+Separate.swift in Sources */,
 				A4CF85482C2986860037EE27 /* TripList.swift in Sources */,
 				A4CF85422C29850B0037EE27 /* Trip.swift in Sources */,
 				A42CADE62C2A908F00F6E936 /* Utilities.swift in Sources */,
@@ -394,6 +409,7 @@
 				A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */,
 				A42CADEA2C2AA20D00F6E936 /* TaskRow.swift in Sources */,
 				A4EA6EAF2C2F87E20058D9BE /* CreateTaskDialog.swift in Sources */,
+				A4EA6EB22C2FCF1F0058D9BE /* Date+Formatted.swift in Sources */,
 				A42CADE02C2A8DA600F6E936 /* MapViewController.swift in Sources */,
 				A42CADE22C2A8DC300F6E936 /* MapContainerView.swift in Sources */,
 				A42CADE42C2A8EF400F6E936 /* Configuration.swift in Sources */,

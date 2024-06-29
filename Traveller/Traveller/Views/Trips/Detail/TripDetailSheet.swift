@@ -37,7 +37,7 @@ struct TripDetailSheet: View {
                                     Image(systemName: "calendar")
                                         .resizable()
                                         .frame(width: 12, height: 12)
-                                    Text("\(Utilities.formattedDate(startDate)) - \(Utilities.formattedDate(endDate))")
+                                    Text("\(startDate.formatted) - \(endDate.formatted)")
                                         .font(.caption)
                                     Text("•")
                                 }
