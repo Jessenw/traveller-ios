@@ -18,27 +18,25 @@ struct TaskList: View {
         ZStack {
             List {
                 if let trip: Trip = modelContext.registeredModel(for: tripId) {
-                    let tasks = trip.tasks
-                    let seperatedTasks = trip.tasks.separate { $0.isChecked }
+                    let (completed, notCompleted) = trip.tasks.separate { $0.isChecked }
                     
                     // Not completed tasks
                     Section {
-                        ForEach(seperatedTasks.notMatching) { task in
-                            TaskRow(task: task)
-                        }
+                        ForEach(notCompleted) { TaskRow(task: $0) }
                     } header: {
                         HStack(alignment: .center) {
                             Text("Outstanding")
+                            
                             Spacer()
+                            
+                            // Create task
                             CreateTaskButton(showingCreateDialog: $showingCreateDialog)
                         }
                     }
                     
                     // Completed tasks
                     Section("Completed") {
-                        ForEach(seperatedTasks.matching) { task in
-                            TaskRow(task: task)
-                        }
+                        ForEach(completed) { TaskRow(task: $0) }
                     }
                 }
             }
@@ -53,6 +51,8 @@ struct TaskList: View {
 fileprivate struct CreateTaskButton: View {
     @Binding var showingCreateDialog: Bool
     
+    private static let size: CGFloat = 24
+    
     var body: some View {
         VStack {
             Spacer()
@@ -63,7 +63,7 @@ fileprivate struct CreateTaskButton: View {
                 }) {
                     Image(systemName: "plus.circle.fill")
                         .resizable()
-                        .frame(width: 30, height: 30)
+                        .frame(width: Self.size, height: Self.size)
                 }
             }
         }

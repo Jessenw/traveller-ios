@@ -9,13 +9,15 @@ import SwiftData
 import SwiftUI
 
 struct TaskRow: View {
-    @Environment(\.modelContext) private var context
+    @Environment(\.modelContext) private var modelContext
+    
     var task: Task
 
     var body: some View {
         let isChecked = task.isChecked
         
         HStack {
+            // Checked button
             Button(action: {
                 task.isChecked.toggle()
             }) {
