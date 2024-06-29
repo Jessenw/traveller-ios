@@ -21,7 +21,7 @@ import SwiftData
         isChecked: Bool = false
     ) {
         self.title = title
-        self.notes = notes
+        self.notes = (notes?.isEmpty ?? true) ? nil : notes
         self.deadline = deadline
         self.isChecked = isChecked
     }
