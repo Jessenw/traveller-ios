@@ -36,6 +36,7 @@
 		A4EA6EB92C3155870058D9BE /* AvatarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EB82C3155870058D9BE /* AvatarsView.swift */; };
 		A4EA6EBB2C3155D00058D9BE /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EBA2C3155D00058D9BE /* Member.swift */; };
 		A4EA6EBD2C3156840058D9BE /* TripDatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EBC2C3156840058D9BE /* TripDatesView.swift */; };
+		A4EA6EC02C315DAA0058D9BE /* PlaceSearchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EBF2C315DAA0058D9BE /* PlaceSearchList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		A4EA6EB82C3155870058D9BE /* AvatarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsView.swift; sourceTree = "<group>"; };
 		A4EA6EBA2C3155D00058D9BE /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		A4EA6EBC2C3156840058D9BE /* TripDatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDatesView.swift; sourceTree = "<group>"; };
+		A4EA6EBF2C315DAA0058D9BE /* PlaceSearchList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSearchList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +202,7 @@
 		A4CF85432C2985B70037EE27 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A4EA6EBE2C315D9A0058D9BE /* Places */,
 				A4EA6EB72C31557A0058D9BE /* Common */,
 				A4EA6EAB2C2F805B0058D9BE /* Tasks */,
 				A42CADDE2C2A8D9300F6E936 /* Map */,
@@ -279,6 +282,14 @@
 				A4EA6EBC2C3156840058D9BE /* TripDatesView.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		A4EA6EBE2C315D9A0058D9BE /* Places */ = {
+			isa = PBXGroup;
+			children = (
+				A4EA6EBF2C315DAA0058D9BE /* PlaceSearchList.swift */,
+			);
+			path = Places;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -438,6 +449,7 @@
 				A42CADE42C2A8EF400F6E936 /* Configuration.swift in Sources */,
 				A4CF854E2C299D640037EE27 /* TripDetail.swift in Sources */,
 				A4CF854C2C298DCC0037EE27 /* CreateTripDialog.swift in Sources */,
+				A4EA6EC02C315DAA0058D9BE /* PlaceSearchList.swift in Sources */,
 				A42CADEC2C2AA2A400F6E936 /* Task.swift in Sources */,
 				A4EA6EBB2C3155D00058D9BE /* Member.swift in Sources */,
 				A4CF854A2C29886A0037EE27 /* TripRow.swift in Sources */,

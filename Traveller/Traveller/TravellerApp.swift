@@ -6,6 +6,7 @@
 //
 
 import GoogleMaps
+import GooglePlaces
 import SwiftUI
 import SwiftData
 
@@ -15,6 +16,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
         GMSServices.provideAPIKey(Configuration.GMSServicesAPIKey)
+        && GMSPlacesClient.provideAPIKey(Configuration.GMSServicesAPIKey)
     }
 }
 
