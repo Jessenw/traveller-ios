@@ -37,6 +37,7 @@
 		A4EA6EBB2C3155D00058D9BE /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EBA2C3155D00058D9BE /* Member.swift */; };
 		A4EA6EBD2C3156840058D9BE /* TripDatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EBC2C3156840058D9BE /* TripDatesView.swift */; };
 		A4EA6EC02C315DAA0058D9BE /* PlaceSearchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EBF2C315DAA0058D9BE /* PlaceSearchList.swift */; };
+		A4EA6EC22C317FD80058D9BE /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EC12C317FD80058D9BE /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		A4EA6EBA2C3155D00058D9BE /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		A4EA6EBC2C3156840058D9BE /* TripDatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDatesView.swift; sourceTree = "<group>"; };
 		A4EA6EBF2C315DAA0058D9BE /* PlaceSearchList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSearchList.swift; sourceTree = "<group>"; };
+		A4EA6EC12C317FD80058D9BE /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,10 +204,10 @@
 		A4CF85432C2985B70037EE27 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A4EA6EBE2C315D9A0058D9BE /* Places */,
 				A4EA6EB72C31557A0058D9BE /* Common */,
-				A4EA6EAB2C2F805B0058D9BE /* Tasks */,
 				A42CADDE2C2A8D9300F6E936 /* Map */,
+				A4EA6EBE2C315D9A0058D9BE /* Places */,
+				A4EA6EAB2C2F805B0058D9BE /* Tasks */,
 				A4CF85442C2986290037EE27 /* Trips */,
 				A4CF85152C297F7A0037EE27 /* ContentView.swift */,
 			);
@@ -280,6 +282,7 @@
 			children = (
 				A4EA6EB82C3155870058D9BE /* AvatarsView.swift */,
 				A4EA6EBC2C3156840058D9BE /* TripDatesView.swift */,
+				A4EA6EC12C317FD80058D9BE /* SearchBar.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				A4EA6EB62C314FCD0058D9BE /* Place.swift in Sources */,
 				A4CF85482C2986860037EE27 /* TripList.swift in Sources */,
 				A4CF85422C29850B0037EE27 /* Trip.swift in Sources */,
+				A4EA6EC22C317FD80058D9BE /* SearchBar.swift in Sources */,
 				A42CADE62C2A908F00F6E936 /* Utilities.swift in Sources */,
 				A4CF85162C297F7A0037EE27 /* ContentView.swift in Sources */,
 				A4EA6EBD2C3156840058D9BE /* TripDatesView.swift in Sources */,

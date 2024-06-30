@@ -78,9 +78,10 @@ struct TripDetailSheet: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
                 .padding(.horizontal)
-
+                
                 if selectedSegment == 0 {
-                    SearchView(searchText: $searchText)
+                    SearchBar(searchText: $searchText)
+                        .padding(.horizontal)
                         .onChange(of: searchText) { oldValue, newValue in
                             fetchPlaces()
                             withAnimation {
@@ -120,16 +121,5 @@ struct TripDetailSheet: View {
                     subtitle: prediction.attributedSecondaryText?.string ?? "")
             } ?? []
         }
-    }
-}
-
-struct SearchView: View {
-    @Binding var searchText: String
-    
-    var body: some View {
-        TextField("Search for places...", text: $searchText)
-            .background(Color(.systemGray6))
-            .cornerRadius(8)
-            .padding(.horizontal)
     }
 }
