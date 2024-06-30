@@ -48,9 +48,12 @@ struct TripDetailSheet: View {
                                         .frame(width: 12, height: 12)
                                     Text("\(startDate.formatted) - \(endDate.formatted)")
                                         .font(.caption)
-                                    Text("•")
                                 }
                                 .foregroundStyle(.secondary)
+                            }
+                            
+                            if (!trip.members.isEmpty) {
+                                Text("•")
                             }
                             
                             // Member avatars
@@ -90,10 +93,9 @@ struct TripDetailSheet: View {
                         }
                     
                     if searchIsFocused {
-                        PlaceSearchList(places: $places)
+                        PlaceSearchList(places: $places, trip: trip)
                     } else {
-                        // PlaceList(tripId: trip.persistentModelId)
-                        TaskList(tripId: trip.persistentModelID)
+                        PlaceList(tripId: trip.persistentModelID)
                     }
                 } else {
                     TaskList(tripId: trip.persistentModelID)

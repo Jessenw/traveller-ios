@@ -38,6 +38,8 @@
 		A4EA6EBD2C3156840058D9BE /* TripDatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EBC2C3156840058D9BE /* TripDatesView.swift */; };
 		A4EA6EC02C315DAA0058D9BE /* PlaceSearchList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EBF2C315DAA0058D9BE /* PlaceSearchList.swift */; };
 		A4EA6EC22C317FD80058D9BE /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EC12C317FD80058D9BE /* SearchBar.swift */; };
+		A4EA6EC52C3180FA0058D9BE /* PlaceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EC42C3180FA0058D9BE /* PlaceList.swift */; };
+		A4EA6EC72C31817F0058D9BE /* PlaceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EC62C31817F0058D9BE /* PlaceRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +93,8 @@
 		A4EA6EBC2C3156840058D9BE /* TripDatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDatesView.swift; sourceTree = "<group>"; };
 		A4EA6EBF2C315DAA0058D9BE /* PlaceSearchList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSearchList.swift; sourceTree = "<group>"; };
 		A4EA6EC12C317FD80058D9BE /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		A4EA6EC42C3180FA0058D9BE /* PlaceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceList.swift; sourceTree = "<group>"; };
+		A4EA6EC62C31817F0058D9BE /* PlaceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +295,8 @@
 			isa = PBXGroup;
 			children = (
 				A4EA6EBF2C315DAA0058D9BE /* PlaceSearchList.swift */,
+				A4EA6EC42C3180FA0058D9BE /* PlaceList.swift */,
+				A4EA6EC62C31817F0058D9BE /* PlaceRow.swift */,
 			);
 			path = Places;
 			sourceTree = "<group>";
@@ -452,10 +458,12 @@
 				A42CADE22C2A8DC300F6E936 /* MapContainerView.swift in Sources */,
 				A42CADE42C2A8EF400F6E936 /* Configuration.swift in Sources */,
 				A4CF854E2C299D640037EE27 /* TripDetail.swift in Sources */,
+				A4EA6EC52C3180FA0058D9BE /* PlaceList.swift in Sources */,
 				A4CF854C2C298DCC0037EE27 /* CreateTripDialog.swift in Sources */,
 				A4EA6EC02C315DAA0058D9BE /* PlaceSearchList.swift in Sources */,
 				A42CADEC2C2AA2A400F6E936 /* Task.swift in Sources */,
 				A4EA6EBB2C3155D00058D9BE /* Member.swift in Sources */,
+				A4EA6EC72C31817F0058D9BE /* PlaceRow.swift in Sources */,
 				A4CF854A2C29886A0037EE27 /* TripRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

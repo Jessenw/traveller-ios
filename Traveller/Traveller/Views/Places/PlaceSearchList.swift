@@ -12,6 +12,7 @@ import SwiftUI
 struct PlaceSearchList: View {
     @Environment(\.modelContext) private var modelContext: ModelContext
     @Binding var places: [Place]
+    var trip: Trip
 
     var body: some View {
         List(places) { place in
@@ -37,7 +38,6 @@ struct PlaceSearchList: View {
     }
     
     private func addPlace(place: Place) {
-        modelContext.insert(place)
+        trip.places.append(place)
     }
 }
-
