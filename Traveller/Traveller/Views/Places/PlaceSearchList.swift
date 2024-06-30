@@ -16,28 +16,7 @@ struct PlaceSearchList: View {
 
     var body: some View {
         List(places) { place in
-            HStack {
-                VStack(alignment: .leading) {
-                    Text(place.title)
-                        .font(.headline)
-                    Text(place.subtitle)
-                        .font(.subheadline)
-                }
-                
-                Spacer()
-                
-                Button(action: {
-                    addPlace(place: place)
-                }) {
-                    Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                }
-            }
+            PlaceSearchRow(trip: trip, place: place)
         }
-    }
-    
-    private func addPlace(place: Place) {
-        trip.places.append(place)
     }
 }
