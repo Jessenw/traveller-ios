@@ -19,7 +19,7 @@ struct TaskRow: View {
         HStack {
             // Checked button
             Button(action: {
-                task.isChecked.toggle()
+                withAnimation { task.isChecked.toggle() }
             }) {
                 Image(systemName: isChecked ? "checkmark.circle.fill" : "circle")
                     .foregroundColor(isChecked ? .green : .secondary)
