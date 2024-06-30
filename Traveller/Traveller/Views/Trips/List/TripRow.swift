@@ -8,59 +8,23 @@
 import SwiftUI
 
 struct TripRow: View {
-    var trip: Trip
+    let trip: Trip
     
     var body: some View {
         NavigationLink(destination: TripDetail(trip: trip)) {
             VStack(alignment: .leading, spacing: 8) {
-                // Trip Name
+                // Trip name
                 Text(trip.name)
                     .font(.headline)
                 
                 // Start/end dates
                 if let startDate = trip.startDate, let endDate = trip.endDate {
-                    HStack {
-                        Image(systemName: "calendar")
-                            .foregroundColor(.secondary)
-                        Text("\(startDate, formatter: dateFormatter) - \(endDate, formatter: dateFormatter)")
-                            .font(.subheadline)
-                            .foregroundColor(.secondary)
-                    }
+                    TripDatesView(from: startDate, to: endDate)
                 }
                 
                 // Avatars
-                let members = trip.members
-                if !members.isEmpty {
-                    HStack(spacing: 8) {
-                        ForEach(members.prefix(5), id: \.self) { color in
-                            Circle()
-                                .fill(randomColor())
-                                .frame(width: 24, height: 24)
-                        }
-                        if members.count > 5 {
-                            Text("+ \(members.count - 5) more")
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
-                        }
-                    }
-                    .padding(.top, 16)
-                }
+                AvatarsView(members: trip.members)
             }
-            .padding()
         }
     }
-}
-
-private let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "d MMM"
-    return formatter
-}()
-
-private func randomColor() -> Color {
-    let red = Double.random(in: 0...1)
-    let green = Double.random(in: 0...1)
-    let blue = Double.random(in: 0...1)
-    
-    return Color(red: red, green: green, blue: blue)
 }

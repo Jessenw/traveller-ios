@@ -32,6 +32,7 @@
 		A4EA6EAF2C2F87E20058D9BE /* CreateTaskDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EAE2C2F87E20058D9BE /* CreateTaskDialog.swift */; };
 		A4EA6EB22C2FCF1F0058D9BE /* Date+Formatted.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EB12C2FCF1F0058D9BE /* Date+Formatted.swift */; };
 		A4EA6EB42C2FD0450058D9BE /* Collection+Separate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EB32C2FD0450058D9BE /* Collection+Separate.swift */; };
+		A4EA6EB62C314FCD0058D9BE /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EB52C314FCD0058D9BE /* Place.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		A4EA6EAE2C2F87E20058D9BE /* CreateTaskDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskDialog.swift; sourceTree = "<group>"; };
 		A4EA6EB12C2FCF1F0058D9BE /* Date+Formatted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatted.swift"; sourceTree = "<group>"; };
 		A4EA6EB32C2FD0450058D9BE /* Collection+Separate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Separate.swift"; sourceTree = "<group>"; };
+		A4EA6EB52C314FCD0058D9BE /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +185,7 @@
 			children = (
 				A4CF85412C29850B0037EE27 /* Trip.swift */,
 				A42CADEB2C2AA2A400F6E936 /* Task.swift */,
+				A4EA6EB52C314FCD0058D9BE /* Place.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4EA6EB42C2FD0450058D9BE /* Collection+Separate.swift in Sources */,
+				A4EA6EB62C314FCD0058D9BE /* Place.swift in Sources */,
 				A4CF85482C2986860037EE27 /* TripList.swift in Sources */,
 				A4CF85422C29850B0037EE27 /* Trip.swift in Sources */,
 				A42CADE62C2A908F00F6E936 /* Utilities.swift in Sources */,

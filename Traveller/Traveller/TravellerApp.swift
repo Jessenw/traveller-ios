@@ -23,7 +23,8 @@ struct TravellerApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Trip.self,
-            Task.self
+            Task.self,
+            Place.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
