@@ -35,6 +35,7 @@
 		A4EA6EB62C314FCD0058D9BE /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EB52C314FCD0058D9BE /* Place.swift */; };
 		A4EA6EB92C3155870058D9BE /* AvatarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EB82C3155870058D9BE /* AvatarsView.swift */; };
 		A4EA6EBB2C3155D00058D9BE /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EBA2C3155D00058D9BE /* Member.swift */; };
+		A4EA6EBD2C3156840058D9BE /* TripDatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EBC2C3156840058D9BE /* TripDatesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		A4EA6EB52C314FCD0058D9BE /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		A4EA6EB82C3155870058D9BE /* AvatarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvatarsView.swift; sourceTree = "<group>"; };
 		A4EA6EBA2C3155D00058D9BE /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		A4EA6EBC2C3156840058D9BE /* TripDatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDatesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				A4EA6EB82C3155870058D9BE /* AvatarsView.swift */,
+				A4EA6EBC2C3156840058D9BE /* TripDatesView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -423,6 +426,7 @@
 				A4CF85422C29850B0037EE27 /* Trip.swift in Sources */,
 				A42CADE62C2A908F00F6E936 /* Utilities.swift in Sources */,
 				A4CF85162C297F7A0037EE27 /* ContentView.swift in Sources */,
+				A4EA6EBD2C3156840058D9BE /* TripDatesView.swift in Sources */,
 				A42CADEE2C2AA3B400F6E936 /* TaskList.swift in Sources */,
 				A4EA6EA92C2F80040058D9BE /* TripDetailSheet.swift in Sources */,
 				A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */,

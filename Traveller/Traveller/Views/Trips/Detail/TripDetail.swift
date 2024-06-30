@@ -30,7 +30,7 @@ struct TripDetail: View {
             detail: "Where are we going?",
             startDate: Date.distantPast,
             endDate: Date.now,
-            members: ["", ""],
-            places: [],
-            tasks: []))
+            members: Array(repeating: Member(name: ""), count: 3),
+            places: Array(repeating: Place(title: "", subtitle: ""), count: 3),
+            tasks: Array(repeating: Task(title: ""), count: 3)))
 }

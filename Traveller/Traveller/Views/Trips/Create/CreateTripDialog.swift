@@ -53,7 +53,7 @@ struct CreateTripDialog: View {
             detail: detail,
             startDate: includeDates ? startDate : nil,
             endDate: includeDates ? endDate : nil,
-            members: [String].init(repeating: "", count: Int.random(in: 1...5)))
+            members: Array(repeating: Member(name: ""), count: 3))
         modelContext.insert(newTrip)
         presentationMode.wrappedValue.dismiss()
     }
