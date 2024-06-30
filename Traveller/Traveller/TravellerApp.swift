@@ -24,7 +24,8 @@ struct TravellerApp: App {
         let schema = Schema([
             Trip.self,
             Task.self,
-            Place.self
+            Place.self,
+            Member.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
