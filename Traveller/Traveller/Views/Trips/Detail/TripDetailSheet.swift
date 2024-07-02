@@ -86,8 +86,9 @@ struct TripDetailSheet: View {
                 if selectedSegment == 0 {
                     SearchBar(searchText: $searchText)
                         .padding(.horizontal)
-                        .onChange(of: searchText) { oldValue, newValue in
-                            fetchPlaces()
+                        .onChange(of: searchText) { _, newValue in
+                           loadStuff()
+                            
                             withAnimation {
                                 searchIsFocused = !newValue.isEmpty ? true : false
                             }
@@ -107,23 +108,40 @@ struct TripDetailSheet: View {
         }
     }
     
-    /// Query Google Places to retrieve a list of fuzzy results
-    private func fetchPlaces() {
-        placesClient.findAutocompletePredictions(
-            fromQuery: searchText,
-            filter: nil,
-            sessionToken: nil
-        ) { (results, error) in
-            if let error = error {
-                print("Error fetching autocomplete predictions: \(error.localizedDescription)")
-                return
+    private func loadStuff() {
+        _Concurrency.Task {
+            do {
+                places = try await fetchPlaces()
+            } catch {
+                print(error)
             }
-            places = results?.map { prediction in
-                Place(
-                    name: prediction.attributedPrimaryText.string,
-                    subtitle: prediction.attributedSecondaryText?.string ?? "",
-                    images: [])
-            } ?? []
+        }
+    }
+    
+    /// Query Google Places to retrieve a list of fuzzy results
+    private func fetchPlaces() async throws -> [Place] {
+        return try await withCheckedThrowingContinuation { continuation in
+            placesClient.findAutocompletePredictions(
+                fromQuery: searchText,
+                filter: nil,
+                sessionToken: nil
+            ) { (results, error) in
+                if let error = error {
+                    print("Error fetching autocomplete predictions: \(error.localizedDescription)")
+                    continuation.resume(throwing: error)
+                }
+                if let results = results {
+                    let places = results.map { prediction in
+                        Place(
+                            name: prediction.attributedPrimaryText.string,
+                            subtitle: prediction.attributedSecondaryText?.string ?? "",
+                            images: [])
+                    }
+                    continuation.resume(returning: places)
+                } else {
+                    continuation.resume(throwing: URLError(.unknown))
+                }
+            }
         }
     }
 }
