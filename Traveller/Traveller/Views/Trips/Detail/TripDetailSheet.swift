@@ -6,6 +6,7 @@
 //
 
 import GooglePlaces
+import GoogleMaps
 import SwiftUI
 
 struct TripDetailSheet: View {
@@ -119,8 +120,9 @@ struct TripDetailSheet: View {
             }
             places = results?.map { prediction in
                 Place(
-                    title: prediction.attributedPrimaryText.string,
-                    subtitle: prediction.attributedSecondaryText?.string ?? "")
+                    name: prediction.attributedPrimaryText.string,
+                    subtitle: prediction.attributedSecondaryText?.string ?? "",
+                    images: [])
             } ?? []
         }
     }

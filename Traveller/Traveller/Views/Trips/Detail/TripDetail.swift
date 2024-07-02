@@ -31,6 +31,6 @@ struct TripDetail: View {
             startDate: Date.distantPast,
             endDate: Date.now,
             members: Array(repeating: Member(name: ""), count: 3),
-            places: Array(repeating: Place(title: "", subtitle: ""), count: 3),
+            places: Array(repeating: Place(name: "", subtitle: "", images: []), count: 3),
             tasks: Array(repeating: Task(title: ""), count: 3)))
 }

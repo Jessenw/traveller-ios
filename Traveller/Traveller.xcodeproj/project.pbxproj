@@ -41,6 +41,7 @@
 		A4EA6EC52C3180FA0058D9BE /* PlaceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EC42C3180FA0058D9BE /* PlaceList.swift */; };
 		A4EA6EC72C31817F0058D9BE /* PlaceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EC62C31817F0058D9BE /* PlaceRow.swift */; };
 		A4EA6EC92C3183890058D9BE /* PlaceSearchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EC82C3183890058D9BE /* PlaceSearchRow.swift */; };
+		A4EA6ECF2C326E690058D9BE /* PlaceSearchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6ECE2C326E690058D9BE /* PlaceSearchListViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,7 @@
 		A4EA6EC42C3180FA0058D9BE /* PlaceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceList.swift; sourceTree = "<group>"; };
 		A4EA6EC62C31817F0058D9BE /* PlaceRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceRow.swift; sourceTree = "<group>"; };
 		A4EA6EC82C3183890058D9BE /* PlaceSearchRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSearchRow.swift; sourceTree = "<group>"; };
+		A4EA6ECE2C326E690058D9BE /* PlaceSearchListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSearchListViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -300,6 +302,7 @@
 				A4EA6EC42C3180FA0058D9BE /* PlaceList.swift */,
 				A4EA6EC62C31817F0058D9BE /* PlaceRow.swift */,
 				A4EA6EC82C3183890058D9BE /* PlaceSearchRow.swift */,
+				A4EA6ECE2C326E690058D9BE /* PlaceSearchListViewModel.swift */,
 			);
 			path = Places;
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				A42CADEA2C2AA20D00F6E936 /* TaskRow.swift in Sources */,
 				A4EA6EAF2C2F87E20058D9BE /* CreateTaskDialog.swift in Sources */,
 				A4EA6EB22C2FCF1F0058D9BE /* Date+Formatted.swift in Sources */,
+				A4EA6ECF2C326E690058D9BE /* PlaceSearchListViewModel.swift in Sources */,
 				A42CADE02C2A8DA600F6E936 /* MapViewController.swift in Sources */,
 				A42CADE22C2A8DC300F6E936 /* MapContainerView.swift in Sources */,
 				A42CADE42C2A8EF400F6E936 /* Configuration.swift in Sources */,

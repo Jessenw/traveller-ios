@@ -40,6 +40,10 @@ struct TripList: View {
                 .listRowSpacing(8)
             }
         }
+        .navigationBarHidden(true)
+        .sheet(isPresented: $showingCreateDialog) {
+            CreateTripDialog()
+        }
     }
     
     private func deleteTrip(at offsets: IndexSet) {

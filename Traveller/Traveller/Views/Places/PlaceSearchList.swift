@@ -5,6 +5,7 @@
 //  Created by Jesse Williams on 30/06/2024.
 //
 
+import GoogleMaps
 import GooglePlaces
 import SwiftData
 import SwiftUI

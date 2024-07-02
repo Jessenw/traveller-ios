@@ -27,7 +27,7 @@ struct PlaceRow: View {
             .buttonStyle(PlainButtonStyle())
             
             VStack(alignment: .leading) {
-                Text(place.title)
+                Text(place.name)
                     .font(.headline)
                 Text(place.subtitle)
                     .font(.subheadline)

@@ -11,24 +11,51 @@ struct PlaceSearchRow: View {
     let trip: Trip
     let place: Place
     
+    @State private var isAdded = false
+    
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(place.title)
-                    .font(.headline)
-                Text(place.subtitle)
-                    .font(.subheadline)
+        VStack(alignment: .leading) {
+            // Preview images
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 10) {
+                    ForEach(place.images, id: \.self) { imageData in
+                        if let uiImage = UIImage(data: imageData) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 90, height: 90)
+                                .background(Color(.systemGray5))
+                                .cornerRadius(10)
+                        }
+                    }
+                }
+                .padding(.horizontal)
             }
             
-            Spacer()
-            
-            Button(action: {
-                addPlace(place: place)
-            }) {
-                Image(systemName: "plus.circle.fill")
-                    .resizable()
-                    .frame(width: 30, height: 30)
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(place.name)
+                        .font(.title)
+                        .fontWeight(.bold)
+                    Text(place.subtitle)
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                }
+                Spacer()
+                Button(action: {
+                    withAnimation {
+                        isAdded.toggle()
+                        addPlace(place: place)
+                    }
+                }) {
+                    Text(isAdded ? "Added" : "Add")
+                        .padding()
+                        .background(isAdded ? Color.green : Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
             }
+            .padding()
         }
     }
     
@@ -40,5 +67,5 @@ struct PlaceSearchRow: View {
 #Preview {
     PlaceSearchRow(
         trip: Trip(name: "Name"),
-        place: Place(title: "Title", subtitle: "Subtitle"))
+        place: Place(name: "Title", subtitle: "Subtitle", images: []))
 }
