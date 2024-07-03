@@ -20,22 +20,63 @@ class TripDetailSheetViewModel: ObservableObject {
         let filter = AutocompleteFilter(types: [.restaurant])
         let autocompleteRequest = AutocompleteRequest(query: query, filter: filter)
         
-        switch await placesClient.fetchAutocompleteSuggestions(with: autocompleteRequest) {
-        case .success(let autocompleteSuggestions):
-            return try autocompleteSuggestions.map { suggestion in
-                switch suggestion {
-                case .place(let place):
-                    Place(
-                        name: place.legacyAttributedPrimaryText.string,
-                        subtitle: place.legacyAttributedSecondaryText?.string ?? "",
-                        images: [])
-                @unknown default:
-                    throw(PlacesError.internal("Unknown AutocompleteSuggestion type"))
+        let placeIds: [String] = switch await placesClient.fetchAutocompleteSuggestions(with: autocompleteRequest) {
+            case .success(let autocompleteSuggestions):
+                try autocompleteSuggestions.map { suggestion -> String in
+                    switch suggestion {
+                    case .place(let place):
+                        return place.placeID
+                    @unknown default:
+                        throw(PlacesError.internal("Unknown AutocompleteSuggestion type"))
+                    }
+                }
+            case .failure(let placesError):
+                throw placesError
+        }
+        
+        var newPlaces = [Place]()
+        for placeId in placeIds {
+            let fetchPlaceRequest = FetchPlaceRequest(
+                placeID: placeId,
+                placeProperties: [
+                    PlaceProperty.displayName,
+                    PlaceProperty.formattedAddress,
+                    PlaceProperty.photos
+                ]
+            )
+            var fetchedPlace: GooglePlacesSwift.Place
+            switch await placesClient.fetchPlace(with: fetchPlaceRequest) {
+            case .success(let place):
+                fetchedPlace = place
+            case .failure(let placesError):
+                throw(PlacesError.internal("Error fetching place \(placesError)"))
+            }
+            
+            // Use the place details to fetch a photo's image.
+            guard let photos = fetchedPlace.photos else {
+                return []
+            }
+            
+            var photosData = [Data]()
+            for photo in photos {
+                let fetchPhotoRequest = FetchPhotoRequest(photo: photo, maxSize: CGSizeMake(200, 200))
+                switch await placesClient.fetchPhoto(with: fetchPhotoRequest) {
+                case .success(let uiImage):
+                    if let photoData = uiImage.pngData() {
+                        photosData.append(photoData)
+                    }
+                case .failure(let placesError):
+                    throw(PlacesError.internal("Error fetching photo \(placesError)"))
                 }
             }
-        case .failure(let placesError):
-            throw placesError
+            
+            let newPlace = Place(
+                name: fetchedPlace.displayName ?? "",
+                subtitle: fetchedPlace.formattedAddress ?? "",
+                images: photosData)
+            newPlaces.append(newPlace)
         }
+        return newPlaces
     }
 }
 
