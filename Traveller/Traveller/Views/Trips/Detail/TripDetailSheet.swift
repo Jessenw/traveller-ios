@@ -87,7 +87,16 @@ struct TripDetailSheet: View {
                     SearchBar(searchText: $searchText)
                         .padding(.horizontal)
                         .onChange(of: searchText) { _, newValue in
-                           loadStuff()
+                            _Concurrency.Task {
+                                do {
+                                    if !searchText.isEmpty {
+                                        places = try await fetchAutocompletePredictions(query: searchText)
+                                        print(places)
+                                    }
+                                } catch {
+                                    print(error)
+                                }
+                            }
                             
                             withAnimation {
                                 searchIsFocused = !newValue.isEmpty ? true : false
@@ -108,38 +117,65 @@ struct TripDetailSheet: View {
         }
     }
     
-    private func loadStuff() {
-        _Concurrency.Task {
-            do {
-                places = try await fetchPlaces()
-            } catch {
-                print(error)
+    /// Query Google Places to retrieve a list of fuzzy results
+    private func fetchAutocompletePredictions(query: String) async throws -> [Place] {
+        let gmsPlaces: [GMSPlace] = try await withCheckedThrowingContinuation { continuation in
+            let placeProperties = [
+                GMSPlaceProperty.placeID,
+                GMSPlaceProperty.name,
+                GMSPlaceProperty.photos
+            ].map { $0.rawValue }
+
+            let request = GMSPlaceSearchByTextRequest(
+                textQuery: query,
+                placeProperties: placeProperties)
+            
+            placesClient.searchByText(with: request) { (results, error) in
+                guard let results, error == nil else {
+                    print("Error fetching autocomplete places: \(error!.localizedDescription)")
+                    continuation.resume(throwing: error!)
+                    return
+                }
+                
+//                print("Search results \(results.first!)")
+                continuation.resume(returning: results)
             }
         }
+        
+        // Load photos
+        var localPlaces = [Place]()
+        for place in gmsPlaces {
+            let photos = try await fetchPlacePhotos(placeId: place.placeID ?? "")
+            
+            let newPlace = Place(
+                name: place.name ?? "",
+                subtitle: place.formattedAddress ?? "",
+                images: [])
+            
+            localPlaces.append(newPlace)
+        }
+        return localPlaces
     }
     
-    /// Query Google Places to retrieve a list of fuzzy results
-    private func fetchPlaces() async throws -> [Place] {
-        return try await withCheckedThrowingContinuation { continuation in
-            placesClient.findAutocompletePredictions(
-                fromQuery: searchText,
-                filter: nil,
-                sessionToken: nil
-            ) { (results, error) in
-                if let error = error {
-                    print("Error fetching autocomplete predictions: \(error.localizedDescription)")
-                    continuation.resume(throwing: error)
-                }
-                if let results = results {
-                    let places = results.map { prediction in
-                        Place(
-                            name: prediction.attributedPrimaryText.string,
-                            subtitle: prediction.attributedSecondaryText?.string ?? "",
-                            images: [])
-                    }
-                    continuation.resume(returning: places)
-                } else {
+    private func fetchPlacePhotos(placeId: String) async throws -> Data {
+        try await withCheckedThrowingContinuation { continuation in
+            // Request list of photos for a place
+            placesClient.lookUpPhotos(forPlaceID: placeId) { (photos, error) in
+                guard let photoMetadata = photos?.results[0] else {
                     continuation.resume(throwing: URLError(.unknown))
+                    return
+                }
+
+                // Request individual photos in the response list
+                let fetchPhotoRequest = GMSFetchPhotoRequest(photoMetadata: photoMetadata, maxSize: CGSizeMake(400, 400))
+                placesClient.fetchPhoto(with: fetchPhotoRequest) { (photoImage, error) in
+                    guard let pngData = photoImage?.pngData(), error == nil else {
+                        print("Error fetching photo: \(error!.localizedDescription)")
+                        continuation.resume(throwing: error!)
+                        return
+                    }
+                    
+                    continuation.resume(returning: pngData)
                 }
             }
         }
