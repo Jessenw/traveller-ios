@@ -15,7 +15,6 @@
 		A42CADEA2C2AA20D00F6E936 /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADE92C2AA20D00F6E936 /* TaskRow.swift */; };
 		A42CADEC2C2AA2A400F6E936 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADEB2C2AA2A400F6E936 /* Task.swift */; };
 		A42CADEE2C2AA3B400F6E936 /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADED2C2AA3B400F6E936 /* TaskList.swift */; };
-		A42CADF12C2AB72A00F6E936 /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = A42CADF02C2AB72A00F6E936 /* GooglePlaces */; };
 		A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85132C297F7A0037EE27 /* TravellerApp.swift */; };
 		A4CF85162C297F7A0037EE27 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85152C297F7A0037EE27 /* ContentView.swift */; };
 		A4CF851A2C297F7B0037EE27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4CF85192C297F7B0037EE27 /* Assets.xcassets */; };
@@ -42,6 +41,7 @@
 		A4EA6EC72C31817F0058D9BE /* PlaceRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EC62C31817F0058D9BE /* PlaceRow.swift */; };
 		A4EA6EC92C3183890058D9BE /* PlaceSearchRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EC82C3183890058D9BE /* PlaceSearchRow.swift */; };
 		A4EA6ECF2C326E690058D9BE /* PlaceSearchListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6ECE2C326E690058D9BE /* PlaceSearchListViewModel.swift */; };
+		A4EA6EDA2C34D39C0058D9BE /* GooglePlacesSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A4EA6ED92C34D39C0058D9BE /* GooglePlacesSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,7 +107,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A42CADDB2C2A8C5000F6E936 /* GoogleMaps in Frameworks */,
-				A42CADF12C2AB72A00F6E936 /* GooglePlaces in Frameworks */,
+				A4EA6EDA2C34D39C0058D9BE /* GooglePlacesSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,7 +325,7 @@
 			name = Traveller;
 			packageProductDependencies = (
 				A42CADDA2C2A8C5000F6E936 /* GoogleMaps */,
-				A42CADF02C2AB72A00F6E936 /* GooglePlaces */,
+				A4EA6ED92C34D39C0058D9BE /* GooglePlacesSwift */,
 			);
 			productName = Traveller;
 			productReference = A4CF85102C297F7A0037EE27 /* Traveller.app */;
@@ -401,7 +401,7 @@
 			mainGroup = A4CF85072C297F7A0037EE27;
 			packageReferences = (
 				A42CADD92C2A8C5000F6E936 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */,
-				A42CADEF2C2AB72A00F6E936 /* XCRemoteSwiftPackageReference "ios-places-sdk" */,
+				A4EA6ED82C34D39C0058D9BE /* XCRemoteSwiftPackageReference "ios-places-swift-sdk" */,
 			);
 			productRefGroup = A4CF85112C297F7A0037EE27 /* Products */;
 			projectDirPath = "";
@@ -839,12 +839,12 @@
 				minimumVersion = 9.0.0;
 			};
 		};
-		A42CADEF2C2AB72A00F6E936 /* XCRemoteSwiftPackageReference "ios-places-sdk" */ = {
+		A4EA6ED82C34D39C0058D9BE /* XCRemoteSwiftPackageReference "ios-places-swift-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/googlemaps/ios-places-sdk";
+			repositoryURL = "https://github.com/googlemaps/ios-places-swift-sdk";
 			requirement = {
-				kind = exactVersion;
-				version = 9.0.0;
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -855,10 +855,10 @@
 			package = A42CADD92C2A8C5000F6E936 /* XCRemoteSwiftPackageReference "ios-maps-sdk" */;
 			productName = GoogleMaps;
 		};
-		A42CADF02C2AB72A00F6E936 /* GooglePlaces */ = {
+		A4EA6ED92C34D39C0058D9BE /* GooglePlacesSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A42CADEF2C2AB72A00F6E936 /* XCRemoteSwiftPackageReference "ios-places-sdk" */;
-			productName = GooglePlaces;
+			package = A4EA6ED82C34D39C0058D9BE /* XCRemoteSwiftPackageReference "ios-places-swift-sdk" */;
+			productName = GooglePlacesSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

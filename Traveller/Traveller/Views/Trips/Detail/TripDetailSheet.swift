@@ -5,19 +5,49 @@
 //  Created by Jesse Williams on 29/06/2024.
 //
 
-import GooglePlaces
+import Combine
+import GooglePlacesSwift
 import GoogleMaps
 import SwiftUI
+
+@MainActor
+class TripDetailSheetViewModel: ObservableObject {
+    
+    let placesClient = PlacesClient.shared
+    
+    /// Query Google Places to retrieve a list of fuzzy results
+    func fetchAutocompletePredictions(query: String) async throws -> [Place] {
+        let filter = AutocompleteFilter(types: [.restaurant])
+        let autocompleteRequest = AutocompleteRequest(query: query, filter: filter)
+        
+        switch await placesClient.fetchAutocompleteSuggestions(with: autocompleteRequest) {
+        case .success(let autocompleteSuggestions):
+            return try autocompleteSuggestions.map { suggestion in
+                switch suggestion {
+                case .place(let place):
+                    Place(
+                        name: place.legacyAttributedPrimaryText.string,
+                        subtitle: place.legacyAttributedSecondaryText?.string ?? "",
+                        images: [])
+                @unknown default:
+                    throw(PlacesError.internal("Unknown AutocompleteSuggestion type"))
+                }
+            }
+        case .failure(let placesError):
+            throw placesError
+        }
+    }
+}
 
 struct TripDetailSheet: View {
     @State private var selectedSegment = 0
     @State private var searchText = ""
     @State private var searchIsFocused = false
     @State private var places = [Place]()
+    @ObservedObject var viewModel = TripDetailSheetViewModel()
     
     var trip: Trip
-    private var placesClient = GMSPlacesClient.shared()
-    
+        
     init(trip: Trip) {
         self.trip = trip
     }
@@ -90,7 +120,7 @@ struct TripDetailSheet: View {
                             _Concurrency.Task {
                                 do {
                                     if !searchText.isEmpty {
-                                        places = try await fetchAutocompletePredictions(query: searchText)
+                                        places = try await viewModel.fetchAutocompletePredictions(query: searchText)
                                         print(places)
                                     }
                                 } catch {
@@ -114,70 +144,6 @@ struct TripDetailSheet: View {
             }
             
             Spacer()
-        }
-    }
-    
-    /// Query Google Places to retrieve a list of fuzzy results
-    private func fetchAutocompletePredictions(query: String) async throws -> [Place] {
-        let gmsPlaces: [GMSPlace] = try await withCheckedThrowingContinuation { continuation in
-            let placeProperties = [
-                GMSPlaceProperty.placeID,
-                GMSPlaceProperty.name,
-                GMSPlaceProperty.photos
-            ].map { $0.rawValue }
-
-            let request = GMSPlaceSearchByTextRequest(
-                textQuery: query,
-                placeProperties: placeProperties)
-            
-            placesClient.searchByText(with: request) { (results, error) in
-                guard let results, error == nil else {
-                    print("Error fetching autocomplete places: \(error!.localizedDescription)")
-                    continuation.resume(throwing: error!)
-                    return
-                }
-                
-//                print("Search results \(results.first!)")
-                continuation.resume(returning: results)
-            }
-        }
-        
-        // Load photos
-        var localPlaces = [Place]()
-        for place in gmsPlaces {
-            let photos = try await fetchPlacePhotos(placeId: place.placeID ?? "")
-            
-            let newPlace = Place(
-                name: place.name ?? "",
-                subtitle: place.formattedAddress ?? "",
-                images: [])
-            
-            localPlaces.append(newPlace)
-        }
-        return localPlaces
-    }
-    
-    private func fetchPlacePhotos(placeId: String) async throws -> Data {
-        try await withCheckedThrowingContinuation { continuation in
-            // Request list of photos for a place
-            placesClient.lookUpPhotos(forPlaceID: placeId) { (photos, error) in
-                guard let photoMetadata = photos?.results[0] else {
-                    continuation.resume(throwing: URLError(.unknown))
-                    return
-                }
-
-                // Request individual photos in the response list
-                let fetchPhotoRequest = GMSFetchPhotoRequest(photoMetadata: photoMetadata, maxSize: CGSizeMake(400, 400))
-                placesClient.fetchPhoto(with: fetchPhotoRequest) { (photoImage, error) in
-                    guard let pngData = photoImage?.pngData(), error == nil else {
-                        print("Error fetching photo: \(error!.localizedDescription)")
-                        continuation.resume(throwing: error!)
-                        return
-                    }
-                    
-                    continuation.resume(returning: pngData)
-                }
-            }
         }
     }
 }
