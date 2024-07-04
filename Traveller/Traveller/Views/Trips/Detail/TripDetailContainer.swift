@@ -1,5 +1,5 @@
 //
-//  TripDetail.swift
+//  TripDetailContainer.swift
 //  Traveller
 //
 //  Created by Jesse Williams on 25/06/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TripDetail: View {
+struct TripDetailContainer: View {
     @State private var isShowingSheet = true
     
     var trip: Trip
@@ -24,7 +24,7 @@ struct TripDetail: View {
 }
 
 #Preview {
-    TripDetail(
+    TripDetailContainer(
         trip: Trip(
             name: "My cool adventure",
             detail: "Where are we going?",

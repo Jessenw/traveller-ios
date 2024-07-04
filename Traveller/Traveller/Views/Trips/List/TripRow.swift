@@ -11,7 +11,7 @@ struct TripRow: View {
     let trip: Trip
     
     var body: some View {
-        NavigationLink(destination: TripDetail(trip: trip)) {
+        NavigationLink(destination: TripDetailContainer(trip: trip)) {
             VStack(alignment: .leading, spacing: 8) {
                 // Trip name
                 Text(trip.name)
