@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct AvatarsView: View {
-    private let members: [Member]
-    private let maxMembers: Int
-    private static let avatarSize: CGFloat = 24
+    let members: [Member]
+    let maxMembers: Int
+    let avatarSize: CGFloat
     
-    init(members: [Member], maxMembers: Int = 4) {
+    init(members: [Member], maxMembers: Int = 4, avatarSize: CGFloat = 18) {
         self.members = members
         self.maxMembers = maxMembers
+        self.avatarSize = avatarSize
     }
     
     var body: some View {
@@ -23,7 +24,7 @@ struct AvatarsView: View {
                 ForEach(members.prefix(maxMembers)) { _ in
                     Circle()
                         .fill(Utilities.randomColor())
-                        .frame(width: Self.avatarSize, height: Self.avatarSize)
+                        .frame(width: avatarSize, height: avatarSize)
                 }
                 if members.count > maxMembers {
                     Text("+ \(members.count - maxMembers) more")

@@ -15,6 +15,7 @@
 		A42CADEA2C2AA20D00F6E936 /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADE92C2AA20D00F6E936 /* TaskRow.swift */; };
 		A42CADEC2C2AA2A400F6E936 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADEB2C2AA2A400F6E936 /* Task.swift */; };
 		A42CADEE2C2AA3B400F6E936 /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADED2C2AA3B400F6E936 /* TaskList.swift */; };
+		A4918FC92C3663E2001B45EE /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4918FC82C3663E2001B45EE /* HomeScreen.swift */; };
 		A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85132C297F7A0037EE27 /* TravellerApp.swift */; };
 		A4CF85162C297F7A0037EE27 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85152C297F7A0037EE27 /* ContentView.swift */; };
 		A4CF851A2C297F7B0037EE27 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4CF85192C297F7B0037EE27 /* Assets.xcassets */; };
@@ -70,6 +71,7 @@
 		A42CADE92C2AA20D00F6E936 /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
 		A42CADEB2C2AA2A400F6E936 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		A42CADED2C2AA3B400F6E936 /* TaskList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskList.swift; sourceTree = "<group>"; };
+		A4918FC82C3663E2001B45EE /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		A4CF85102C297F7A0037EE27 /* Traveller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Traveller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4CF85132C297F7A0037EE27 /* TravellerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravellerApp.swift; sourceTree = "<group>"; };
 		A4CF85152C297F7A0037EE27 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -139,6 +141,22 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		A4918FC62C3663CF001B45EE /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				A4918FC72C3663DB001B45EE /* Home */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		A4918FC72C3663DB001B45EE /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				A4918FC82C3663E2001B45EE /* HomeScreen.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		A4CF85072C297F7A0037EE27 = {
 			isa = PBXGroup;
 			children = (
@@ -165,7 +183,7 @@
 				A4EA6EB02C2FCF100058D9BE /* Extensions */,
 				A4CF85402C2985030037EE27 /* Models */,
 				A4EA6EDF2C3566C90058D9BE /* Services */,
-				A4CF85432C2985B70037EE27 /* Views */,
+				A4CF85432C2985B70037EE27 /* UI */,
 				A4CF85132C297F7A0037EE27 /* TravellerApp.swift */,
 				A42CADE32C2A8EF400F6E936 /* Configuration.swift */,
 				A4CF85192C297F7B0037EE27 /* Assets.xcassets */,
@@ -212,9 +230,10 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		A4CF85432C2985B70037EE27 /* Views */ = {
+		A4CF85432C2985B70037EE27 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				A4918FC62C3663CF001B45EE /* Screens */,
 				A4EA6EB72C31557A0058D9BE /* Common */,
 				A42CADDE2C2A8D9300F6E936 /* Map */,
 				A4EA6EBE2C315D9A0058D9BE /* Places */,
@@ -222,7 +241,7 @@
 				A4CF85442C2986290037EE27 /* Trips */,
 				A4CF85152C297F7A0037EE27 /* ContentView.swift */,
 			);
-			path = Views;
+			path = UI;
 			sourceTree = "<group>";
 		};
 		A4CF85442C2986290037EE27 /* Trips */ = {
@@ -482,6 +501,7 @@
 				A4CF854C2C298DCC0037EE27 /* CreateTripDialog.swift in Sources */,
 				A4EA6EC02C315DAA0058D9BE /* PlaceSearchList.swift in Sources */,
 				A42CADEC2C2AA2A400F6E936 /* Task.swift in Sources */,
+				A4918FC92C3663E2001B45EE /* HomeScreen.swift in Sources */,
 				A4EA6EBB2C3155D00058D9BE /* Member.swift in Sources */,
 				A4EA6EC72C31817F0058D9BE /* PlaceRow.swift in Sources */,
 				A4CF854A2C29886A0037EE27 /* TripRow.swift in Sources */,

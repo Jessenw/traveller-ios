@@ -86,13 +86,13 @@ struct TripDetailSheet: View {
                         .padding(.horizontal)
                         .onChange(of: searchText) { _, newValue in
                             _Concurrency.Task {
-                                do {
-                                    if !searchText.isEmpty {
-                                        places = try await placesService.fetchAutocompletePredictions(query: searchText)
-                                    }
-                                } catch {
-                                    print(error)
-                                }
+//                                do {
+//                                    if !searchText.isEmpty {
+//                                        places = try await placesService.fetchAutocompletePredictions(query: searchText)
+//                                    }
+//                                } catch {
+//                                    print(error)
+//                                }
                             }
                             
                             withAnimation {
