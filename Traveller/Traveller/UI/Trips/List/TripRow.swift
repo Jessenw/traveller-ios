@@ -13,9 +13,9 @@ struct TripRow: View {
     var body: some View {
         NavigationLink(destination: TripDetailContainer(trip: trip)) {
             VStack(alignment: .leading) {
-                    // Trip name
-                    Text(trip.name)
-                        .font(.headline)
+                // Trip name
+                Text(trip.name)
+                    .font(.headline)
                 
                 HStack(alignment: .center) {
                     // Start/end dates

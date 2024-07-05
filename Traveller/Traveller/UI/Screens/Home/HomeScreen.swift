@@ -9,17 +9,33 @@ import SwiftUI
 
 struct HomeScreen: View {
     @State private var isShowingSheet = true
+    @State private var searchIsFocused = false
+    @State private var searchQuery = ""
     
     var body: some View {
         MapContainerView()
             .sheet(isPresented: $isShowingSheet) {
-                TripList()
-                    .presentationDetents([
-                        .fraction(1/3),
-                        .fraction(0.999)
-                    ])
-                    .presentationBackgroundInteraction(.enabled)
-                    .interactiveDismissDisabled()
+                VStack {
+                    SearchBar(
+                        searchText: $searchQuery,
+                        isFocused: $searchIsFocused
+                    )
+                    .padding([.top, .horizontal])
+                    
+                    if searchIsFocused {
+                        PlaceSearchList(searchQuery: $searchQuery)
+                    } else {
+                        TripList()
+                    }
+                    
+                    Spacer()
+                }
+                .presentationDetents([
+                    .fraction(1/3),
+                    .fraction(0.999)
+                ])
+                .presentationBackgroundInteraction(.enabled)
+                .interactiveDismissDisabled()
             }
     }
 }

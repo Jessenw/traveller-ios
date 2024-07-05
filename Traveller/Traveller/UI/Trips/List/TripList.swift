@@ -17,9 +17,6 @@ struct TripList: View {
     var body: some View {
         NavigationView {
             VStack {
-                SearchBar(searchText: $searchQuery)
-                    .padding([.top, .horizontal])
-                
                 // Trips list
                 List {
                     Section {

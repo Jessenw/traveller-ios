@@ -15,7 +15,7 @@ struct TripDetailSheet: View {
     @State private var searchText = ""
     @State private var searchIsFocused = false
     @State private var places = [Place]()
-    @ObservedObject var placesService = PlacesService()
+    @ObservedObject var placesService = PlacesService.shared
     
     var trip: Trip
     
@@ -82,7 +82,7 @@ struct TripDetailSheet: View {
                 .padding(.horizontal)
                 
                 if selectedSegment == 0 {
-                    SearchBar(searchText: $searchText)
+                    SearchBar(searchText: $searchText, isFocused: $searchIsFocused)
                         .padding(.horizontal)
                         .onChange(of: searchText) { _, newValue in
                             _Concurrency.Task {
@@ -101,7 +101,7 @@ struct TripDetailSheet: View {
                         }
                     
                     if searchIsFocused {
-                        PlaceSearchList(places: $places, trip: trip)
+                        PlaceSearchList(searchQuery: $searchText)
                     } else {
                         PlaceList(tripId: trip.persistentModelID)
                     }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchBar: View {
     @Binding var searchText: String
+    @Binding var isFocused: Bool
     @State private var isEditing = false
     
     var body: some View {
@@ -25,6 +26,7 @@ struct SearchBar: View {
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 8)
                         
+                        // Clear button
                         if isEditing {
                             Button(action: {
                                 self.searchText = ""
@@ -36,14 +38,11 @@ struct SearchBar: View {
                         }
                     }
                 )
-                .onTapGesture {
-                    self.isEditing = true
+                .onChange(of: searchText) { oldValue, newValue in
+                    withAnimation {
+                        isFocused = !newValue.isEmpty ? true : false
+                    }
                 }
         }
     }
-}
-
-#Preview {
-    @State var searchText = ""
-    return SearchBar(searchText: $searchText)
 }

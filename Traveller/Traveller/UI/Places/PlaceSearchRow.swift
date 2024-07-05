@@ -8,64 +8,34 @@
 import SwiftUI
 
 struct PlaceSearchRow: View {
-    let trip: Trip
-    let place: Place
-    
     @State private var isAdded = false
     
+    let place: AutocompletePlace
+    
     var body: some View {
-        VStack(alignment: .leading) {
-            // Preview images
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 10) {
-                    ForEach(place.images, id: \.self) { imageData in
-                        if let uiImage = UIImage(data: imageData) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 90, height: 90)
-                                .background(Color(.systemGray5))
-                                .cornerRadius(10)
-                        }
-                    }
+        HStack(alignment: .center) {
+            VStack(alignment: .center) {
+                Image(systemName: "mappin.circle.fill")
+                if let distance = place.distance {
+                    let convertedDistance = distance.converted(to: .meters).value
+                    Text("\(convertedDistance)")
+
                 }
-                .padding(.horizontal)
             }
+            .foregroundStyle(.primary)
             
-            HStack {
-                VStack(alignment: .leading) {
-                    Text(place.name)
-                        .font(.title)
-                        .fontWeight(.bold)
-                    Text(place.subtitle)
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                }
-                Spacer()
-                Button(action: {
-                    withAnimation {
-                        isAdded.toggle()
-                        addPlace(place: place)
-                    }
-                }) {
-                    Text(isAdded ? "Added" : "Add")
-                        .padding()
-                        .background(isAdded ? Color.green : Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+            VStack(alignment: .leading) {
+                Text(place.name)
+                    .font(.headline)
+                    .fontWeight(.bold)
+                
+                if let subtitle = place.subtitle, !subtitle.isEmpty {
+                    Text(subtitle)
+                        .font(.caption)
+                        .foregroundColor(.secondary)
                 }
             }
-            .padding()
+            .lineLimit(2)
         }
     }
-    
-    private func addPlace(place: Place) {
-        trip.places.append(place)
-    }
-}
-
-#Preview {
-    PlaceSearchRow(
-        trip: Trip(name: "Name"),
-        place: Place(name: "Title", subtitle: "Subtitle", images: []))
 }
