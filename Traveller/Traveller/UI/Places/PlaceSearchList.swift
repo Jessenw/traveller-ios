@@ -18,21 +18,22 @@ struct PlaceSearchList: View {
     @Binding var searchQuery: String
 
     var body: some View {
-        List(places) { place in
-            NavigationLink(destination: PlaceDetail(placeId: place.placeId)) {
-                PlaceSearchRow(place: place)
-            }
-        }
-        .onChange(of: searchQuery) { _, newValue in
-            _Concurrency.Task {
-                do {
-                    if !searchQuery.isEmpty {
-                        places = try await placesService.fetchAutocompletePredictions(query: searchQuery)
-                    }
-                } catch {
-                    print(error)
+            List(places) { place in
+                NavigationLink(destination: PlaceDetail(placeId: place.placeId)) {
+                    PlaceSearchRow(place: place)
                 }
             }
-        }
+            .onChange(of: searchQuery) { _, newValue in
+                _Concurrency.Task {
+                    do {
+                        if !searchQuery.isEmpty {
+                            places = try await placesService.fetchAutocompletePredictions(query: searchQuery)
+                        }
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+        
     }
 }

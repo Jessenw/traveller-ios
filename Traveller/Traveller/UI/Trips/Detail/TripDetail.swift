@@ -1,5 +1,5 @@
 //
-//  TripDetailSheet.swift
+//  TripDetail.swift
 //  Traveller
 //
 //  Created by Jesse Williams on 29/06/2024.
@@ -10,10 +10,8 @@ import GooglePlacesSwift
 import GoogleMaps
 import SwiftUI
 
-struct TripDetailSheet: View {
+struct TripDetail: View {
     @State private var selectedSegment = 0
-    @State private var searchText = ""
-    @State private var searchIsFocused = false
     @State private var places = [Place]()
     @ObservedObject var placesService = PlacesService.shared
     
@@ -82,29 +80,7 @@ struct TripDetailSheet: View {
                 .padding(.horizontal)
                 
                 if selectedSegment == 0 {
-                    SearchBar(searchText: $searchText, isFocused: $searchIsFocused)
-                        .padding(.horizontal)
-                        .onChange(of: searchText) { _, newValue in
-                            _Concurrency.Task {
-//                                do {
-//                                    if !searchText.isEmpty {
-//                                        places = try await placesService.fetchAutocompletePredictions(query: searchText)
-//                                    }
-//                                } catch {
-//                                    print(error)
-//                                }
-                            }
-                            
-                            withAnimation {
-                                searchIsFocused = !newValue.isEmpty ? true : false
-                            }
-                        }
-                    
-                    if searchIsFocused {
-                        PlaceSearchList(searchQuery: $searchText)
-                    } else {
-                        PlaceList(tripId: trip.persistentModelID)
-                    }
+                    TaskList(tripId: trip.persistentModelID)
                 } else {
                     TaskList(tripId: trip.persistentModelID)
                 }

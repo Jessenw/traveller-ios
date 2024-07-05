@@ -13,30 +13,28 @@ struct HomeScreen: View {
     @State private var searchQuery = ""
     
     var body: some View {
-        MapContainerView()
-            .sheet(isPresented: $isShowingSheet) {
-                VStack {
-                    SearchBar(
-                        searchText: $searchQuery,
-                        isFocused: $searchIsFocused
-                    )
-                    .padding([.top, .horizontal])
-                    
-                    if searchIsFocused {
-                        PlaceSearchList(searchQuery: $searchQuery)
-                    } else {
-                        TripList()
+        NavigationStack {
+            MapContainerView()
+                .sheet(isPresented: $isShowingSheet) {
+                    VStack {
+                        SearchBar(
+                            searchText: $searchQuery,
+                            isFocused: $searchIsFocused
+                        )
+                        .padding([.top, .horizontal])
+                        
+                        if searchIsFocused {
+                            PlaceSearchList(searchQuery: $searchQuery)
+                        } else {
+                            TripList()
+                        }
+                        
+                        Spacer()
                     }
-                    
-                    Spacer()
+                    .presentationDetents([.fraction(1/3), .large])
+                    .interactiveDismissDisabled()
                 }
-                .presentationDetents([
-                    .fraction(1/3),
-                    .fraction(0.999)
-                ])
-                .presentationBackgroundInteraction(.enabled)
-                .interactiveDismissDisabled()
-            }
+        }
     }
 }
 

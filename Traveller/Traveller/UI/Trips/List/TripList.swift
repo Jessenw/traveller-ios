@@ -14,6 +14,7 @@ struct TripList: View {
     @State private var showingCreateDialog = false
     @State private var searchQuery = ""
     
+
     var body: some View {
         NavigationView {
             VStack {
@@ -25,7 +26,7 @@ struct TripList: View {
                         }
                         .onDelete(perform: deleteTrip)
                     } header: {
-                        HStack {
+                        HStack(alignment: .center) {
                             Text("Trips")
                             
                             Spacer()
@@ -35,7 +36,9 @@ struct TripList: View {
                                 showingCreateDialog = true
                             }) {
                                 Image(systemName: "plus.circle.fill")
+                                    .resizable()
                             }
+                            .frame(width: 20, height: 20)
                         }
                     }
                 }
@@ -52,8 +55,4 @@ struct TripList: View {
             modelContext.delete(trips[index])
         }
     }
-}
-
-#Preview {
-    TripList()
 }
