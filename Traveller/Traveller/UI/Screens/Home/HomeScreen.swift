@@ -37,17 +37,17 @@ struct HomeScreen: View {
                             
                             Spacer()
                         }
-                        .presentationDetents([
-                            .fraction(1/3),
-                            .height(700) // This is a magic number
-                        ], selection: $currentDetent)
-                        .presentationBackgroundInteraction(.enabled(upThrough: .height(700)))
+                        .presentationDetents(
+                            [.fraction(1/3), maxDetent],
+                            selection: $currentDetent
+                        )
+                        .presentationBackgroundInteraction(.enabled(upThrough: maxDetent))
                         .interactiveDismissDisabled()
                         .presentationDragIndicator(dragIndicator)
                         .presentationCornerRadius(sheetCornerRadius)
                         .onChange(of: currentDetent) {
                             withAnimation {
-                                let isSheetMaxHeight = currentDetent == .height(700)
+                                let isSheetMaxHeight = currentDetent == maxDetent
                                 dragIndicator = isSheetMaxHeight ? .hidden : .visible
                                 sheetCornerRadius = isSheetMaxHeight ? 0 : nil
                             }

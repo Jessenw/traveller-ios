@@ -44,12 +44,12 @@ struct TripDetail: View {
                                         .frame(width: 12, height: 12)
                                     Text("\(startDate.formatted) - \(endDate.formatted)")
                                         .font(.caption)
+                                    
+                                    if (!trip.members.isEmpty) {
+                                        Text("•")
+                                    }
                                 }
                                 .foregroundStyle(.secondary)
-                            }
-                            
-                            if (!trip.members.isEmpty) {
-                                Text("•")
                             }
                             
                             // Member avatars
@@ -61,9 +61,7 @@ struct TripDetail: View {
                                 }
                             }
                         }
-                        .padding(.top)
                     }
-                    .padding()
                     
                     Spacer()
                 }
@@ -80,7 +78,7 @@ struct TripDetail: View {
                 .padding(.horizontal)
                 
                 if selectedSegment == 0 {
-                    TaskList(tripId: trip.persistentModelID)
+                    PlaceList(tripId: trip.persistentModelID)
                 } else {
                     TaskList(tripId: trip.persistentModelID)
                 }
@@ -88,5 +86,6 @@ struct TripDetail: View {
             
             Spacer()
         }
+        .navigationBarBackButtonHidden()
     }
 }
