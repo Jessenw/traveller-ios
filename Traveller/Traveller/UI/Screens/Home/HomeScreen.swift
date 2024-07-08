@@ -12,28 +12,54 @@ struct HomeScreen: View {
     @State private var searchIsFocused = false
     @State private var searchQuery = ""
     
+    // Sheet presentation state
+    @State private var currentDetent = PresentationDetent.fraction(1/3)
+    @State private var dragIndicator = Visibility.visible
+    @State private var sheetCornerRadius: CGFloat? = nil
+    @State private var sheetDetents = [PresentationDetent.fraction(1/3)]
+    @State private var maxDetent = PresentationDetent.height(700)
+    
+    init() {
+        sheetDetents.append(maxDetent)
+    }
+    
     var body: some View {
         NavigationStack {
-            MapContainerView()
-                .sheet(isPresented: $isShowingSheet) {
-                    VStack {
-                        SearchBar(
-                            searchText: $searchQuery,
-                            isFocused: $searchIsFocused
-                        )
-                        .padding([.top, .horizontal])
-                        
-                        if searchIsFocused {
-                            PlaceSearchList(searchQuery: $searchQuery)
-                        } else {
-                            TripList()
+            ZStack(alignment: .top) {
+                MapContainerView()
+                    .sheet(isPresented: $isShowingSheet) {
+                        VStack {
+                            if searchIsFocused {
+                                PlaceSearchList(searchQuery: $searchQuery)
+                            } else {
+                                TripList()
+                            }
+                            
+                            Spacer()
                         }
-                        
-                        Spacer()
+                        .presentationDetents([
+                            .fraction(1/3),
+                            .height(700) // This is a magic number
+                        ], selection: $currentDetent)
+                        .presentationBackgroundInteraction(.enabled(upThrough: .height(700)))
+                        .interactiveDismissDisabled()
+                        .presentationDragIndicator(dragIndicator)
+                        .presentationCornerRadius(sheetCornerRadius)
+                        .onChange(of: currentDetent) {
+                            withAnimation {
+                                let isSheetMaxHeight = currentDetent == .height(700)
+                                dragIndicator = isSheetMaxHeight ? .hidden : .visible
+                                sheetCornerRadius = isSheetMaxHeight ? 0 : nil
+                            }
+                        }
                     }
-                    .presentationDetents([.fraction(1/3), .large])
-                    .interactiveDismissDisabled()
-                }
+                
+                SearchBar(
+                    searchText: $searchQuery,
+                    isFocused: $searchIsFocused
+                )
+                .padding([.top, .horizontal])
+            }
         }
     }
 }
