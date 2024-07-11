@@ -1,0 +1,142 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "%@" : {
+
+    },
+    "%@ - %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ - %2$@"
+          }
+        }
+      }
+    },
+    "%lf" : {
+
+    },
+    "%lld" : {
+
+    },
+    "•" : {
+
+    },
+    "+ %lld more" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Completed" : {
+
+    },
+    "Create" : {
+
+    },
+    "Description (Optional)" : {
+
+    },
+    "End Date" : {
+
+    },
+    "Header" : {
+
+    },
+    "Include Dates" : {
+
+    },
+    "Name" : {
+
+    },
+    "New Task" : {
+
+    },
+    "New Trip" : {
+
+    },
+    "Outstanding" : {
+
+    },
+    "Places" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Places"
+          }
+        }
+      }
+    },
+    "Search places" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search places..."
+          }
+        }
+      }
+    },
+    "Search places for trip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search places for %lld"
+          }
+        }
+      }
+    },
+    "Search places..." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search places..."
+          }
+        }
+      }
+    },
+    "Select list" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select list"
+          }
+        }
+      }
+    },
+    "Start Date" : {
+
+    },
+    "Tasks" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tasks"
+          }
+        }
+      }
+    },
+    "Trip Details" : {
+
+    },
+    "Trips" : {
+
+    }
+  },
+  "version" : "1.0"
+}

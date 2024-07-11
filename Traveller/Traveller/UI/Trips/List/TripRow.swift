@@ -12,24 +12,27 @@ struct TripRow: View {
     
     var body: some View {
         NavigationLink(destination: TripDetail(trip: trip)) {
-            VStack(alignment: .leading) {
-                // Trip name
-                Text(trip.name)
-                    .font(.headline)
-                
-                HStack(alignment: .center) {
-                    // Start/end dates
-                    if let startDate = trip.startDate, let endDate = trip.endDate {
-                        Group {
-                            TripDatesView(startDate: startDate, endDate: endDate)
-                            Text("•")
-                        }
-                        .foregroundColor(.secondary)
-                    }
+            HStack {
+                VStack(alignment: .leading) {
+                    // Trip name
+                    Text(trip.name)
+                        .font(.headline)
                     
-                    // Avatars
-                    AvatarsView(members: trip.members)
+                    HStack(alignment: .center) {
+                        // Start/end dates
+                        if let startDate = trip.startDate, let endDate = trip.endDate {
+                            Group {
+                                TripDatesView(startDate: startDate, endDate: endDate)
+                                Text("•")
+                            }
+                            // .foregroundColor(.secondary)
+                        }
+                        
+                        // Avatars
+                        AvatarsView(members: trip.members)
+                    }
                 }
+                Spacer()
             }
         }
     }

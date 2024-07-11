@@ -7,10 +7,16 @@
 
 import SwiftUI
 
+enum ScreenContext {
+    case home
+    case trip
+}
+
 struct HomeScreen: View {
     @State private var isShowingSheet = true
     @State private var searchIsFocused = false
     @State private var searchQuery = ""
+    @State private var screenContext: ScreenContext = .home
     
     // Sheet presentation state
     @State private var currentDetent = PresentationDetent.fraction(1/3)
@@ -25,40 +31,42 @@ struct HomeScreen: View {
     
     var body: some View {
         NavigationStack {
-            ZStack(alignment: .top) {
+            ZStack {
                 MapContainerView()
-                    .sheet(isPresented: $isShowingSheet) {
-                        VStack {
-                            if searchIsFocused {
-                                PlaceSearchList(searchQuery: $searchQuery)
-                            } else {
-                                TripList()
-                            }
+                VStack {
+                    SearchBar(
+                        searchText: $searchQuery,
+                        isFocused: $searchIsFocused,
+                        screenContext: $screenContext
+                    )
+                    .padding([.top, .horizontal])
+                    
+                    Spacer()
+                    
+                    Sheet {
+                        HStack {
+                            Text("Trips")
+                                .font(.title)
                             
                             Spacer()
+                            
+                            Button(
+                                action: {},
+                                label: {
+                                    Image(systemName: "multiply.circle.fill")
+                                        .resizable()
+                                        .frame(width: 25, height: 25)
+                                }
+                            )
+                            .buttonStyle(PlainButtonStyle())
                         }
-                        .presentationDetents(
-                            [.fraction(1/3), maxDetent],
-                            selection: $currentDetent
-                        )
-                        .presentationBackgroundInteraction(.enabled(upThrough: maxDetent))
-                        .interactiveDismissDisabled()
-                        .presentationDragIndicator(dragIndicator)
-                        .presentationCornerRadius(sheetCornerRadius)
-                        .onChange(of: currentDetent) {
-                            withAnimation {
-                                let isSheetMaxHeight = currentDetent == maxDetent
-                                dragIndicator = isSheetMaxHeight ? .hidden : .visible
-                                sheetCornerRadius = isSheetMaxHeight ? 0 : nil
-                            }
-                        }
+                    } content: {
+                        TripList()
                     }
-                
-                SearchBar(
-                    searchText: $searchQuery,
-                    isFocused: $searchIsFocused
-                )
-                .padding([.top, .horizontal])
+                    .padding()
+                }
+                .ignoresSafeArea(edges: .bottom)
+
             }
         }
     }

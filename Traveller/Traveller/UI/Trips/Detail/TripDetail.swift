@@ -35,31 +35,13 @@ struct TripDetail: View {
                                 .lineLimit(2)
                         }
                         
-                        // Trip dates
+                        // Trip dates/members
                         HStack {
                             if let startDate = trip.startDate, let endDate = trip.endDate {
-                                HStack {
-                                    Image(systemName: "calendar")
-                                        .resizable()
-                                        .frame(width: 12, height: 12)
-                                    Text("\(startDate.formatted) - \(endDate.formatted)")
-                                        .font(.caption)
-                                    
-                                    if (!trip.members.isEmpty) {
-                                        Text("•")
-                                    }
-                                }
-                                .foregroundStyle(.secondary)
+                                TripDatesView(startDate: startDate, endDate: endDate)
                             }
                             
-                            // Member avatars
-                            HStack(spacing: 4) {
-                                ForEach(trip.members, id: \.self) { member in
-                                    Circle()
-                                        .fill(Utilities.randomColor())
-                                        .frame(width: 20, height: 20)
-                                }
-                            }
+                            AvatarsView(members: trip.members)
                         }
                     }
                     
@@ -70,11 +52,13 @@ struct TripDetail: View {
             
             // Places, tasks and search lists
             VStack {
-                Picker("Select List", selection: $selectedSegment) {
-                    Text("Places").tag(0)
-                    Text("Tasks").tag(1)
+                Picker(String(localized: "Select list"), selection: $selectedSegment) {
+                    Text(String(localized: "Places"))
+                        .tag(0)
+                    Text(String(localized: "Tasks"))
+                        .tag(1)
                 }
-                .pickerStyle(SegmentedPickerStyle())
+                .pickerStyle(.segmented)
                 .padding(.horizontal)
                 
                 if selectedSegment == 0 {

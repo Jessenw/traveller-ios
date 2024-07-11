@@ -10,11 +10,13 @@ import SwiftUI
 struct SearchBar: View {
     @Binding var searchText: String
     @Binding var isFocused: Bool
+    @Binding var screenContext: ScreenContext
     @State private var isEditing = false
+    @State private var placeholderText: String = String(localized: "Search places")
     
     var body: some View {
         HStack {
-            TextField("Search places...", text: $searchText)
+            TextField(placeholderText, text: $searchText)
                 .padding(7)
                 .padding(.horizontal, 25)
                 .background(Color(.systemGray5))
@@ -22,7 +24,7 @@ struct SearchBar: View {
                 .overlay(
                     HStack {
                         Image(systemName: "magnifyingglass")
-                            .foregroundColor(.gray)
+                            .foregroundColor(.secondary)
                             .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                             .padding(.leading, 8)
                         
@@ -41,6 +43,16 @@ struct SearchBar: View {
                 .onChange(of: searchText) { oldValue, newValue in
                     withAnimation {
                         isFocused = !newValue.isEmpty ? true : false
+                    }
+                }
+                .onChange(of: screenContext) { _, newValue in
+                    withAnimation {
+                        switch newValue {
+                        case .home:
+                            placeholderText = String(localized: "Search places")
+                        case .trip:
+                            placeholderText = String(localized: "Search places")
+                        }
                     }
                 }
         }

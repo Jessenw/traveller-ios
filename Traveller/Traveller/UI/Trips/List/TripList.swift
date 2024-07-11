@@ -17,34 +17,15 @@ struct TripList: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                // Trips list
-                List {
-                    Section {
-                        ForEach(trips) { trip in
-                            TripRow(trip: trip)
-                        }
-                        .onDelete(perform: deleteTrip)
-                    } header: {
-                        HStack(alignment: .center) {
-                            Text("Trips")
-                            
-                            Spacer()
-                            
-                            // Add trip button
-                            Button(action: {
-                                showingCreateDialog = true
-                            }) {
-                                Image(systemName: "plus.circle.fill")
-                                    .resizable()
-                            }
-                            .frame(width: 20, height: 20)
-                        }
+            ScrollView {
+                LazyVStack {
+                    ForEach(trips) { trip in
+                        TripRow(trip: trip)
                     }
+                    .onDelete(perform: deleteTrip)
                 }
             }
         }
-        .navigationBarHidden(true)
         .sheet(isPresented: $showingCreateDialog) {
             CreateTripDialog()
         }
