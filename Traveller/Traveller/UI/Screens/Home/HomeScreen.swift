@@ -61,7 +61,7 @@ struct HomeScreen: View {
                             .buttonStyle(PlainButtonStyle())
                         }
                     } content: {
-                        TripList()
+                         TripList()
                     }
                     .padding()
                 }

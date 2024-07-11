@@ -7,18 +7,30 @@
 
 import SwiftUI
 
+struct HeaderSizePreferenceKey: PreferenceKey {
+    static var defaultValue: CGSize = .zero
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
+}
+
+struct ContentSizePreferenceKey: PreferenceKey {
+    static var defaultValue: CGSize = .zero
+    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
+}
+
 struct Sheet<Header: View, Content: View>: View {
     @State private var scale: CGFloat = 1.0
     @State private var anchor: UnitPoint = .top
+    @State private var headerSize: CGSize = .zero
+    @State private var contentSize: CGSize = .zero
     
     private let cornerRadius: CGFloat = 40
     
     let header: Header?
-    let content: Content
+    let content: Content?
     
     init(
         @ViewBuilder header: () -> Header?,
-        @ViewBuilder content: () -> Content
+        @ViewBuilder content: () -> Content?
     ) {
         self.header = header()
         self.content = content()
@@ -32,23 +44,51 @@ struct Sheet<Header: View, Content: View>: View {
                     .foregroundStyle(Color(.systemGroupedBackground))
                     .frame(
                         width: geometry.size.width,
-                        height: geometry.size.height * scale
+                        height: headerSize.height + contentSize.height
                     )
                     .overlay {
                         VStack {
+                            // MARK: - Header
                             if let header {
-                                header.padding()
+                                header
+                                    .padding()
+                                    .background(
+                                        GeometryReader { geo in
+                                            Color.clear
+                                                .preference(key: HeaderSizePreferenceKey.self, value: geo.size)
+                                        }
+                                    )
+                                    .onPreferenceChange(HeaderSizePreferenceKey.self, perform: { size in
+                                        let _ = print("Header size: \(size)")
+                                        headerSize = size
+                                    })
                             }
-                            content
+                            
+                            // MARK: - Content
+                            if let content {
+                                content
+                                    .padding()
+                                    .background(
+                                        GeometryReader { geo2 in
+                                            Color.clear
+                                                .preference(key: ContentSizePreferenceKey.self, value: geo2.size)
+                                        }
+                                    )
+                                    .onPreferenceChange(ContentSizePreferenceKey.self, perform: { size in
+                                        let _ = print("Content size: \(size)")
+                                        contentSize = size
+                                    })
+                            }
                             Spacer()
                         }
+                        .frame(height: headerSize.height + contentSize.height)
                         .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
                         .padding()
                     }
             }
             .offset(y: calculateOffset(geometry: geometry))
         }
-        .frame(width: .infinity, height: 100) // Initial size
+        .frame(height: 200) // Initial size
         .onTapGesture {
             withAnimation(.spring()) {
                 anchor = anchor == .top ? .bottom : .top
@@ -58,7 +98,7 @@ struct Sheet<Header: View, Content: View>: View {
     }
     
     private func calculateOffset(geometry: GeometryProxy) -> CGFloat {
-         let originalHeight = geometry.size.height
+        let originalHeight = headerSize.height + contentSize.height
          let newHeight = originalHeight * scale
          let difference = newHeight - originalHeight
          
@@ -84,14 +124,20 @@ struct Sheet<Header: View, Content: View>: View {
             Button(
                 action: {}, 
                 label: {
-                    Image(systemName: "multiply")
+                    Image(systemName: "multiply.circle.fill")
+                        .resizable()
+                        .frame(width: 25, height: 25)
                 }
             )
+            .buttonStyle(PlainButtonStyle())
         }
     } content: {
-        LazyVStack {
+        VStack {
             ForEach(0..<5) { i in
-                Text("\(i)")
+                HStack {
+                    Text("\(i)")
+                    Spacer()
+                }
             }
         }
     }

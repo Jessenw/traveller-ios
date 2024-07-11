@@ -16,19 +16,19 @@ struct TripList: View {
     
 
     var body: some View {
-        NavigationView {
-            ScrollView {
+//         NavigationView {
+//            ScrollView {
                 LazyVStack {
                     ForEach(trips) { trip in
                         TripRow(trip: trip)
                     }
                     .onDelete(perform: deleteTrip)
                 }
-            }
-        }
-        .sheet(isPresented: $showingCreateDialog) {
-            CreateTripDialog()
-        }
+//            }
+//        }
+//        .sheet(isPresented: $showingCreateDialog) {
+//            CreateTripDialog()
+//        }
     }
     
     private func deleteTrip(at offsets: IndexSet) {
