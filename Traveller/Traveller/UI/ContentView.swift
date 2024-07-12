@@ -29,9 +29,27 @@ struct ContentView: View {
         }
     }
 }
-    
+
 #Preview {
     ContentView()
+}
+
+struct MeasureSizeModifier<Key: PreferenceKey>: ViewModifier where Key.Value == CGSize {
+    
+    let callback: (_ size: Key.Value) -> Void
+    
+    func body(content: Content) -> some View {
+        content.background(
+            GeometryReader { geometry in
+                Color.clear
+                    .preference(key: Key.self, value: geometry.size)
+            }
+        )
+        .onPreferenceChange(Key.self) { size in
+            print("\(Key.self) size: \(size)")
+            callback(size)
+        }
+    }
 }
 
 struct HeaderSizePreferenceKey: PreferenceKey {
@@ -43,7 +61,7 @@ struct ContentSizePreferenceKey: PreferenceKey {
     static var defaultValue: CGSize = .zero
     static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
 }
-    
+
 struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
     @State private var scale: CGFloat = 1.0
     @State private var anchor: UnitPoint = .top
@@ -55,6 +73,12 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
     @State private var contentSize: CGSize = .zero
     private let cornerRadius: CGFloat = 40
     
+    var currentHeight: CGFloat {
+        anchor == .top
+        ? headerSize.height
+        : headerSize.height + contentSize.height
+    }
+    
     init(
         @ViewBuilder header: () -> Header?,
         @ViewBuilder content: () -> Content?
@@ -62,7 +86,7 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
         self.header = header()
         self.content = content()
     }
-
+    
     var body: some View {
         GeometryReader { geometry in
             RoundedRectangle(cornerRadius: 20)
@@ -71,22 +95,13 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
                     width: geometry.size.width,
                     height: geometry.size.height * scale
                 )
-                .offset(y: calculateOffset(geometry: geometry))
                 .overlay {
                     VStack {
                         // MARK: - Header
                         if let header {
                             header
                                 .padding()
-                                .background(
-                                    GeometryReader { geo in
-                                        Color.clear
-                                            .preference(key: HeaderSizePreferenceKey.self, value: geo.size)
-                                    }
-                                        .border(.red, width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
-                                )
-                                .onPreferenceChange(HeaderSizePreferenceKey.self, perform: { size in
-                                    let _ = print("Header size: \(size)")
+                                .modifier(MeasureSizeModifier<HeaderSizePreferenceKey> { size in
                                     headerSize = size
                                 })
                         }
@@ -95,24 +110,17 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
                         if let content {
                             content
                                 .padding()
-                                .background(
-                                    GeometryReader { geo2 in
-                                        Color.clear
-                                            .preference(key: ContentSizePreferenceKey.self, value: geo2.size)
-                                    }
-                                        .border(.green, width: 3)
-                                )
-                                .onPreferenceChange(ContentSizePreferenceKey.self, perform: { size in
-                                    let _ = print("Content size: \(size)")
+                                .modifier(MeasureSizeModifier<ContentSizePreferenceKey> { size in
                                     contentSize = size
                                 })
                         }
-                        Spacer()
                     }
-                    .frame(height: headerSize.height + contentSize.height)
+                    .offset(y: calculateOffset(geometry: geometry))
+                    .frame(height: currentHeight)
                     .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
                     .padding()
                 }
+            
         }
         .frame(width: 200, height: headerSize.height) // Initial size
         .onTapGesture {
@@ -136,8 +144,6 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
             return 0
         case .bottom:
             return -difference
-        case .center:
-            return -difference / 2
         default:
             return 0
         }
