@@ -114,10 +114,13 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
                     .padding()
                 }
         }
-        .frame(width: 200, height: 100) // Initial size
+        .frame(width: 200, height: headerSize.height) // Initial size
         .onTapGesture {
             withAnimation(.spring()) {
-                scale = scale == 1.0 ? 1.5 : 1.0
+                let originalScale = headerSize.height
+                let targetScale = (headerSize.height + contentSize.height)
+                let expandedScale = targetScale / originalScale
+                scale = scale == 1.0 ? expandedScale : 1.0
                 anchor = anchor == .top ? .bottom : .top
             }
         }
