@@ -66,7 +66,7 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
     @State private var originalSize: CGSize = .zero
     @State private var currentSize: CGSize = .zero
     
-    private let cornerRadius: CGFloat = 40
+    private let cornerRadius: CGFloat = 20
     
     init(
         @ViewBuilder header: () -> Header?,
@@ -79,7 +79,7 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
-                RoundedRectangle(cornerRadius: 20)
+                RoundedRectangle(cornerRadius: cornerRadius)
                     .fill(Color.blue)
                     .frame(height: currentSize.height)
                     .overlay(alignment: .top) {
@@ -91,7 +91,7 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
                             
                             // MARK: - Content
                             if let content, expanded {
-                                content.padding()
+                                content.padding([.horizontal, .bottom])
                             }
                         }
                         .modifier(MeasureSizeModifier<ContentSizePreferenceKey> { size in
@@ -105,7 +105,6 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
                         .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
                     }
             }
-            .offset(y: calculateOffset(geometry: geometry))
         }
         .frame(width: 200, height: currentSize.height) // Initial height
         .onTapGesture {
@@ -122,21 +121,6 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
                 
                 originalSize = currentSize
             }
-        }
-    }
-    
-    private func calculateOffset(geometry: GeometryProxy) -> CGFloat {
-        let originalHeight = geometry.size.height
-        let newHeight = currentSize.height
-        let difference = newHeight - originalHeight
-        
-        switch anchor {
-        case .top:
-            return 0
-        case .bottom:
-            return -difference
-        default:
-            return 0
         }
     }
 }
