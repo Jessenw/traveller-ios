@@ -72,13 +72,9 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
     
     @State private var headerSize: CGSize = .zero
     @State private var contentSize: CGSize = .zero
-    private let cornerRadius: CGFloat = 40
+    @State private var currentHeight: CGFloat = .zero
     
-    var currentHeight: CGFloat {
-        anchor == .top
-        ? headerSize.height
-        : headerSize.height + contentSize.height
-    }
+    private let cornerRadius: CGFloat = 40
     
     init(
         @ViewBuilder header: () -> Header?,
@@ -92,10 +88,6 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
         GeometryReader { geometry in
             RoundedRectangle(cornerRadius: 20)
                 .fill(Color.blue)
-                .frame(
-                    width: geometry.size.width,
-                    height: currentHeight
-                )
                 .overlay {
                     VStack {
                         // MARK: - Header
@@ -119,17 +111,28 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
                     .frame(height: currentHeight)
                     .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
                 }
+                .frame(
+                    width: geometry.size.width,
+                    height: currentHeight
+                )
                 .offset(y: calculateOffset(geometry: geometry))
+        }
+        .onAppear {
+            currentHeight = headerSize.height
         }
         .frame(width: 200, height: currentHeight) // Initial size
         .onTapGesture {
             withAnimation(.spring()) {
+                expanded.toggle()
+                
                 let originalScale = headerSize.height
                 let targetScale = (headerSize.height + contentSize.height)
                 let expandedScale = targetScale / originalScale
                 scale = scale == 1.0 ? expandedScale : 1.0
                 anchor = anchor == .top ? .bottom : .top
-                expanded.toggle()
+                currentHeight = expanded
+                        ? headerSize.height + contentSize.height
+                        : headerSize.height
             }
         }
     }
