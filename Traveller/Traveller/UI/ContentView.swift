@@ -65,6 +65,7 @@ struct ContentSizePreferenceKey: PreferenceKey {
 struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
     @State private var scale: CGFloat = 1.0
     @State private var anchor: UnitPoint = .top
+    @State private var expanded = false
     
     let header: Header?
     let content: Content?
@@ -93,7 +94,7 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
                 .fill(Color.blue)
                 .frame(
                     width: geometry.size.width,
-                    height: geometry.size.height * scale
+                    height: currentHeight
                 )
                 .overlay {
                     VStack {
@@ -107,7 +108,7 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
                         }
                         
                         // MARK: - Content
-                        if let content {
+                        if let content, expanded {
                             content
                                 .padding()
                                 .modifier(MeasureSizeModifier<ContentSizePreferenceKey> { size in
@@ -115,14 +116,12 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
                                 })
                         }
                     }
-                    .offset(y: calculateOffset(geometry: geometry))
                     .frame(height: currentHeight)
                     .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
-                    .padding()
                 }
-            
+                .offset(y: calculateOffset(geometry: geometry))
         }
-        .frame(width: 200, height: headerSize.height) // Initial size
+        .frame(width: 200, height: currentHeight) // Initial size
         .onTapGesture {
             withAnimation(.spring()) {
                 let originalScale = headerSize.height
@@ -130,6 +129,7 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
                 let expandedScale = targetScale / originalScale
                 scale = scale == 1.0 ? expandedScale : 1.0
                 anchor = anchor == .top ? .bottom : .top
+                expanded.toggle()
             }
         }
     }
