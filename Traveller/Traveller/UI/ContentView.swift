@@ -46,7 +46,6 @@ struct MeasureSizeModifier<Key: PreferenceKey>: ViewModifier where Key.Value == 
             }
         )
         .onPreferenceChange(Key.self) { size in
-            print("\(Key.self) size: \(size)")
             callback(size)
         }
     }
@@ -86,60 +85,75 @@ struct ResizableAnchoredShapeSheet<Header: View, Content: View>: View {
     
     var body: some View {
         GeometryReader { geometry in
-            RoundedRectangle(cornerRadius: 20)
-                .fill(Color.blue)
-                .overlay {
-                    VStack {
-                        // MARK: - Header
-                        if let header {
-                            header
-                                .padding()
-                                .modifier(MeasureSizeModifier<HeaderSizePreferenceKey> { size in
-                                    headerSize = size
-                                })
-                        }
-                        
-                        // MARK: - Content
-                        if let content, expanded {
+            ZStack(alignment: .top) {
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color.blue)
+                    .frame(height: currentHeight)
+
+                VStack {
+                    // MARK: - Header
+                    if let header {
+                        header
+                            .padding()
+                            .onAppear {
+                                currentHeight = headerSize.height
+                            }
+                            .modifier(MeasureSizeModifier<HeaderSizePreferenceKey> { size in
+                                headerSize = size
+                            })
+                    }
+                    
+                    // MARK: - Content
+                    if let content {
+                        if expanded {
                             content
                                 .padding()
                                 .modifier(MeasureSizeModifier<ContentSizePreferenceKey> { size in
                                     contentSize = size
                                 })
+                        } else {
+                            content
+                                .padding()
+                                .modifier(MeasureSizeModifier<ContentSizePreferenceKey> { size in
+                                    contentSize = size
+                                })
+                                .hidden()
                         }
                     }
-                    .frame(height: currentHeight)
-                    .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
                 }
-                .frame(
-                    width: geometry.size.width,
-                    height: currentHeight
+                .clipShape(
+                    RoundedRectangle(cornerRadius: cornerRadius)
+                        
                 )
-                .offset(y: calculateOffset(geometry: geometry))
+            }
+            .offset(y: calculateOffset(geometry: geometry))
         }
-        .onAppear {
-            currentHeight = headerSize.height
-        }
-        .frame(width: 200, height: currentHeight) // Initial size
+        .frame(width: 200, height: currentHeight) // Initial height
         .onTapGesture {
             withAnimation(.spring()) {
                 expanded.toggle()
                 
-                let originalScale = headerSize.height
-                let targetScale = (headerSize.height + contentSize.height)
-                let expandedScale = targetScale / originalScale
-                scale = scale == 1.0 ? expandedScale : 1.0
-                anchor = anchor == .top ? .bottom : .top
-                currentHeight = expanded
-                        ? headerSize.height + contentSize.height
-                        : headerSize.height
+                print("expanded: \(expanded)")
+                
+                if expanded {
+                    let originalScale = headerSize.height
+                    let targetScale = (headerSize.height + contentSize.height)
+                    let expandedScale = targetScale / originalScale
+                    scale = expandedScale
+                    anchor = .top
+                } else {
+                    scale = 1.0
+                    anchor = .bottom
+                }
+                
+                currentHeight = headerSize.height * scale
             }
         }
     }
     
     private func calculateOffset(geometry: GeometryProxy) -> CGFloat {
         let originalHeight = geometry.size.height
-        let newHeight = originalHeight * scale
+        let newHeight = currentHeight
         let difference = newHeight - originalHeight
         
         switch anchor {
