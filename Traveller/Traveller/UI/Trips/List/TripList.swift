@@ -56,7 +56,7 @@ struct TripList: View {
                             ForEach(trips) { trip in
                                 TripRow(trip: trip)
                                     .onTapGesture {
-                                        sheetState.currentDetent = geometry.frame(in: .global).height
+                                        sheetState.isFullscreen.toggle()
                                     }
                             }
                             .onDelete(perform: deleteTrip)
