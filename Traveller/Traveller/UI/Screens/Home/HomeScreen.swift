@@ -13,21 +13,9 @@ enum ScreenContext {
 }
 
 struct HomeScreen: View {
-    @State private var isShowingSheet = true
     @State private var searchIsFocused = false
     @State private var searchQuery = ""
     @State private var screenContext: ScreenContext = .home
-    
-    // Sheet presentation state
-    @State private var currentDetent = PresentationDetent.fraction(1/3)
-    @State private var dragIndicator = Visibility.visible
-    @State private var sheetCornerRadius: CGFloat? = nil
-    @State private var sheetDetents = [PresentationDetent.fraction(1/3)]
-    @State private var maxDetent = PresentationDetent.height(700)
-    
-    init() {
-        sheetDetents.append(maxDetent)
-    }
     
     var body: some View {
         NavigationStack {
