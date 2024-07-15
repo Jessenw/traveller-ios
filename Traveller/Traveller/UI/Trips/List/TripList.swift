@@ -15,7 +15,7 @@ fileprivate struct HeaderSizePreferenceKey: PreferenceKey {
 
 struct TripList: View {
     @Environment(\.modelContext) private var modelContext
-    @EnvironmentObject var state: ResizableSheetState
+    @EnvironmentObject var sheetState: ResizableSheetState
     
     @Query private var trips: [Trip]
     @State private var showingCreateDialog = false
@@ -36,7 +36,7 @@ struct TripList: View {
                         Button(
                             action: {
                                 withAnimation {
-                                    state.size.height = 300
+                                    sheetState.size.height = 300
                                 }
 //                                showingCreateDialog.toggle()
                             },
@@ -55,6 +55,9 @@ struct TripList: View {
                         LazyVStack {
                             ForEach(trips) { trip in
                                 TripRow(trip: trip)
+                                    .onTapGesture {
+                                        sheetState.currentDetent = geometry.frame(in: .global).height
+                                    }
                             }
                             .onDelete(perform: deleteTrip)
                         }
@@ -64,7 +67,7 @@ struct TripList: View {
             }
         }
         .onPreferenceChange(HeaderSizePreferenceKey.self) { size in
-            state.size = CGSize(
+            sheetState.size = CGSize(
                 width: 300, height: 550)
         }
         .sheet(isPresented: $showingCreateDialog) {
