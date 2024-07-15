@@ -19,7 +19,7 @@ struct ResizableAnchoredSheet<Header: View, Content: View>: View {
     @State private var originalSize: CGSize = .zero
     @State private var currentSize: CGSize = .zero
     
-    private let cornerRadius: CGFloat = 20
+    private let cornerRadius: CGFloat = 40
     
     init(
         @ViewBuilder header: () -> Header?,
@@ -33,18 +33,20 @@ struct ResizableAnchoredSheet<Header: View, Content: View>: View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .fill(Color.blue)
+                    .fill(Color(.systemGroupedBackground))
                     .frame(height: currentSize.height)
                     .overlay(alignment: .top) {
                         VStack {
                             // MARK: - Header
                             if let header {
                                 header
+                                    .padding()
                             }
                             
                             // MARK: - Content
                             if let content, expanded {
                                 content
+                                    .padding([.horizontal, .bottom])
                             }
                         }
                         .modifier(MeasureSizeModifier<ResizableAnchoredSheetSizePreferenceKey> { size in
@@ -58,8 +60,8 @@ struct ResizableAnchoredSheet<Header: View, Content: View>: View {
                         })
                         .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
                     }
-                    .offset(y: calculateOffset())
             }
+            .offset(y: calculateOffset(geometry: geometry))
         }
         .frame(height: currentSize.height) // Initial height
         .onTapGesture {
@@ -74,14 +76,18 @@ struct ResizableAnchoredSheet<Header: View, Content: View>: View {
         }
     }
     
-    private func calculateOffset() -> CGFloat {
-        let difference = currentSize.height - originalSize.height
-        
+    private func calculateOffset(geometry: GeometryProxy) -> CGFloat {
+        let originalHeight = originalSize.height
+        let newHeight = originalHeight * scale
+        let difference = newHeight - originalHeight
+
         switch anchor {
         case .top:
             return 0
         case .bottom:
             return -difference
+        case .center:
+            return -difference / 2
         default:
             return 0
         }
