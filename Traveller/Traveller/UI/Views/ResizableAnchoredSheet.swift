@@ -19,7 +19,7 @@ struct ResizableAnchoredSheet<Header: View, Content: View>: View {
     @State private var originalSize: CGSize = .zero
     @State private var currentSize: CGSize = .zero
     
-    private let cornerRadius: CGFloat = 40
+    private let cornerRadius: CGFloat = 20
     
     init(
         @ViewBuilder header: () -> Header?,
@@ -33,7 +33,7 @@ struct ResizableAnchoredSheet<Header: View, Content: View>: View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
                 RoundedRectangle(cornerRadius: cornerRadius)
-                    .fill(Color(.systemGroupedBackground))
+                    .fill(Color(uiColor: .systemGray6))
                     .frame(height: currentSize.height)
                     .overlay(alignment: .top) {
                         VStack {
@@ -67,11 +67,6 @@ struct ResizableAnchoredSheet<Header: View, Content: View>: View {
         .onTapGesture {
             withAnimation(.spring()) {
                 expanded.toggle()
-                
-                scale = expanded ? currentSize.height / originalSize.height : 1.0
-                anchor = expanded ? .top : .bottom
-                
-                originalSize = currentSize
             }
         }
     }

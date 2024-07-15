@@ -41,19 +41,20 @@ struct HomeScreen: View {
                             Button(
                                 action: {},
                                 label: {
-                                    Image(systemName: "multiply.circle.fill")
+                                    Image(systemName: "plus.circle.fill")
                                         .resizable()
                                         .frame(width: 25, height: 25)
+                                        .foregroundStyle(.primary)
                                 }
                             )
                             .buttonStyle(PlainButtonStyle())
                         }
                     } content: {
                         TripList()
+                            .backgroundStyle(.clear)
                     }
                     .padding()
                 }
-                .ignoresSafeArea(edges: .bottom)
             }
         }
     }
