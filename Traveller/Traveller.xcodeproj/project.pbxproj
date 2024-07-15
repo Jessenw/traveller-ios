@@ -15,7 +15,7 @@
 		A42CADEA2C2AA20D00F6E936 /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADE92C2AA20D00F6E936 /* TaskRow.swift */; };
 		A42CADEC2C2AA2A400F6E936 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADEB2C2AA2A400F6E936 /* Task.swift */; };
 		A42CADEE2C2AA3B400F6E936 /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADED2C2AA3B400F6E936 /* TaskList.swift */; };
-		A49160A52C44E000007B9025 /* ResizableAnchoredSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49160A42C44E000007B9025 /* ResizableAnchoredSheet.swift */; };
+		A49160A52C44E000007B9025 /* ResizableSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49160A42C44E000007B9025 /* ResizableSheet.swift */; };
 		A49160A82C44E155007B9025 /* MeasureSizeModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49160A72C44E155007B9025 /* MeasureSizeModifier.swift */; };
 		A4918FC92C3663E2001B45EE /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4918FC82C3663E2001B45EE /* HomeScreen.swift */; };
 		A4918FCB2C368EA6001B45EE /* AutocompletePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4918FCA2C368EA6001B45EE /* AutocompletePlace.swift */; };
@@ -76,7 +76,7 @@
 		A42CADE92C2AA20D00F6E936 /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
 		A42CADEB2C2AA2A400F6E936 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		A42CADED2C2AA3B400F6E936 /* TaskList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskList.swift; sourceTree = "<group>"; };
-		A49160A42C44E000007B9025 /* ResizableAnchoredSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableAnchoredSheet.swift; sourceTree = "<group>"; };
+		A49160A42C44E000007B9025 /* ResizableSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableSheet.swift; sourceTree = "<group>"; };
 		A49160A72C44E155007B9025 /* MeasureSizeModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasureSizeModifier.swift; sourceTree = "<group>"; };
 		A4918FC82C3663E2001B45EE /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		A4918FCA2C368EA6001B45EE /* AutocompletePlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompletePlace.swift; sourceTree = "<group>"; };
@@ -154,7 +154,7 @@
 		A47B10ED2C3FC66B00F35A25 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A49160A42C44E000007B9025 /* ResizableAnchoredSheet.swift */,
+				A49160A42C44E000007B9025 /* ResizableSheet.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -529,7 +529,7 @@
 				A4CF85482C2986860037EE27 /* TripList.swift in Sources */,
 				A4918FCE2C373B89001B45EE /* PlaceDetail.swift in Sources */,
 				A4CF85422C29850B0037EE27 /* Trip.swift in Sources */,
-				A49160A52C44E000007B9025 /* ResizableAnchoredSheet.swift in Sources */,
+				A49160A52C44E000007B9025 /* ResizableSheet.swift in Sources */,
 				A4EA6EC22C317FD80058D9BE /* SearchBar.swift in Sources */,
 				A42CADE62C2A908F00F6E936 /* Utilities.swift in Sources */,
 				A4EA6EC92C3183890058D9BE /* PlaceSearchRow.swift in Sources */,

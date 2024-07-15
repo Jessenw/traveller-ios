@@ -31,27 +31,8 @@ struct HomeScreen: View {
                     
                     Spacer()
                     
-                    ResizableAnchoredSheet {
-                        HStack {
-                            Text("Trips")
-                                .font(.title)
-
-                            Spacer()
-
-                            Button(
-                                action: {},
-                                label: {
-                                    Image(systemName: "plus.circle.fill")
-                                        .resizable()
-                                        .frame(width: 25, height: 25)
-                                        .foregroundStyle(.primary)
-                                }
-                            )
-                            .buttonStyle(PlainButtonStyle())
-                        }
-                    } content: {
+                    ResizableSheet {
                         TripList()
-                            .backgroundStyle(.clear)
                     }
                     .padding()
                 }
