@@ -43,30 +43,29 @@ struct HomeScreen: View {
                     
                     Spacer()
                     
-//                    Sheet {
-//                        HStack {
-//                            Text("Trips")
-//                                .font(.title)
-//                            
-//                            Spacer()
-//                            
-//                            Button(
-//                                action: {},
-//                                label: {
-//                                    Image(systemName: "multiply.circle.fill")
-//                                        .resizable()
-//                                        .frame(width: 25, height: 25)
-//                                }
-//                            )
-//                            .buttonStyle(PlainButtonStyle())
-//                        }
-//                    } content: {
-//                         TripList()
-//                    }
-//                    .padding()
+                    ResizableAnchoredSheet {
+                        HStack {
+                            Text("Trips")
+                                .font(.title)
+
+                            Spacer()
+
+                            Button(
+                                action: {},
+                                label: {
+                                    Image(systemName: "multiply.circle.fill")
+                                        .resizable()
+                                        .frame(width: 25, height: 25)
+                                }
+                            )
+                            .buttonStyle(PlainButtonStyle())
+                        }
+                    } content: {
+                        TripList()
+                    }
+                    .padding()
                 }
                 .ignoresSafeArea(edges: .bottom)
-
             }
         }
     }
