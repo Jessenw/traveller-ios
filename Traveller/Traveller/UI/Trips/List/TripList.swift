@@ -20,59 +20,50 @@ struct TripList: View {
     @Query private var trips: [Trip]
     @State private var showingCreateDialog = false
     @State private var searchQuery = ""
+    @State private var presentedTrip: Trip?
     
     @State private var headerSize: CGSize = .zero
     
     var body: some View {
         NavigationView {
             GeometryReader { geometry in
-                VStack {
-                    HStack {
-                        Text("Trips")
-                            .font(.title)
-                        
-                        Spacer()
-                        
-                        Button(
-                            action: {
-                                withAnimation {
-                                    sheetState.size.height = 300
-                                }
-//                                showingCreateDialog.toggle()
-                            },
-                            label: {
-                                Image(systemName: "plus.circle.fill")
-                                    .resizable()
-                                    .frame(width: 25, height: 25)
-                                    .foregroundStyle(.primary)
-                            }
-                        )
-                        .buttonStyle(PlainButtonStyle())
+                if let presentedTrip {
+                    TripDetail(trip: presentedTrip) {
+                        self.presentedTrip = nil
+                        configureSheet()
                     }
-                    .modifier(MeasureSizeModifier<HeaderSizePreferenceKey> { _ in })
-                    
-                    ScrollView {
-                        LazyVStack {
-                            ForEach(trips) { trip in
-                                TripRow(trip: trip)
-                                    .onTapGesture {
-                                        sheetState.isFullscreen.toggle()
-                                    }
-                            }
-                            .onDelete(perform: deleteTrip)
+                } else {
+                    List {
+                        ForEach(trips) { trip in
+                            TripRow(trip: trip)
+                                .onTapGesture {
+                                    presentedTrip = trip
+                                }
                         }
+                        .onDelete(perform: deleteTrip)
                     }
                 }
-                .padding()
             }
         }
         .onPreferenceChange(HeaderSizePreferenceKey.self) { size in
-            sheetState.size = CGSize(
-                width: 300, height: 550)
+
+        }
+        .onAppear {
+            configureSheet()
         }
         .sheet(isPresented: $showingCreateDialog) {
             CreateTripDialog()
         }
+    }
+    
+    private func configureSheet() {
+        sheetState.isFullscreen = false
+        sheetState.headerTitle = "Trips"
+        sheetState.headerButtonTapped = {
+            showingCreateDialog.toggle()
+        }
+        sheetState.size = CGSize(
+            width: 300, height: 400)
     }
     
     private func deleteTrip(at offsets: IndexSet) {

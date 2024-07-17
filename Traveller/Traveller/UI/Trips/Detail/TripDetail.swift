@@ -14,41 +14,35 @@ struct TripDetail: View {
     @State private var selectedSegment = 0
     @State private var places = [Place]()
     @ObservedObject var placesService = PlacesService.shared
+    @EnvironmentObject var sheetState: ResizableSheetState
     
     var trip: Trip
+    var dismiss: () -> Void
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading) {
-                        // Trip name
-                        Text(trip.name)
-                            .font(.title)
-                            .fontWeight(.bold)
-                        
-                        // Trip detail
-                        if let detail = trip.detail {
-                            Text(detail)
-                                .font(.subheadline)
-                                .foregroundStyle(.secondary)
-                                .lineLimit(2)
-                        }
-                        
-                        // Trip dates/members
-                        HStack {
-                            if let startDate = trip.startDate, let endDate = trip.endDate {
-                                TripDatesView(startDate: startDate, endDate: endDate)
-                            }
-                            
-                            AvatarsView(members: trip.members)
-                        }
+        VStack {
+            HStack(alignment: .top) {
+                VStack(alignment: .leading) {
+                    // Trip detail
+                    if let detail = trip.detail {
+                        Text(detail)
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(2)
                     }
                     
-                    Spacer()
+                    // Trip dates/members
+                    HStack {
+                        if let startDate = trip.startDate, let endDate = trip.endDate {
+                            TripDatesView(startDate: startDate, endDate: endDate)
+                        }
+                        
+                        AvatarsView(members: trip.members)
+                    }
                 }
+                
+                Spacer()
             }
-            .padding([.horizontal, .top])
             
             // Places, tasks and search lists
             VStack {
@@ -70,6 +64,15 @@ struct TripDetail: View {
             
             Spacer()
         }
-        .navigationBarBackButtonHidden()
+        .padding(.horizontal)
+        .onAppear {
+            sheetState.isFullscreen = true
+            sheetState.headerTitle = !trip.name.isEmpty ? trip.name : nil
+            sheetState.headerSubtitle = trip.detail
+            sheetState.isHeaderButtonClose = true
+            sheetState.headerButtonTapped = {
+                dismiss()
+            }
+        }
     }
 }

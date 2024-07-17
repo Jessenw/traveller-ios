@@ -8,36 +8,61 @@
 import SwiftUI
 
 class ResizableSheetState: ObservableObject {
-    @Published var size = CGSize.zero
-    @Published var isFullscreen = false
+    // Sizing
+    @Published var size: CGSize = .zero
     @Published var detents: [CGFloat] = [200]
-    @Published var currentDetent = CGFloat(0)
+    @Published var currentDetent: CGFloat = .zero
+    @Published var isFullscreen: Bool = false
+    
+    // Header
+    @Published var headerTitle: String?
+    @Published var headerSubtitle: String?
+    @Published var isHeaderButtonClose: Bool = false
+    @Published var headerButtonTapped: () -> Void = {}
 }
 
 struct ResizableSheet<Content: View>: View {
-    @StateObject private var state = ResizableSheetState()
     @State private var originalSize: CGSize = .zero
     @State private var currentSize: CGSize = .zero
     @State private var offset: CGFloat = 0 // Drag offset
+    @State private var headerButtonRotation: Double = 0
     
-    private let content: Content
+    @EnvironmentObject var state: ResizableSheetState
     
-    init(@ViewBuilder content: () -> Content) {
-        self.content = content()
-    }
+    @ViewBuilder let content: () -> Content
     
     var body: some View {
         GeometryReader { geometry in
             RoundedRectangle(cornerRadius: 20)
-                .fill(Color(uiColor: .systemGray6))
-                .frame(height: state.isFullscreen ? geometry.frame(in: .global).height : state.size.height)
+                .fill(.background)
+                .frame(
+                    height: state.isFullscreen
+                    ? geometry.frame(in: .global).height
+                    : state.size.height)
                 .overlay(alignment: .top) {
                     VStack {
                         if !state.isFullscreen {
                             dragIndicator
                         }
                         
-                        content
+                        // Header
+                        HStack {
+                            VStack(alignment: .leading) {
+                                if let headerTitle = state.headerTitle {
+                                    Text(headerTitle)
+                                        .font(.title)
+                                }
+                                if let headerSubtitle = state.headerSubtitle {
+                                    Text(headerSubtitle)
+                                        .font(.caption)
+                                }
+                            }
+                            Spacer()
+                            headerButton
+                        }
+                        .padding()
+                        
+                        content()
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
                             .clipShape(RoundedRectangle(cornerRadius: 20))
                     }
@@ -48,7 +73,26 @@ struct ResizableSheet<Content: View>: View {
                 .animation(.interactiveSpring(), value: state.isFullscreen)
                 .gesture(dragGesture(geometry: geometry))
         }
-        .environmentObject(state)
+    }
+    
+    private var headerButton: some View {
+        Button(
+            action: {
+                state.isHeaderButtonClose.toggle()
+                state.headerButtonTapped()
+            },
+            label: {
+                Image(systemName: "plus.circle.fill")
+                    .resizable()
+                    .frame(width: 25, height: 25)
+                    .rotationEffect(
+                        .degrees(state.isHeaderButtonClose ? 45 : 0),
+                        anchor: .center)
+                    .animation(
+                        .interactiveSpring,
+                        value: state.isHeaderButtonClose)
+            }
+        )
     }
     
     // MARK: - Drag

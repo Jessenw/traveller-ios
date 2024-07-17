@@ -12,16 +12,14 @@ struct PlaceList: View {
     @Environment(\.modelContext) private var modelContext
     
     var tripId: PersistentIdentifier
-
+    
     var body: some View {
-        ZStack {
-            List {
-                if let trip: Trip = modelContext.registeredModel(for: tripId) {
-                    ForEach(trip.places) { PlaceRow(place: $0) }
-                }
+        List {
+            if let trip: Trip = modelContext.registeredModel(for: tripId) {
+                ForEach(trip.places) { PlaceRow(place: $0) }
             }
-            .listStyle(PlainListStyle())
         }
+        .listStyle(PlainListStyle())
     }
 }
 
