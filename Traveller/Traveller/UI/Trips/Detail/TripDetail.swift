@@ -23,7 +23,7 @@ struct TripDetail: View {
                 HStack(alignment: .top) {
                     VStack(alignment: .leading) {
                         // Trip detail
-                        if let detail = trip.detail {
+                        if let detail = trip.detail, !detail.isEmpty {
                             Text(detail)
                                 .font(.subheadline)
                                 .foregroundStyle(.secondary)

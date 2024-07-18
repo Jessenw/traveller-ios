@@ -10,13 +10,15 @@ import SwiftUI
 struct SearchBar: View {
     @Binding var searchText: String
     @Binding var isFocused: Bool
-    @State private var isEditing = false
     
     var body: some View {
         HStack {
             TextField("Search places...", text: $searchText)
                 .padding(7)
                 .padding(.horizontal, 25)
+                .onTapGesture {
+                    isFocused = true
+                }
                 .background(Color(.systemGray5))
                 .cornerRadius(8)
                 .overlay(
@@ -27,9 +29,10 @@ struct SearchBar: View {
                             .padding(.leading, 8)
                         
                         // Clear button
-                        if isEditing {
+                        if isFocused {
                             Button(action: {
-                                self.searchText = ""
+                                searchText = ""
+                                isFocused = false
                             }) {
                                 Image(systemName: "multiply.circle.fill")
                                     .foregroundColor(.secondary)
@@ -38,11 +41,6 @@ struct SearchBar: View {
                         }
                     }
                 )
-                .onChange(of: searchText) { oldValue, newValue in
-                    withAnimation {
-                        isFocused = !newValue.isEmpty ? true : false
-                    }
-                }
         }
     }
 }

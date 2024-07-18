@@ -23,6 +23,7 @@ struct TripList: View {
                     }
                     .onDelete(perform: deleteTrip)
                 }
+                .listRowSpacing(8)
                 .navigationTitle("Trips")
                 
                 Spacer()
