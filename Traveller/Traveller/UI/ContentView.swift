@@ -1,8 +1,14 @@
 import SwiftUI
 
-struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
+class TripContext: ObservableObject {
+    @Published var trip: Trip?
+    
+    func updateTrip(_ newTrip: Trip) {
+        trip = newTrip
+    }
+}
 
+struct ContentView: View {
     var body: some View {
         HomeScreen()
     }

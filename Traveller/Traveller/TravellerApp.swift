@@ -38,12 +38,15 @@ struct TravellerApp: App {
         }
     }()
     
+    @StateObject private var tripContent = TripContext()
+    
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
+        .environmentObject(tripContent)
         .modelContainer(sharedModelContainer)
     }
 }

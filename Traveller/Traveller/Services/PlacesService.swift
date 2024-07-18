@@ -69,6 +69,7 @@ final class PlacesService: ObservableObject {
         
         // Build the place search detail
         return PlaceSearchDetail(
+            googleId: placeId,
             name: fetchedPlace.displayName,
             photos: photosData)
     }

@@ -13,7 +13,9 @@ import SwiftUI
 struct TripDetail: View {
     @State private var selectedSegment = 0
     @State private var places = [Place]()
-    @ObservedObject var placesService = PlacesService.shared
+    
+    @EnvironmentObject private var tripContext: TripContext
+    @ObservedObject private var placesService = PlacesService.shared
     
     var trip: Trip
     
@@ -80,6 +82,9 @@ struct TripDetail: View {
             }
             
             Spacer()
+        }
+        .onAppear {
+            tripContext.updateTrip(trip)
         }
         .navigationTitle(trip.name)
         .navigationBarTitleDisplayMode(.inline)
