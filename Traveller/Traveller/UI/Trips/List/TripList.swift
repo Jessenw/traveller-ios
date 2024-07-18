@@ -8,11 +8,6 @@
 import SwiftData
 import SwiftUI
 
-fileprivate struct HeaderSizePreferenceKey: PreferenceKey {
-    static var defaultValue: CGSize = .zero
-    static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}
-}
-
 struct TripList: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var sheetState: ResizableSheetState
@@ -25,28 +20,25 @@ struct TripList: View {
     @State private var headerSize: CGSize = .zero
     
     var body: some View {
-        NavigationView {
-            GeometryReader { geometry in
-                if let presentedTrip {
-                    TripDetail(trip: presentedTrip) {
-                        self.presentedTrip = nil
-                        configureSheet()
-                    }
-                } else {
-                    List {
-                        ForEach(trips) { trip in
-                            TripRow(trip: trip)
-                                .onTapGesture {
-                                    presentedTrip = trip
-                                }
-                        }
-                        .onDelete(perform: deleteTrip)
-                    }
+        GeometryReader { geometry in
+            if let presentedTrip {
+                TripDetail(trip: presentedTrip) {
+                    self.presentedTrip = nil
+                    configureSheet()
                 }
+                .animation(.easeInOut(duration: 0.5), value: presentedTrip)
+            } else {
+                List {
+                    ForEach(trips) { trip in
+                        TripRow(trip: trip)
+                            .onTapGesture {
+                                presentedTrip = trip
+                            }
+                    }
+                    .onDelete(perform: deleteTrip)
+                }
+                .animation(.easeInOut(duration: 0.5), value: presentedTrip)
             }
-        }
-        .onPreferenceChange(HeaderSizePreferenceKey.self) { size in
-
         }
         .onAppear {
             configureSheet()

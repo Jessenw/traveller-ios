@@ -59,6 +59,7 @@ struct ResizableSheet<Content: View>: View {
                             }
                             Spacer()
                             headerButton
+                                .animation(.spring, value: state.isFullscreen)
                         }
                         .padding()
                         
@@ -69,8 +70,8 @@ struct ResizableSheet<Content: View>: View {
                 }
                 .frame(maxHeight: .infinity, alignment: .bottom)
                 .offset(y: offset)
-                .animation(.interactiveSpring(), value: offset)
-                .animation(.interactiveSpring(), value: state.isFullscreen)
+                .animation(.spring, value: offset)
+                .animation(.spring, value: state.isFullscreen)
                 .gesture(dragGesture(geometry: geometry))
         }
     }

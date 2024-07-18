@@ -34,7 +34,7 @@ struct HomeScreen: View {
                     ResizableSheet {
                         TripList()
                     }
-                    .padding()
+                    .padding(8)
                 }
             }
         }
