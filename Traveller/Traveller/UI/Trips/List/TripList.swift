@@ -14,37 +14,36 @@ struct TripList: View {
     @State private var showingCreateDialog = false
     @State private var searchQuery = ""
     
-
     var body: some View {
         NavigationView {
             VStack {
-                // Trips list
                 List {
-                    Section {
-                        ForEach(trips) { trip in
-                            TripRow(trip: trip)
-                        }
-                        .onDelete(perform: deleteTrip)
-                    } header: {
-                        HStack(alignment: .center) {
-                            Text("Trips")
-                            
-                            Spacer()
-                            
-                            // Add trip button
-                            Button(action: {
-                                showingCreateDialog = true
-                            }) {
-                                Image(systemName: "plus.circle.fill")
-                                    .resizable()
-                            }
-                            .frame(width: 20, height: 20)
-                        }
+                    ForEach(trips) { trip in
+                        TripRow(trip: trip)
                     }
+                    .onDelete(perform: deleteTrip)
                 }
+                .navigationTitle("Trips")
+                
+                Spacer()
+                
+                HStack {
+                    Button(action: {
+                        showingCreateDialog = true
+                    }) {
+                        HStack {
+                            Image(systemName: "plus.circle.fill")
+                            Text("New Trip")
+                        }
+                        .foregroundStyle(.blue)
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                    Spacer()
+                }
+                .padding()
             }
+            .ignoresSafeArea(edges: .bottom)
         }
-        .navigationBarHidden(true)
         .sheet(isPresented: $showingCreateDialog) {
             CreateTripDialog()
         }
@@ -55,4 +54,8 @@ struct TripList: View {
             modelContext.delete(trips[index])
         }
     }
+}
+
+#Preview {
+    TripList()
 }

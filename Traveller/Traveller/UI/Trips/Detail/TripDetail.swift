@@ -22,11 +22,6 @@ struct TripDetail: View {
             VStack {
                 HStack(alignment: .top) {
                     VStack(alignment: .leading) {
-                        // Trip name
-                        Text(trip.name)
-                            .font(.title)
-                            .fontWeight(.bold)
-                        
                         // Trip detail
                         if let detail = trip.detail {
                             Text(detail)
@@ -86,6 +81,7 @@ struct TripDetail: View {
             
             Spacer()
         }
-        .navigationBarBackButtonHidden()
+        .navigationTitle(trip.name)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }

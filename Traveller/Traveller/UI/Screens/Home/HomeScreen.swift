@@ -15,7 +15,6 @@ struct HomeScreen: View {
     // Sheet presentation state
     @State private var currentDetent = PresentationDetent.fraction(1/3)
     @State private var dragIndicator = Visibility.visible
-    @State private var sheetCornerRadius: CGFloat? = nil
     @State private var sheetDetents = [PresentationDetent.fraction(1/3)]
     @State private var maxDetent = PresentationDetent.height(700)
     
@@ -44,12 +43,10 @@ struct HomeScreen: View {
                         .presentationBackgroundInteraction(.enabled(upThrough: maxDetent))
                         .interactiveDismissDisabled()
                         .presentationDragIndicator(dragIndicator)
-                        .presentationCornerRadius(sheetCornerRadius)
                         .onChange(of: currentDetent) {
                             withAnimation {
                                 let isSheetMaxHeight = currentDetent == maxDetent
                                 dragIndicator = isSheetMaxHeight ? .hidden : .visible
-                                sheetCornerRadius = isSheetMaxHeight ? 0 : nil
                             }
                         }
                     }
