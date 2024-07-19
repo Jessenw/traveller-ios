@@ -8,85 +8,68 @@
 import Combine
 import GooglePlacesSwift
 import GoogleMaps
+import MijickCalendarView
 import SwiftUI
 
 struct TripDetail: View {
-    @State private var selectedSegment = 0
     @State private var places = [Place]()
     
     @EnvironmentObject private var tripContext: TripContext
     @ObservedObject private var placesService = PlacesService.shared
     
+    @State private var currentScreen: TripDetailScreen = .calendar
+    
     var trip: Trip
     
     var body: some View {
-        NavigationStack {
-            VStack {
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading) {
-                        // Trip detail
-                        if let detail = trip.detail, !detail.isEmpty {
-                            Text(detail)
-                                .font(.subheadline)
-                                .foregroundStyle(.secondary)
-                                .lineLimit(2)
-                        }
-                        
-                        // Trip dates
-                        HStack {
-                            if let startDate = trip.startDate, let endDate = trip.endDate {
-                                HStack {
-                                    Image(systemName: "calendar")
-                                        .resizable()
-                                        .frame(width: 12, height: 12)
-                                    Text("\(startDate.formatted) - \(endDate.formatted)")
-                                        .font(.caption)
-                                    
-                                    if (!trip.members.isEmpty) {
-                                        Text("•")
-                                    }
-                                }
-                                .foregroundStyle(.secondary)
-                            }
-                            
-                            // Member avatars
-                            HStack(spacing: 4) {
-                                ForEach(trip.members, id: \.self) { member in
-                                    Circle()
-                                        .fill(Utilities.randomColor())
-                                        .frame(width: 20, height: 20)
-                                }
-                            }
-                        }
+        VStack {
+            switch currentScreen {
+            case .places:
+                PlaceList(tripId: trip.persistentModelID)
+            case .calendar:
+                CalendarScreen(trip: trip)
+            case .todo:
+                TaskList(tripId: trip.persistentModelID)
+            case .budget:
+                BudgetScreen(trip: trip)
+            }
+        }
+        .navigationTitle(trip.name)
+        .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            ToolbarItemGroup(placement: .bottomBar) {
+                ForEach(TripDetailScreen.allCases) { context in
+                    Spacer()
+                    Button {
+                        currentScreen = context
+                    } label: {
+                        Image(systemName: context.image)
                     }
-                    
                     Spacer()
                 }
             }
-            .padding([.horizontal, .top])
-            
-            // Places, tasks and search lists
-            VStack {
-                Picker("Select List", selection: $selectedSegment) {
-                    Text("Places").tag(0)
-                    Text("Tasks").tag(1)
-                }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(.horizontal)
-                
-                if selectedSegment == 0 {
-                    PlaceList(tripId: trip.persistentModelID)
-                } else {
-                    TaskList(tripId: trip.persistentModelID)
-                }
-            }
-            
-            Spacer()
         }
-        .onAppear {
-            tripContext.updateTrip(trip)
+    }
+}
+
+enum TripDetailScreen: CaseIterable, Identifiable {
+    case places
+    case calendar
+    case todo
+    case budget
+    
+    var id: Int { self.hashValue }
+    
+    var image: String {
+        switch self {
+        case .places:
+            "mappin.circle.fill"
+        case .calendar:
+            "calendar"
+        case .todo:
+            "checklist"
+        case .budget:
+            "dollarsign.circle.fill"
         }
-        .navigationTitle(trip.name)
-        .navigationBarTitleDisplayMode(.inline)
     }
 }

@@ -24,38 +24,9 @@ struct HomeScreen: View {
     
     var body: some View {
         NavigationStack {
-            ZStack(alignment: .top) {
-                MapContainerView()
-                    .sheet(isPresented: $isShowingSheet) {
-                        VStack {
-                            if searchIsFocused {
-                                PlaceSearchList(searchQuery: $searchQuery)
-                            } else {
-                                TripList()
-                            }
-                            
-                            Spacer()
-                        }
-                        .presentationDetents(
-                            [.fraction(1/3), maxDetent],
-                            selection: $currentDetent
-                        )
-                        .presentationBackgroundInteraction(.enabled(upThrough: maxDetent))
-                        .interactiveDismissDisabled()
-                        .presentationDragIndicator(dragIndicator)
-                        .onChange(of: currentDetent) {
-                            withAnimation {
-                                let isSheetMaxHeight = currentDetent == maxDetent
-                                dragIndicator = isSheetMaxHeight ? .hidden : .visible
-                            }
-                        }
-                    }
-                
-                SearchBar(
-                    searchText: $searchQuery,
-                    isFocused: $searchIsFocused
-                )
-                .padding([.top, .horizontal])
+            VStack {
+                TripList()
+                Spacer()
             }
         }
     }
