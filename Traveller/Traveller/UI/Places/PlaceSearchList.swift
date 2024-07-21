@@ -16,20 +16,25 @@ struct PlaceSearchList: View {
     @ObservedObject var placesService = PlacesService.shared
     @State private var places = [AutocompletePlace]()
     
-    @Binding var searchQuery: String
+    @State private var selectedItem: AutocompletePlace?
+    @Binding var searchText: String
 
     var body: some View {
         NavigationStack {
             List(places) { place in
-                NavigationLink(destination: PlaceDetail(placeId: place.placeId, trip: tripContext.trip)) {
-                    PlaceSearchRow(place: place)
-                }
+                PlaceSearchRow(place: place)
+                    .onTapGesture {
+                        selectedItem = place
+                    }
             }
-            .onChange(of: searchQuery) { _, newValue in
+            .sheet(item: $selectedItem, content: { item in
+                PlaceDetail(placeId: item.placeId)
+            })
+            .onChange(of: searchText) { _, newValue in
                 _Concurrency.Task {
                     do {
-                        if !searchQuery.isEmpty {
-                            places = try await placesService.fetchAutocompletePredictions(query: searchQuery)
+                        if !searchText.isEmpty {
+                            places = try await placesService.fetchAutocompletePredictions(query: searchText)
                         }
                     } catch {
                         print(error)

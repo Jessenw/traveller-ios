@@ -11,16 +11,26 @@ import SwiftUI
 struct PlaceList: View {
     @Environment(\.modelContext) private var modelContext
     
+    @State private var searchText: String = ""
+    @State private var searchIsFocused = false
+    
     var tripId: PersistentIdentifier
 
     var body: some View {
-        ZStack {
-            List {
-                if let trip: Trip = modelContext.registeredModel(for: tripId) {
-                    ForEach(trip.places) { PlaceRow(place: $0) }
+        NavigationStack {
+            VStack {
+                SearchBar(searchText: $searchText, isFocused: $searchIsFocused)
+                if searchIsFocused {
+                    PlaceSearchList(searchText: $searchText)
+                } else {
+                    List {
+                        if let trip: Trip = modelContext.registeredModel(for: tripId) {
+                            ForEach(trip.places) { PlaceRow(place: $0) }
+                        }
+                    }
+                    .listStyle(PlainListStyle())
                 }
             }
-            .listStyle(PlainListStyle())
         }
     }
 }

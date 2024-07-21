@@ -49,7 +49,14 @@ final class PlacesService: ObservableObject {
             placeProperties: [
                 PlaceProperty.displayName,
                 PlaceProperty.formattedAddress,
-                PlaceProperty.photos
+                PlaceProperty.currentOpeningHours,
+                PlaceProperty.priceLevel,
+                PlaceProperty.rating,
+                PlaceProperty.numberOfUserRatings,
+                PlaceProperty.websiteURL,
+                PlaceProperty.photos,
+                PlaceProperty.businessStatus,
+                PlaceProperty.types
             ]
         )
         
@@ -62,16 +69,24 @@ final class PlacesService: ObservableObject {
         }
         
         // Use the place details to fetch a photo's image
-        var photosData = [Data]()
+        var imagesData = [Data]()
         if let photos = fetchedPlace.photos {
-            photosData = try await fetchPlacePhotos(photos: photos)
+            imagesData = try await fetchPlacePhotos(photos: photos)
         }
-        
+                
         // Build the place search detail
         return PlaceSearchDetail(
             googleId: placeId,
             name: fetchedPlace.displayName,
-            photos: photosData)
+            formattedAddress: fetchedPlace.formattedAddress,
+            priceLevel: fetchedPlace.priceLevel,
+            businessStatus: fetchedPlace.businessStatus,
+            openingHours: fetchedPlace.currentOpeningHours,
+            rating: fetchedPlace.rating,
+            userRatingsCount: fetchedPlace.numberOfUserRatings,
+            websiteURL: fetchedPlace.websiteURL,
+            images: imagesData, 
+            types: fetchedPlace.types)
     }
     
     func fetchPlacePhotos(photos: [Photo]) async throws -> [Data] {

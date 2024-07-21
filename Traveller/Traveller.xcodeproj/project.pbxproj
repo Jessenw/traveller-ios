@@ -18,6 +18,8 @@
 		A49160B52C492C3C007B9025 /* MijickCalendarView in Frameworks */ = {isa = PBXBuildFile; productRef = A49160B42C492C3C007B9025 /* MijickCalendarView */; };
 		A49160BB2C49E9C2007B9025 /* BudgetScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49160BA2C49E9C2007B9025 /* BudgetScreen.swift */; };
 		A49160BE2C49EA06007B9025 /* CalendarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49160BD2C49EA06007B9025 /* CalendarScreen.swift */; };
+		A49160C02C49EF79007B9025 /* AirportDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49160BF2C49EF79007B9025 /* AirportDateView.swift */; };
+		A49160C22C49F1A5007B9025 /* EventsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49160C12C49F1A5007B9025 /* EventsList.swift */; };
 		A4918FC92C3663E2001B45EE /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4918FC82C3663E2001B45EE /* HomeScreen.swift */; };
 		A4918FCB2C368EA6001B45EE /* AutocompletePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4918FCA2C368EA6001B45EE /* AutocompletePlace.swift */; };
 		A4918FCE2C373B89001B45EE /* PlaceDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4918FCD2C373B89001B45EE /* PlaceDetail.swift */; };
@@ -78,6 +80,8 @@
 		A42CADED2C2AA3B400F6E936 /* TaskList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskList.swift; sourceTree = "<group>"; };
 		A49160BA2C49E9C2007B9025 /* BudgetScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetScreen.swift; sourceTree = "<group>"; };
 		A49160BD2C49EA06007B9025 /* CalendarScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarScreen.swift; sourceTree = "<group>"; };
+		A49160BF2C49EF79007B9025 /* AirportDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportDateView.swift; sourceTree = "<group>"; };
+		A49160C12C49F1A5007B9025 /* EventsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsList.swift; sourceTree = "<group>"; };
 		A4918FC82C3663E2001B45EE /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		A4918FCA2C368EA6001B45EE /* AutocompletePlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompletePlace.swift; sourceTree = "<group>"; };
 		A4918FCD2C373B89001B45EE /* PlaceDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetail.swift; sourceTree = "<group>"; };
@@ -163,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				A49160BD2C49EA06007B9025 /* CalendarScreen.swift */,
+				A49160C12C49F1A5007B9025 /* EventsList.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -358,6 +363,7 @@
 				A4EA6EB82C3155870058D9BE /* AvatarsView.swift */,
 				A4EA6EBC2C3156840058D9BE /* TripDatesView.swift */,
 				A4EA6EC12C317FD80058D9BE /* SearchBar.swift */,
+				A49160BF2C49EF79007B9025 /* AirportDateView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -528,6 +534,7 @@
 				A4EA6EB62C314FCD0058D9BE /* Place.swift in Sources */,
 				A4CF85482C2986860037EE27 /* TripList.swift in Sources */,
 				A4918FCE2C373B89001B45EE /* PlaceDetail.swift in Sources */,
+				A49160C02C49EF79007B9025 /* AirportDateView.swift in Sources */,
 				A4CF85422C29850B0037EE27 /* Trip.swift in Sources */,
 				A4EA6EC22C317FD80058D9BE /* SearchBar.swift in Sources */,
 				A42CADE62C2A908F00F6E936 /* Utilities.swift in Sources */,
@@ -538,6 +545,7 @@
 				A4EA6EDE2C3564250058D9BE /* PlacesService.swift in Sources */,
 				A4EA6EA92C2F80040058D9BE /* TripDetail.swift in Sources */,
 				A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */,
+				A49160C22C49F1A5007B9025 /* EventsList.swift in Sources */,
 				A4918FD12C373BFB001B45EE /* PlaceSearchDetail.swift in Sources */,
 				A42CADEA2C2AA20D00F6E936 /* TaskRow.swift in Sources */,
 				A4EA6EAF2C2F87E20058D9BE /* CreateTaskDialog.swift in Sources */,

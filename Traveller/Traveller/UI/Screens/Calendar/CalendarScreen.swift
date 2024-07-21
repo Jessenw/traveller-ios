@@ -35,6 +35,5 @@ struct CalendarScreen: View {
             .daysVerticalSpacing(19)
             .monthsBottomPadding(16)
             .monthsTopPadding(42)
-            
     }
 }
