@@ -14,19 +14,19 @@ struct PlaceList: View {
     @State private var searchText: String = ""
     @State private var searchIsFocused = false
     
-    var tripId: PersistentIdentifier
+    var trip: Trip
 
     var body: some View {
         NavigationStack {
             VStack {
                 SearchBar(searchText: $searchText, isFocused: $searchIsFocused)
+                    .padding()
+                
                 if searchIsFocused {
-                    PlaceSearchList(searchText: $searchText)
+                    PlaceSearchList(searchText: $searchText, trip: trip)
                 } else {
                     List {
-                        if let trip: Trip = modelContext.registeredModel(for: tripId) {
-                            ForEach(trip.places) { PlaceRow(place: $0) }
-                        }
+                        ForEach(trip.places) { PlaceRow(place: $0) }
                     }
                     .listStyle(PlainListStyle())
                 }

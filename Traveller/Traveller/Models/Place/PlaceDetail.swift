@@ -8,7 +8,7 @@
 import Foundation
 import GooglePlacesSwift
 
-struct PlaceSearchDetail {
+struct PlaceDetail {
     var googleId: String
     var name: String?
     var formattedAddress: String?
@@ -88,7 +88,7 @@ extension PriceLevel {
     }
 }
 
-extension PlaceSearchDetail {
+extension PlaceDetail {
     func toPlace() -> Place {
         Place(
             googleId: self.googleId,

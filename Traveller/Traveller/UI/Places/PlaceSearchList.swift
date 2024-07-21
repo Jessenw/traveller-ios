@@ -18,6 +18,8 @@ struct PlaceSearchList: View {
     
     @State private var selectedItem: AutocompletePlace?
     @Binding var searchText: String
+    
+    var trip: Trip?
 
     var body: some View {
         NavigationStack {
@@ -27,8 +29,8 @@ struct PlaceSearchList: View {
                         selectedItem = place
                     }
             }
-            .sheet(item: $selectedItem, content: { item in
-                PlaceDetail(placeId: item.placeId)
+            .sheet(item: $selectedItem, content: { place in
+                PlaceDetailView(placeId: place.placeId, trip: trip)
             })
             .onChange(of: searchText) { _, newValue in
                 _Concurrency.Task {

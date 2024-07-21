@@ -12,11 +12,7 @@ import MijickCalendarView
 import SwiftUI
 
 struct TripDetail: View {
-    @State private var places = [Place]()
-    
-    @EnvironmentObject private var tripContext: TripContext
     @ObservedObject private var placesService = PlacesService.shared
-    
     @State private var currentScreen: TripDetailScreen = .calendar
     
     var trip: Trip
@@ -25,7 +21,7 @@ struct TripDetail: View {
         VStack {
             switch currentScreen {
             case .places:
-                PlaceList(tripId: trip.persistentModelID)
+                PlaceList(trip: trip)
             case .calendar:
                 CalendarScreen(trip: trip)
             case .todo:
@@ -34,13 +30,11 @@ struct TripDetail: View {
                 BudgetScreen(trip: trip)
             }
         }
-        .navigationTitle(trip.name)
-        .navigationBarTitleDisplayMode(.large)
         .toolbar {
             ToolbarItemGroup(placement: .bottomBar) {
                 ForEach(TripDetailScreen.allCases) { context in
                     Spacer()
-                    Button {
+                    Button { 
                         currentScreen = context
                     } label: {
                         Image(systemName: context.image)
@@ -49,6 +43,8 @@ struct TripDetail: View {
                 }
             }
         }
+        .navigationTitle(trip.name)
+        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

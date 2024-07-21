@@ -43,7 +43,7 @@ final class PlacesService: ObservableObject {
         }
     }
     
-    func fetchPlaceDetails(placeId: String) async throws -> PlaceSearchDetail {
+    func fetchPlaceDetails(placeId: String) async throws -> PlaceDetail {
         let fetchPlaceRequest = FetchPlaceRequest(
             placeID: placeId,
             placeProperties: [
@@ -75,7 +75,7 @@ final class PlacesService: ObservableObject {
         }
                 
         // Build the place search detail
-        return PlaceSearchDetail(
+        return PlaceDetail(
             googleId: placeId,
             name: fetchedPlace.displayName,
             formattedAddress: fetchedPlace.formattedAddress,

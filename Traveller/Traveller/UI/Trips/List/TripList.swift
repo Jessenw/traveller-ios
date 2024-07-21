@@ -11,15 +11,18 @@ import SwiftUI
 struct TripList: View {
     @Environment(\.modelContext) private var modelContext
     @Query private var trips: [Trip]
-    @State private var showingCreateDialog = false
+    
+    @State private var isShowingCreateSheet = false
     @State private var searchQuery = ""
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 List {
                     ForEach(trips) { trip in
-                        TripRow(trip: trip)
+                        NavigationLink(destination: TripDetail(trip: trip)) {
+                            TripRow(trip: trip)
+                        }
                     }
                     .onDelete(perform: deleteTrip)
                 }
@@ -30,7 +33,7 @@ struct TripList: View {
                 
                 HStack {
                     Button(action: {
-                        showingCreateDialog = true
+                        isShowingCreateSheet = true
                     }) {
                         HStack {
                             Image(systemName: "plus.circle.fill")
@@ -43,9 +46,8 @@ struct TripList: View {
                 }
                 .padding()
             }
-            .ignoresSafeArea(edges: .bottom)
         }
-        .sheet(isPresented: $showingCreateDialog) {
+        .sheet(isPresented: $isShowingCreateSheet) {
             CreateTripDialog()
         }
     }

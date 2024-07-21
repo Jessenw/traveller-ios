@@ -10,7 +10,7 @@ class TripContext: ObservableObject {
 
 struct ContentView: View {
     var body: some View {
-        HomeScreen()
+        TripList()
     }
 }
 
