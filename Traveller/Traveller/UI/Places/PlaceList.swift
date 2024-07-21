@@ -13,9 +13,10 @@ struct PlaceList: View {
     
     @State private var searchText: String = ""
     @State private var searchIsFocused = false
+    @State private var selectedItem: Place?
     
     var trip: Trip
-
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -26,10 +27,18 @@ struct PlaceList: View {
                     PlaceSearchList(searchText: $searchText, trip: trip)
                 } else {
                     List {
-                        ForEach(trip.places) { PlaceRow(place: $0) }
+                        ForEach(trip.places) { place in
+                            PlaceRow(place: place)
+                                .onTapGesture {
+                                    selectedItem = place
+                                }
+                        }
                     }
                     .listStyle(PlainListStyle())
                 }
+            }
+            .sheet(item: $selectedItem) { place in
+                PlaceDetailView(placeId: place.googleId, trip: trip)
             }
         }
     }

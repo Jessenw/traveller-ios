@@ -1,79 +1,49 @@
-//
-//  PlaceDetail.swift
-//  Traveller
-//
-//  Created by Jesse Williams on 05/07/2024.
-//
-
-import SwiftData
 import SwiftUI
 
 struct PlaceDetailView: View {
-    @ObservedObject private var placesService = PlacesService.shared
-    @State private var isSaved: Bool = false
+    @StateObject private var viewModel: PlaceDetailViewModel
     
-    @State private var place: PlaceDetail?
-    var placeId: String
-    
-    var trip: Trip?
+    init(placeId: String, trip: Trip?) {
+        _viewModel = StateObject(wrappedValue: PlaceDetailViewModel(placeId: placeId, trip: trip))
+    }
     
     private var headerView: some View {
         VStack(alignment: .leading, spacing: 4) {
-            // Title
-            if let name = place?.name {
-                Text(name)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-            } else {
-                Text("Coffee Outdoors")
-                    .font(.largeTitle)
-            }
-            // Subtitle
-            if let type = place?.types.first {
-                Text(type.rawValue)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-            } else {
-                Text("Outdoors store")
-                    .font(.subheadline)
-            }
+            Text(viewModel.place?.name ?? "placeholder")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            Text(viewModel.place?.types.first?.rawValue ?? "Placeholder")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
         }
     }
     
     private var summaryView: some View {
         HStack(alignment: .center) {
             // Hours
-            if let isOpen = place?.openingHours?.isOpen {
-                Text(isOpen ? "Open" : "Closed")
-                    .foregroundStyle(isOpen ? .green : .red)
-                    .frame(maxWidth: .infinity)
-            } else {
-                Text("open")
-                    .frame(maxWidth: .infinity)
-            }
+            let isOpen = viewModel.place?.isOpen ?? false
+            Text(isOpen ? "Open" : "Closed")
+                .foregroundStyle(isOpen ? .green : .red)
+                .frame(maxWidth: .infinity)
             
             Divider()
                 .frame(height: 20)
-
+            
             // Rating
-            if let rating = place?.rating {
-                VStack {
-                    HStack {
-                        Image(systemName: "star.fill")
-                            .foregroundColor(.yellow)
-                            .font(.system(size: 18))
-                        Text(String(format: "%.1f", rating))
-                            .font(.headline)
-                            .foregroundColor(.primary)
-                    }
-                    Text("Rating")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
+            VStack {
+                Text("Rating")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                HStack {
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.yellow)
+                        .font(.system(size: 18))
+                    Text(String(format: "%.1f", viewModel.place?.rating ?? 0.0))
+                        .font(.headline)
+                        .foregroundColor(.primary)
                 }
-                .frame(maxWidth: .infinity)
-            } else {
-                Text("star-4.5")
             }
+            .frame(maxWidth: .infinity)
             
             Divider()
                 .frame(height: 20)
@@ -83,12 +53,8 @@ struct PlaceDetailView: View {
                 Image(systemName: "dollarsign.circle.fill")
                     .foregroundColor(.green)
                     .font(.system(size: 18))
-                if let priceLevel = place?.priceLevel {
-                    Text(priceLevel.priceLevelDescription)
-                        .foregroundColor(.secondary)
-                } else {
-                    Text("moderate")
-                }
+                Text(viewModel.place?.priceLevel.priceLevelDescription ?? "moderate")
+                    .foregroundColor(.secondary)
             }
             .frame(maxWidth: .infinity)
         }
@@ -99,10 +65,12 @@ struct PlaceDetailView: View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 16) {
                 headerView
+                    .padding()
                 summaryView
+                    .padding()
                 
                 // Image Carousel
-                if let images = place?.images, !images.isEmpty {
+                if let images = viewModel.place?.images, !images.isEmpty {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 10) {
                             ForEach(images, id: \.self) { imageData in
@@ -111,18 +79,18 @@ struct PlaceDetailView: View {
                                         .resizable()
                                         .scaledToFill()
                                         .frame(width: 200, height: 150)
-                                        .clipped()
                                         .cornerRadius(10)
                                 }
                             }
                         }
+                        .padding(.vertical)
                     }
                 }
                 
                 Spacer()
             }
-            .redacted(reason: place == nil ? .placeholder : [])
-            .padding()
+            .redacted(reason: viewModel.isLoading ? .placeholder : [])
+            .animation(.smooth, value: viewModel.isLoading)
             .navigationBarItems(
                 leading: Button(action: {
                     // Action for closing the screen
@@ -130,34 +98,11 @@ struct PlaceDetailView: View {
                     Image(systemName: "xmark")
                 },
                 trailing: Button(action: {
-                    saveTrip()
+                    viewModel.isSaved ? viewModel.removeTrip() : viewModel.saveTrip()
                 }) {
-                    Image(systemName: isSaved ? "bookmark.fill" : "bookmark")
+                    Image(systemName: viewModel.isSaved ? "bookmark.fill" : "bookmark")
                 }
             )
-            .task {
-                do {
-                    self.place = try await placesService
-                        .fetchPlaceDetails(placeId: placeId)
-                    isSaved = trip?.places.contains(where: { place in
-                        place.googleId == self.placeId
-                    }) ?? false
-                } catch {
-                    print(error)
-                }
-            }
-        }
-    }
-    
-    private func saveTrip() {
-        if let place {
-            trip?.places.append(place.toPlace())
-        }
-    }
-    
-    private func removeTrip() {
-        trip?.places.removeAll {
-            $0.googleId == placeId
         }
     }
 }

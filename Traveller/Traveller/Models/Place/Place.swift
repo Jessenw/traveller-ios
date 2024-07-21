@@ -9,7 +9,7 @@ import GoogleMaps
 import SwiftData
 import SwiftUI
 
-@Model class Place {
+@Model class Place: Hashable {
     let googleId: String
     let name: String
     let subtitle: String

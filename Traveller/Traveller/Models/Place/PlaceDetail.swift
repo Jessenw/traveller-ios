@@ -12,14 +12,18 @@ struct PlaceDetail {
     var googleId: String
     var name: String?
     var formattedAddress: String?
-    var priceLevel: PriceLevel?
-    var businessStatus: BusinessStatus?
+    var priceLevel: PriceLevel
+    var businessStatus: BusinessStatus
     var openingHours: OpeningHours?
     var rating: Float?
-    var userRatingsCount: Int?
+    var userRatingsCount: Int
     var websiteURL: URL?
     var images: [Data]
     var types: Set<PlaceType>
+    
+    var isOpen: Bool? {
+        openingHours?.isOpen
+    }
 }
 
 extension OpeningHours {
@@ -93,7 +97,7 @@ extension PlaceDetail {
         Place(
             googleId: self.googleId,
             name: self.name ?? "",
-            subtitle: "subtitle",
+            subtitle: self.types.first?.rawValue ?? "Outdoors store",
             images: self.images)
     }
 }

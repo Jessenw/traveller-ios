@@ -17,6 +17,7 @@ struct PlaceSearchList: View {
     @State private var places = [AutocompletePlace]()
     
     @State private var selectedItem: AutocompletePlace?
+    @State private var sheetDetent: PresentationDetent = .medium
     @Binding var searchText: String
     
     var trip: Trip?
@@ -29,9 +30,10 @@ struct PlaceSearchList: View {
                         selectedItem = place
                     }
             }
-            .sheet(item: $selectedItem, content: { place in
+            .sheet(item: $selectedItem) { place in
                 PlaceDetailView(placeId: place.placeId, trip: trip)
-            })
+            }
+            .presentationDetents([.medium], selection: $sheetDetent)
             .onChange(of: searchText) { _, newValue in
                 _Concurrency.Task {
                     do {
