@@ -67,12 +67,6 @@ final class PlacesService: ObservableObject {
         case .failure(let placesError):
             throw(PlacesError.internal("Error fetching place \(placesError)"))
         }
-        
-        // Use the place details to fetch a photo's image
-        var imagesData = [Data]()
-        if let photos = fetchedPlace.photos {
-            imagesData = try await fetchPlacePhotos(photos: photos)
-        }
                 
         // Build the place search detail
         return PlaceDetail(
@@ -85,25 +79,21 @@ final class PlacesService: ObservableObject {
             rating: fetchedPlace.rating,
             userRatingsCount: fetchedPlace.numberOfUserRatings,
             websiteURL: fetchedPlace.websiteURL,
-            images: imagesData, 
+            images: fetchedPlace.photos ?? [],
             types: fetchedPlace.types)
     }
     
-    func fetchPlacePhotos(photos: [Photo]) async throws -> [Data] {
-        var photosData = [Data]()
-        for photo in photos {
-            let fetchPhotoRequest = FetchPhotoRequest(photo: photo, maxSize: CGSizeMake(400, 400))
-            
-            switch await placesClient.fetchPhoto(with: fetchPhotoRequest) {
-            case .success(let uiImage):
-                if let data = uiImage.pngData() {
-                    photosData.append(data)
-                }
-            case .failure(let placesError):
-                throw(PlacesError.internal("Error fetching photo \(placesError)"))
-            }
-        }
+    func fetchPlacePhoto(photo: Photo) async throws -> Data {
+        let fetchPhotoRequest = FetchPhotoRequest(photo: photo, maxSize: CGSizeMake(400, 400))
         
-        return photosData
+        switch await placesClient.fetchPhoto(with: fetchPhotoRequest) {
+        case .success(let uiImage):
+            if let data = uiImage.pngData() {
+                return data
+            }
+            throw(PlacesError.internal("Unable to convert UIImage \(uiImage.debugDescription) to Data"))
+        case .failure(let placesError):
+            throw(PlacesError.internal("Error fetching photo \(placesError)"))
+        }
     }
 }

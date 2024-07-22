@@ -18,7 +18,7 @@ struct PlaceDetail {
     var rating: Float?
     var userRatingsCount: Int
     var websiteURL: URL?
-    var images: [Data]
+    var images: [Photo]
     var types: Set<PlaceType>
     
     var isOpen: Bool? {
@@ -117,6 +117,6 @@ extension PlaceDetail {
             googleId: self.googleId,
             name: self.name ?? "",
             subtitle: self.types.first?.rawValue ?? "Outdoors store",
-            images: self.images)
+            images: [])
     }
 }

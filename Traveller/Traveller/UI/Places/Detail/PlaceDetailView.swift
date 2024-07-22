@@ -14,7 +14,7 @@ struct PlaceDetailView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading) {
                 headerView.padding()
                 summaryView.padding([.horizontal, .bottom])
                 imageCarousel
@@ -108,24 +108,16 @@ struct PlaceDetailView: View {
     // MARK: Image carousel
     
     private var imageCarousel: some View {
-        Group {
-            if let images = viewModel.place?.images, !images.isEmpty {
+        VStack {
+            if let photos = viewModel.place?.images, !photos.isEmpty {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 10) {
-                        ForEach(images, id: \.self) { imageData in
-                            if let uiImage = UIImage(data: imageData) {
-                                Image(uiImage: uiImage)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 200, height: 150)
-                                    .cornerRadius(10)
-                            }
+                        ForEach(photos, id: \.self) { photo in
+                            RemoteImageView(photo: photo)
                         }
                     }
                     .padding(.horizontal)
                 }
-            } else {
-                EmptyView()
             }
         }
     }

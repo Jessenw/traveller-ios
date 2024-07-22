@@ -36,6 +36,7 @@
 		A4CF854A2C29886A0037EE27 /* TripRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85492C29886A0037EE27 /* TripRow.swift */; };
 		A4CF854C2C298DCC0037EE27 /* CreateTripDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF854B2C298DCC0037EE27 /* CreateTripDialog.swift */; };
 		A4D0858D2C4E294E00A82ACB /* String+Formatted.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0858C2C4E294E00A82ACB /* String+Formatted.swift */; };
+		A4D0858F2C4E5D8300A82ACB /* RemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0858E2C4E5D8300A82ACB /* RemoteImageView.swift */; };
 		A4EA6EA92C2F80040058D9BE /* TripDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EA82C2F80040058D9BE /* TripDetail.swift */; };
 		A4EA6EAF2C2F87E20058D9BE /* CreateTaskDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EAE2C2F87E20058D9BE /* CreateTaskDialog.swift */; };
 		A4EA6EB22C2FCF1F0058D9BE /* Date+Formatted.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EB12C2FCF1F0058D9BE /* Date+Formatted.swift */; };
@@ -103,6 +104,7 @@
 		A4CF85492C29886A0037EE27 /* TripRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRow.swift; sourceTree = "<group>"; };
 		A4CF854B2C298DCC0037EE27 /* CreateTripDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripDialog.swift; sourceTree = "<group>"; };
 		A4D0858C2C4E294E00A82ACB /* String+Formatted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Formatted.swift"; sourceTree = "<group>"; };
+		A4D0858E2C4E5D8300A82ACB /* RemoteImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageView.swift; sourceTree = "<group>"; };
 		A4EA6EA82C2F80040058D9BE /* TripDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetail.swift; sourceTree = "<group>"; };
 		A4EA6EAE2C2F87E20058D9BE /* CreateTaskDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskDialog.swift; sourceTree = "<group>"; };
 		A4EA6EB12C2FCF1F0058D9BE /* Date+Formatted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatted.swift"; sourceTree = "<group>"; };
@@ -279,7 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				A4918FC62C3663CF001B45EE /* Screens */,
-				A4EA6EB72C31557A0058D9BE /* Common */,
+				A4EA6EB72C31557A0058D9BE /* Views */,
 				A42CADDE2C2A8D9300F6E936 /* Map */,
 				A4EA6EBE2C315D9A0058D9BE /* Places */,
 				A4EA6EAB2C2F805B0058D9BE /* Tasks */,
@@ -352,15 +354,16 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		A4EA6EB72C31557A0058D9BE /* Common */ = {
+		A4EA6EB72C31557A0058D9BE /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				A4EA6EB82C3155870058D9BE /* AvatarsView.swift */,
 				A4EA6EBC2C3156840058D9BE /* TripDatesView.swift */,
 				A4EA6EC12C317FD80058D9BE /* SearchBar.swift */,
 				A49160BF2C49EF79007B9025 /* AirportDateView.swift */,
+				A4D0858E2C4E5D8300A82ACB /* RemoteImageView.swift */,
 			);
-			path = Common;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A4EA6EBE2C315D9A0058D9BE /* Places */ = {
@@ -558,6 +561,7 @@
 				A4CF854C2C298DCC0037EE27 /* CreateTripDialog.swift in Sources */,
 				A4EA6EC02C315DAA0058D9BE /* PlaceSearchList.swift in Sources */,
 				A42CADEC2C2AA2A400F6E936 /* Task.swift in Sources */,
+				A4D0858F2C4E5D8300A82ACB /* RemoteImageView.swift in Sources */,
 				A4EA6EBB2C3155D00058D9BE /* Member.swift in Sources */,
 				A4EA6EC72C31817F0058D9BE /* PlaceRow.swift in Sources */,
 				A4CF854A2C29886A0037EE27 /* TripRow.swift in Sources */,
