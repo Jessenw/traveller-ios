@@ -30,8 +30,8 @@ final class PlacesService: ObservableObject {
                 case .place(let place):
                     return AutocompletePlace(
                         placeId: place.placeID,
-                        name: place.legacyAttributedFullText.string,
-                        subtitle: place.legacyAttributedSecondaryText?.string,
+                        name: place.attributedPrimaryText,
+                        subtitle: place.attributedSecondaryText,
                         distance: place.distance
                     )
                 @unknown default:

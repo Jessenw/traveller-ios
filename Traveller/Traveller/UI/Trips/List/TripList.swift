@@ -20,7 +20,7 @@ struct TripList: View {
             VStack {
                 List {
                     ForEach(trips) { trip in
-                        NavigationLink(destination: TripDetail(trip: trip)) {
+                        NavigationLink(destination: TripDetailView(trip: trip)) {
                             TripRow(trip: trip)
                         }
                     }

@@ -14,29 +14,19 @@ struct PlaceRow: View {
     var place: Place
 
     var body: some View {
-        let isChecked = place.isChecked
-        
-        HStack {
-            // Checked button
-            Button(action: {
-                withAnimation { place.isChecked.toggle() }
-            }) {
-                Image(systemName: isChecked ? "checkmark.circle.fill" : "circle")
-                    .foregroundColor(isChecked ? .green : .secondary)
-            }
-            .buttonStyle(PlainButtonStyle())
+        HStack(alignment: .firstTextBaseline) {
+            Image(systemName: "mappin.circle.fill")
+                .foregroundStyle(.primary)
             
             VStack(alignment: .leading) {
                 Text(place.name)
-                    .font(.headline)
-                Text(place.subtitle)
                     .font(.subheadline)
+                    .fontWeight(.bold)
+                Text(place.subtitle.replacingOccurrences(of: "_", with: " ").capitalizingFirstLetter())
+                    .font(.caption)
                     .foregroundColor(.secondary)
             }
-            
-            Spacer()
+            .lineLimit(2)
         }
-        .padding(.vertical, 8)
     }
 }
-

@@ -1,5 +1,5 @@
 //
-//  TripDetail.swift
+//  TripDetailView.swift
 //  Traveller
 //
 //  Created by Jesse Williams on 29/06/2024.
@@ -11,9 +11,9 @@ import GoogleMaps
 import MijickCalendarView
 import SwiftUI
 
-struct TripDetail: View {
+struct TripDetailView: View {
     @ObservedObject private var placesService = PlacesService.shared
-    @State private var currentScreen: TripDetailScreen = .places
+    @State private var currentScreen: TripDetailScreen = .calendar
     
     var trip: Trip
     
@@ -23,7 +23,7 @@ struct TripDetail: View {
             case .places:
                 PlaceList(trip: trip)
             case .calendar:
-                CalendarScreen(trip: trip)
+                TripItineraryView(startDate: trip.startDate ?? .now, endDate: trip.endDate ?? .now)
             case .todo:
                 TaskList(tripId: trip.persistentModelID)
             case .budget:

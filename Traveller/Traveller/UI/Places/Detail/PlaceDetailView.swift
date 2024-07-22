@@ -29,7 +29,6 @@ struct PlaceDetailView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     saveButton
                 }
-                    
             }
         }
     }
@@ -90,7 +89,7 @@ struct PlaceDetailView: View {
             Text("Price")
                 .font(.caption)
                 .foregroundColor(.secondary)
-            if let priceLevel = viewModel.place?.priceLevel, let level = priceLevel.level {
+            if let priceLevel = viewModel.place?.priceLevel, let level = priceLevel.caseIndex {
                 HStack(spacing: 2) {
                     ForEach(0...2, id: \.self) { i in
                         Image(systemName: "dollarsign")

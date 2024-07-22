@@ -30,6 +30,7 @@ struct PlaceSearchList: View {
                         selectedItem = place
                     }
             }
+            .listStyle(.plain)
             .sheet(item: $selectedItem) { place in
                 PlaceDetailView(placeId: place.placeId, trip: trip)
             }

@@ -13,23 +13,16 @@ struct PlaceSearchRow: View {
     let place: AutocompletePlace
     
     var body: some View {
-        HStack(alignment: .center) {
-            VStack(alignment: .center) {
-                Image(systemName: "mappin.circle.fill")
-                if let distance = place.distance {
-                    let convertedDistance = distance.converted(to: .meters).value
-                    Text("\(convertedDistance)")
-
-                }
-            }
-            .foregroundStyle(.primary)
+        HStack(alignment: .firstTextBaseline) {
+            Image(systemName: "mappin.circle.fill")
+                .foregroundStyle(.primary)
             
             VStack(alignment: .leading) {
                 Text(place.name)
-                    .font(.headline)
+                    .font(.subheadline)
                     .fontWeight(.bold)
                 
-                if let subtitle = place.subtitle, !subtitle.isEmpty {
+                if let subtitle = place.subtitle {
                     Text(subtitle)
                         .font(.caption)
                         .foregroundColor(.secondary)

@@ -37,7 +37,9 @@
 		A4CF854C2C298DCC0037EE27 /* CreateTripDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF854B2C298DCC0037EE27 /* CreateTripDialog.swift */; };
 		A4D0858D2C4E294E00A82ACB /* String+Formatted.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0858C2C4E294E00A82ACB /* String+Formatted.swift */; };
 		A4D0858F2C4E5D8300A82ACB /* RemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0858E2C4E5D8300A82ACB /* RemoteImageView.swift */; };
-		A4EA6EA92C2F80040058D9BE /* TripDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EA82C2F80040058D9BE /* TripDetail.swift */; };
+		A4D085912C4E5E7200A82ACB /* GooglePlacesSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D085902C4E5E7200A82ACB /* GooglePlacesSwift.swift */; };
+		A4D085942C4E6F8B00A82ACB /* TripItineraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D085932C4E6F8B00A82ACB /* TripItineraryView.swift */; };
+		A4EA6EA92C2F80040058D9BE /* TripDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EA82C2F80040058D9BE /* TripDetailView.swift */; };
 		A4EA6EAF2C2F87E20058D9BE /* CreateTaskDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EAE2C2F87E20058D9BE /* CreateTaskDialog.swift */; };
 		A4EA6EB22C2FCF1F0058D9BE /* Date+Formatted.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EB12C2FCF1F0058D9BE /* Date+Formatted.swift */; };
 		A4EA6EB42C2FD0450058D9BE /* Collection+Separate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EB32C2FD0450058D9BE /* Collection+Separate.swift */; };
@@ -105,7 +107,9 @@
 		A4CF854B2C298DCC0037EE27 /* CreateTripDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripDialog.swift; sourceTree = "<group>"; };
 		A4D0858C2C4E294E00A82ACB /* String+Formatted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Formatted.swift"; sourceTree = "<group>"; };
 		A4D0858E2C4E5D8300A82ACB /* RemoteImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageView.swift; sourceTree = "<group>"; };
-		A4EA6EA82C2F80040058D9BE /* TripDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetail.swift; sourceTree = "<group>"; };
+		A4D085902C4E5E7200A82ACB /* GooglePlacesSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesSwift.swift; sourceTree = "<group>"; };
+		A4D085932C4E6F8B00A82ACB /* TripItineraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripItineraryView.swift; sourceTree = "<group>"; };
+		A4EA6EA82C2F80040058D9BE /* TripDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailView.swift; sourceTree = "<group>"; };
 		A4EA6EAE2C2F87E20058D9BE /* CreateTaskDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskDialog.swift; sourceTree = "<group>"; };
 		A4EA6EB12C2FCF1F0058D9BE /* Date+Formatted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatted.swift"; sourceTree = "<group>"; };
 		A4EA6EB32C2FD0450058D9BE /* Collection+Separate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Separate.swift"; sourceTree = "<group>"; };
@@ -179,6 +183,7 @@
 		A4918FC62C3663CF001B45EE /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				A4D085922C4E6F6B00A82ACB /* Itinerary */,
 				A49160BC2C49E9FC007B9025 /* Calendar */,
 				A49160B92C49E9B4007B9025 /* Budget */,
 			);
@@ -313,9 +318,17 @@
 		A4CF85582C2A12E50037EE27 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				A4EA6EA82C2F80040058D9BE /* TripDetail.swift */,
+				A4EA6EA82C2F80040058D9BE /* TripDetailView.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		A4D085922C4E6F6B00A82ACB /* Itinerary */ = {
+			isa = PBXGroup;
+			children = (
+				A4D085932C4E6F8B00A82ACB /* TripItineraryView.swift */,
+			);
+			path = Itinerary;
 			sourceTree = "<group>";
 		};
 		A4EA6EAB2C2F805B0058D9BE /* Tasks */ = {
@@ -350,6 +363,7 @@
 				A4EA6EB12C2FCF1F0058D9BE /* Date+Formatted.swift */,
 				A4EA6EB32C2FD0450058D9BE /* Collection+Separate.swift */,
 				A4D0858C2C4E294E00A82ACB /* String+Formatted.swift */,
+				A4D085902C4E5E7200A82ACB /* GooglePlacesSwift.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -543,7 +557,7 @@
 				A4EA6EBD2C3156840058D9BE /* TripDatesView.swift in Sources */,
 				A42CADEE2C2AA3B400F6E936 /* TaskList.swift in Sources */,
 				A4EA6EDE2C3564250058D9BE /* PlacesService.swift in Sources */,
-				A4EA6EA92C2F80040058D9BE /* TripDetail.swift in Sources */,
+				A4EA6EA92C2F80040058D9BE /* TripDetailView.swift in Sources */,
 				A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */,
 				A49160C22C49F1A5007B9025 /* EventsList.swift in Sources */,
 				A4918FD12C373BFB001B45EE /* PlaceDetail.swift in Sources */,
@@ -556,11 +570,13 @@
 				A42CADE22C2A8DC300F6E936 /* MapContainerView.swift in Sources */,
 				A4918FCB2C368EA6001B45EE /* AutocompletePlace.swift in Sources */,
 				A42CADE42C2A8EF400F6E936 /* Configuration.swift in Sources */,
+				A4D085912C4E5E7200A82ACB /* GooglePlacesSwift.swift in Sources */,
 				A4EA6EC52C3180FA0058D9BE /* PlaceList.swift in Sources */,
 				A49160BB2C49E9C2007B9025 /* BudgetScreen.swift in Sources */,
 				A4CF854C2C298DCC0037EE27 /* CreateTripDialog.swift in Sources */,
 				A4EA6EC02C315DAA0058D9BE /* PlaceSearchList.swift in Sources */,
 				A42CADEC2C2AA2A400F6E936 /* Task.swift in Sources */,
+				A4D085942C4E6F8B00A82ACB /* TripItineraryView.swift in Sources */,
 				A4D0858F2C4E5D8300A82ACB /* RemoteImageView.swift in Sources */,
 				A4EA6EBB2C3155D00058D9BE /* Member.swift in Sources */,
 				A4EA6EC72C31817F0058D9BE /* PlaceRow.swift in Sources */,
