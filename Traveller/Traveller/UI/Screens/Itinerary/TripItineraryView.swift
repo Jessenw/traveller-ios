@@ -63,7 +63,7 @@ struct TripItineraryView: View {
     
     var itineraryList: some View {
         ScrollView {
-            LazyVStack(alignment: .leading, spacing: 20) {
+            LazyVStack(alignment: .leading, spacing: 0) {
                 ForEach(events[selectedDate] ?? [], id: \.title) { event in
                     EventRow(event: event)
                 }
@@ -75,22 +75,16 @@ struct TripItineraryView: View {
 
 struct EventRow: View {
     let event: Event
+    let iconSize: CGFloat = 20
     
     var body: some View {
         HStack(alignment: .top, spacing: 15) {
             Image(systemName: event.icon)
                 .resizable()
                 .foregroundColor(.blue)
-                .frame(width: 20, height: 20)
-                .background(alignment: .top) {
-                    if event != Event.mockEvents.last {
-                        Rectangle()
-                            .fill(.separator)
-                            .frame(width: 1, height: 65)
-                    }
-                }
+                .frame(width: iconSize, height: iconSize)
             
-            VStack(alignment: .leading, spacing: 5) {
+            VStack(alignment: .leading) {
                 Text(event.title)
                     .font(.subheadline)
                     .fontWeight(.semibold)
@@ -100,11 +94,23 @@ struct EventRow: View {
             }
             
             
-//            Image("eventImage") // Replace with actual image
-//                .resizable()
-//                .scaledToFill()
-//                .frame(width: 60, height: 60)
-//                .clipShape(RoundedRectangle(cornerRadius: 10))
+            Image("eventImage") // Replace with actual image
+                .resizable()
+                .scaledToFill()
+                .frame(width: 60, height: 60)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+        }
+        .background() {
+            GeometryReader { geometry in
+                if event != Event.mockEvents.last {
+                    Rectangle()
+                        .fill(.separator)
+                        .position(
+                            x: iconSize / 2,
+                            y: geometry.size.height - iconSize)
+                        .frame(width: 1, height: geometry.size.height - iconSize)
+                }
+            }
         }
     }
 }
