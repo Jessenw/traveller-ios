@@ -24,6 +24,20 @@ struct PlaceDetail {
     var isOpen: Bool? {
         openingHours?.isOpen
     }
+    
+    var firstTypeFormatted: String? {
+        guard let type = types.first?.rawValue else {
+            return nil
+        }
+        let replacedString = type.replacingOccurrences(of: "_", with: " ")
+        return replacedString.capitalizingFirstLetter()
+    }
+}
+
+extension PriceLevel {
+    var level: Int? {
+        PriceLevel.allCases.firstIndex(of: self)
+    }
 }
 
 extension OpeningHours {
@@ -46,6 +60,11 @@ extension OpeningHours {
             endTime: (hour:  Int(period.open.time.hour),
                       minute: Int(period.open.time.minute)))
     }
+}
+
+struct OpenHoursForDay {
+    var day: String
+    var openHours: [String]
 }
 
 func isTimeWithinRange(date: Date, startTime: (hour: Int, minute: Int), endTime: (hour: Int, minute: Int)) -> Bool {

@@ -13,7 +13,7 @@ import SwiftUI
 
 struct TripDetail: View {
     @ObservedObject private var placesService = PlacesService.shared
-    @State private var currentScreen: TripDetailScreen = .calendar
+    @State private var currentScreen: TripDetailScreen = .places
     
     var trip: Trip
     

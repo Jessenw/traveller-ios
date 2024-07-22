@@ -35,6 +35,7 @@
 		A4CF85482C2986860037EE27 /* TripList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85472C2986860037EE27 /* TripList.swift */; };
 		A4CF854A2C29886A0037EE27 /* TripRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF85492C29886A0037EE27 /* TripRow.swift */; };
 		A4CF854C2C298DCC0037EE27 /* CreateTripDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4CF854B2C298DCC0037EE27 /* CreateTripDialog.swift */; };
+		A4D0858D2C4E294E00A82ACB /* String+Formatted.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D0858C2C4E294E00A82ACB /* String+Formatted.swift */; };
 		A4EA6EA92C2F80040058D9BE /* TripDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EA82C2F80040058D9BE /* TripDetail.swift */; };
 		A4EA6EAF2C2F87E20058D9BE /* CreateTaskDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EAE2C2F87E20058D9BE /* CreateTaskDialog.swift */; };
 		A4EA6EB22C2FCF1F0058D9BE /* Date+Formatted.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EB12C2FCF1F0058D9BE /* Date+Formatted.swift */; };
@@ -101,6 +102,7 @@
 		A4CF85472C2986860037EE27 /* TripList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripList.swift; sourceTree = "<group>"; };
 		A4CF85492C29886A0037EE27 /* TripRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRow.swift; sourceTree = "<group>"; };
 		A4CF854B2C298DCC0037EE27 /* CreateTripDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTripDialog.swift; sourceTree = "<group>"; };
+		A4D0858C2C4E294E00A82ACB /* String+Formatted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Formatted.swift"; sourceTree = "<group>"; };
 		A4EA6EA82C2F80040058D9BE /* TripDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetail.swift; sourceTree = "<group>"; };
 		A4EA6EAE2C2F87E20058D9BE /* CreateTaskDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskDialog.swift; sourceTree = "<group>"; };
 		A4EA6EB12C2FCF1F0058D9BE /* Date+Formatted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatted.swift"; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 			children = (
 				A4EA6EB12C2FCF1F0058D9BE /* Date+Formatted.swift */,
 				A4EA6EB32C2FD0450058D9BE /* Collection+Separate.swift */,
+				A4D0858C2C4E294E00A82ACB /* String+Formatted.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -529,6 +532,7 @@
 				A49160C02C49EF79007B9025 /* AirportDateView.swift in Sources */,
 				A4CF85422C29850B0037EE27 /* Trip.swift in Sources */,
 				A4EA6EC22C317FD80058D9BE /* SearchBar.swift in Sources */,
+				A4D0858D2C4E294E00A82ACB /* String+Formatted.swift in Sources */,
 				A42CADE62C2A908F00F6E936 /* Utilities.swift in Sources */,
 				A427B3732C4D150800AC8930 /* PlaceDetailViewModel.swift in Sources */,
 				A4EA6EC92C3183890058D9BE /* PlaceSearchRow.swift in Sources */,
