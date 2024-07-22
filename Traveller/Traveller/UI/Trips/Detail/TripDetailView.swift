@@ -18,17 +18,21 @@ struct TripDetailView: View {
     
     // State
     @State private var todoSheetPresented = false
+    @State private var addSheetPresented = false
     @State private var selectedDetent: PresentationDetent = .medium
     
     // Constants
     private let availableDetents: Set<PresentationDetent> = [.medium, .large]
-
+    
     var body: some View {
-        VStack {
+        ZStack(alignment: .bottomTrailing) {
             TripItineraryView(
                 trip: trip,
                 startDate: trip.startDate ?? .now,
                 endDate: trip.endDate ?? .now)
+            FloatingActionButton {
+                addSheetPresented = true
+            }
         }
         .navigationTitle(trip.name)
         .navigationBarTitleDisplayMode(.inline)
@@ -37,20 +41,27 @@ struct TripDetailView: View {
                 todoButton
             }
         }
-        .sheet(isPresented: $todoSheetPresented) {
-            todoSheet
-        }
+        .sheet(isPresented: $todoSheetPresented) { todoSheet }
+        .sheet(isPresented: $addSheetPresented) { addSheet }
     }
     
     // MARK: - Subviews
     private var todoButton: some View {
         Button {
-            todoSheetPresented.toggle()
+            if todoSheetPresented || addSheetPresented {
+                // Dismiss all sheets
+                todoSheetPresented = false
+                addSheetPresented = false
+            } else if !todoSheetPresented {
+                todoSheetPresented = true
+            }
         } label: {
-            Image(systemName: todoSheetPresented
+            Image(systemName: (todoSheetPresented || addSheetPresented)
                   ? "chevron.down.circle.fill"
                   : "checklist")
             .resizable()
+            .animation(.smooth, value: todoSheetPresented)
+            .animation(.smooth, value: addSheetPresented)
             .aspectRatio(contentMode: .fit)
             .frame(width: 25, height: 25)
         }
@@ -62,5 +73,32 @@ struct TripDetailView: View {
         }
         .presentationDetents(availableDetents, selection: $selectedDetent)
         .presentationBackgroundInteraction(.enabled)
+    }
+    
+    private var addSheet: some View {
+        NavigationStack {
+            PlaceList(trip: trip)
+        }
+        .presentationDetents(availableDetents, selection: $selectedDetent)
+        .presentationBackgroundInteraction(.enabled)
+    }
+}
+
+struct FloatingActionButton: View {
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            Image(systemName: "plus")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 24, height: 24)
+                .padding()
+                .background(.blue)
+                .foregroundColor(.white)
+                .clipShape(Circle())
+                .shadow(radius: 5)
+        }
+        .padding()
     }
 }
