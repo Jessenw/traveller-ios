@@ -17,7 +17,6 @@
 		A42CADEC2C2AA2A400F6E936 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADEB2C2AA2A400F6E936 /* Task.swift */; };
 		A42CADEE2C2AA3B400F6E936 /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADED2C2AA3B400F6E936 /* TaskList.swift */; };
 		A49160B52C492C3C007B9025 /* MijickCalendarView in Frameworks */ = {isa = PBXBuildFile; productRef = A49160B42C492C3C007B9025 /* MijickCalendarView */; };
-		A49160BB2C49E9C2007B9025 /* BudgetScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49160BA2C49E9C2007B9025 /* BudgetScreen.swift */; };
 		A49160BE2C49EA06007B9025 /* CalendarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49160BD2C49EA06007B9025 /* CalendarScreen.swift */; };
 		A49160C02C49EF79007B9025 /* AirportDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49160BF2C49EF79007B9025 /* AirportDateView.swift */; };
 		A49160C22C49F1A5007B9025 /* EventsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49160C12C49F1A5007B9025 /* EventsList.swift */; };
@@ -83,7 +82,6 @@
 		A42CADE92C2AA20D00F6E936 /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
 		A42CADEB2C2AA2A400F6E936 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		A42CADED2C2AA3B400F6E936 /* TaskList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskList.swift; sourceTree = "<group>"; };
-		A49160BA2C49E9C2007B9025 /* BudgetScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetScreen.swift; sourceTree = "<group>"; };
 		A49160BD2C49EA06007B9025 /* CalendarScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarScreen.swift; sourceTree = "<group>"; };
 		A49160BF2C49EF79007B9025 /* AirportDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportDateView.swift; sourceTree = "<group>"; };
 		A49160C12C49F1A5007B9025 /* EventsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsList.swift; sourceTree = "<group>"; };
@@ -163,14 +161,6 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
-		A49160B92C49E9B4007B9025 /* Budget */ = {
-			isa = PBXGroup;
-			children = (
-				A49160BA2C49E9C2007B9025 /* BudgetScreen.swift */,
-			);
-			path = Budget;
-			sourceTree = "<group>";
-		};
 		A49160BC2C49E9FC007B9025 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,7 +175,6 @@
 			children = (
 				A4D085922C4E6F6B00A82ACB /* Itinerary */,
 				A49160BC2C49E9FC007B9025 /* Calendar */,
-				A49160B92C49E9B4007B9025 /* Budget */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -572,7 +561,6 @@
 				A42CADE42C2A8EF400F6E936 /* Configuration.swift in Sources */,
 				A4D085912C4E5E7200A82ACB /* GooglePlacesSwift.swift in Sources */,
 				A4EA6EC52C3180FA0058D9BE /* PlaceList.swift in Sources */,
-				A49160BB2C49E9C2007B9025 /* BudgetScreen.swift in Sources */,
 				A4CF854C2C298DCC0037EE27 /* CreateTripDialog.swift in Sources */,
 				A4EA6EC02C315DAA0058D9BE /* PlaceSearchList.swift in Sources */,
 				A42CADEC2C2AA2A400F6E936 /* Task.swift in Sources */,

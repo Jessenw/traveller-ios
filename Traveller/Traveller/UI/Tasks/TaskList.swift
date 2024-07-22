@@ -10,62 +10,54 @@ import SwiftData
 
 struct TaskList: View {
     @Environment(\.modelContext) private var modelContext
-    @State var showingCreateDialog: Bool = false
-    
-    var tripId: PersistentIdentifier
+
+    let tripId: PersistentIdentifier
+
+    // State
+    @State private var showingCreateDialog = false
 
     var body: some View {
-        ZStack {
-            List {
-                if let trip: Trip = modelContext.registeredModel(for: tripId) {
-                    let (completed, notCompleted) = trip.tasks.separate { $0.isChecked }
-                    
-                    // Not completed tasks
-                    Section {
-                        ForEach(notCompleted) { TaskRow(task: $0) }
-                    } header: {
-                        HStack(alignment: .center) {
-                            Text("Outstanding")
-                            
-                            Spacer()
-                            
-                            // Create task
-                            CreateTaskButton(showingCreateDialog: $showingCreateDialog)
-                        }
-                    }
-                    
-                    // Completed tasks
-                    Section("Completed") {
-                        ForEach(completed) { TaskRow(task: $0) }
-                    }
-                }
+        List {
+            if let trip: Trip = modelContext.registeredModel(for: tripId) {
+                let (completed, notCompleted) = trip.tasks.separate { $0.isChecked }
+                
+                outstandingTasksSection(tasks: notCompleted)
+                completedTasksSection(tasks: completed)
             }
-            .listStyle(PlainListStyle())
         }
+        .listStyle(PlainListStyle())
         .sheet(isPresented: $showingCreateDialog) {
             CreateTaskDialog(tripId: tripId)
         }
-    }
-}
-
-fileprivate struct CreateTaskButton: View {
-    @Binding var showingCreateDialog: Bool
-    
-    private static let size: CGFloat = 24
-    
-    var body: some View {
-        VStack {
-            Spacer()
-            HStack {
-                Spacer()
-                Button(action: {
-                    showingCreateDialog = true
-                }) {
-                    Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .frame(width: Self.size, height: Self.size)
-                }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                createButton
             }
+        }
+        .navigationTitle("Todos")
+    }
+    
+    // MARK: - Subviews
+    private func outstandingTasksSection(tasks: [Task]) -> some View {
+        Section("Outstanding") {
+            ForEach(tasks) { TaskRow(task: $0) }
+        }
+    }
+    
+    private func completedTasksSection(tasks: [Task]) -> some View {
+        Section("Completed") {
+            ForEach(tasks) { TaskRow(task: $0) }
+        }
+    }
+    
+    private var createButton: some View {
+        Button(action: {
+            showingCreateDialog = true
+        }) {
+            Image(systemName: "plus.circle.fill")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 25, height: 25)
         }
     }
 }

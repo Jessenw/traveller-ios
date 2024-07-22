@@ -12,14 +12,20 @@ struct TripItineraryView: View {
     let tripDates: [Date]
     var events: [Date: [Event]]
     
-    init(startDate: Date, endDate: Date) {
+    var trip: Trip
+    
+    init(trip: Trip, startDate: Date, endDate: Date) {
+        self.trip = trip
         self.tripDates = Date.dates(from: startDate, to: endDate)
         self._selectedDate = State(initialValue: startDate)
         
-        // Mock events data
+        let tripEvents = trip.places.map { place in
+            Event(title: place.name, subtitle: place.subtitle, icon: "bed.double.circle.fill")
+        }
+        
         self.events = [:]
         for date in tripDates {
-            events[date] = Event.mockEvents
+            events[date] = tripEvents
         }
     }
     
@@ -28,7 +34,6 @@ struct TripItineraryView: View {
             dateScrollView
             itineraryList
         }
-        .navigationTitle("Trip Itinerary")
     }
     
     var dateScrollView: some View {
@@ -139,11 +144,5 @@ extension Date {
         }
         
         return dates
-    }
-}
-
-struct TripItineraryView_Previews: PreviewProvider {
-    static var previews: some View {
-        TripItineraryView(startDate: Date(), endDate: Date().addingTimeInterval(7 * 24 * 60 * 60))
     }
 }
