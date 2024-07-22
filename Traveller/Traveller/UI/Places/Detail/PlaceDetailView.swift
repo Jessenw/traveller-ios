@@ -9,65 +9,24 @@ struct PlaceDetailView: View {
         _viewModel = StateObject(wrappedValue: PlaceDetailViewModel(placeId: placeId, trip: trip))
     }
     
-    var detailView: some View {
-        let weekdayText = viewModel.place?.openingHours?.weekdayText ?? []
-        return List {
-            Section("Opening hours") {
-                ForEach(weekdayText, id: \.hashValue) { day in
-                    Text(day)
-                }
-            }
-        }
-        .scrollDisabled(true)
-    }
-    
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 16) {
-                headerView
-                    .padding()
-                summaryView
-                    .padding([.horizontal, .bottom])
-                
-                // Image Carousel
-                if let images = viewModel.place?.images, !images.isEmpty {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 10) {
-                            ForEach(images, id: \.self) { imageData in
-                                if let uiImage = UIImage(data: imageData) {
-                                    Image(uiImage: uiImage)
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 200, height: 150)
-                                        .cornerRadius(10)
-                                }
-                            }
-                        }
-                        .ignoresSafeArea(edges: .trailing)
-                        .padding(.horizontal)
-                    }
-                    .listRowBackground(Color.clear)
-                }
-                
-                detailView
+                headerView.padding()
+                summaryView.padding([.horizontal, .bottom])
+                imageCarousel
+                openingHoursView
             }
             .redacted(reason: viewModel.isLoading ? .placeholder : [])
             .animation(.smooth, value: viewModel.isLoading)
             .navigationBarItems(
-                leading: Button(action: {
-                    dismiss()
-                }) {
-                    Image(systemName: "xmark")
-                },
-                trailing: Button(action: {
-                    viewModel.isSaved ? viewModel.removeTrip() : viewModel.saveTrip()
-                }) {
-                    Image(systemName: viewModel.isSaved ? "bookmark.fill" : "bookmark")
-                        .disabled(viewModel.isLoading)
-                }
+                leading: closeButton,
+                trailing: saveButton
             )
         }
     }
+    
+    // MARK: - Header view
     
     private var headerView: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -80,84 +39,116 @@ struct PlaceDetailView: View {
         }
     }
     
-    private func priceView(priceLevel: Int) -> some View {
-        let offset = 2
-        let priceLevelsCount = PriceLevel.allCases.count - offset
-        return HStack(spacing: 2) {
-            ForEach(0...(priceLevelsCount - 2), id: \.self) { i in
-                Image(systemName: "dollarsign")
-                    .fontWeight(.bold)
-                    .foregroundStyle(i <= (priceLevel - offset) ? .green : .secondary)
+    // MARK: - Summary view
+    
+    private var summaryView: some View {
+        HStack(alignment: .center) {
+            statusView
+            Divider().frame(height: 40)
+            ratingView
+            Divider().frame(height: 40)
+            priceView
+        }
+        .frame(maxWidth: .infinity)
+    }
+    
+    private var statusView: some View {
+        let isOpen = viewModel.place?.isOpen ?? false
+        return Text(isOpen ? "Open" : "Closed")
+            .fontWeight(.bold)
+            .foregroundStyle(isOpen ? .green : .red)
+            .frame(maxWidth: .infinity)
+    }
+    
+    private var ratingView: some View {
+        VStack {
+            Text("Rating")
+                .font(.caption)
+                .foregroundColor(.secondary)
+            HStack {
+                Image(systemName: "star.fill")
+                    .foregroundColor(.yellow)
+                    .font(.system(size: 18))
+                Text(String(format: "%.1f", viewModel.place?.rating ?? 0.0))
+                    .font(.headline)
+                    .foregroundColor(.primary)
+            }
+        }
+        .frame(maxWidth: .infinity)
+    }
+    
+    private var priceView: some View {
+        VStack {
+            Text("Price")
+                .font(.caption)
+                .foregroundColor(.secondary)
+            if let priceLevel = viewModel.place?.priceLevel, let level = priceLevel.level {
+                HStack(spacing: 2) {
+                    ForEach(0...2, id: \.self) { i in
+                        Image(systemName: "dollarsign")
+                            .fontWeight(.bold)
+                            .foregroundStyle(i <= (level - 2) ? .green : .secondary)
+                    }
+                }
+            } else {
+                Text("-").foregroundStyle(.secondary)
+            }
+        }
+        .frame(maxWidth: .infinity)
+    }
+    
+    // MARK: Image carousel
+    
+    private var imageCarousel: some View {
+        Group {
+            if let images = viewModel.place?.images, !images.isEmpty {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 10) {
+                        ForEach(images, id: \.self) { imageData in
+                            if let uiImage = UIImage(data: imageData) {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 200, height: 150)
+                                    .cornerRadius(10)
+                            }
+                        }
+                    }
+                    .padding(.horizontal)
+                }
+            } else {
+                EmptyView()
             }
         }
     }
     
-    private var summaryView: some View {
-        HStack(alignment: .center) {
-            // Hours
-            let isOpen = viewModel.place?.isOpen ?? false
-            Text(isOpen ? "Open" : "Closed")
-                .fontWeight(.bold)
-                .foregroundStyle(isOpen ? .green : .red)
-                .frame(maxWidth: .infinity)
-            
-            Divider()
-                .frame(height: 40)
-            
-            // Rating
-            VStack {
-                Text("Rating")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                    .unredacted()
-                HStack {
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
-                        .font(.system(size: 18))
-                        .unredacted()
-                    Text(String(format: "%.1f", viewModel.place?.rating ?? 0.0))
-                        .font(.headline)
-                        .foregroundColor(.primary)
+    // MARK: - Detail views
+    
+    private var openingHoursView: some View {
+        let weekdayText = viewModel.place?.openingHours?.weekdayText ?? []
+        return List {
+            Section("Opening hours") {
+                ForEach(weekdayText, id: \.hashValue) { day in
+                    Text(day)
                 }
             }
-            .frame(maxWidth: .infinity)
-            
-            Divider()
-                .frame(height: 40)
-            
-            // Average Cost
-            VStack {
-                Text("Price")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                    .unredacted()
-                if let priceLevel = viewModel.place?.priceLevel {
-                    switch priceLevel {
-                    case .unspecified:
-                        Text("-")
-                            .foregroundStyle(.secondary)
-                    case .free:
-                        Text("Free")
-                    case .expensive, .moderate, .inexpensive, .veryExpensive:
-                        if let level = priceLevel.level {
-                            priceView(priceLevel: level)
-                        } else {
-                            Text("-")
-                                .foregroundStyle(.red)
-                        }
-                    @unknown default:
-                        Text("-")
-                            .foregroundStyle(.red)
-                    }
-                } else {
-                    Text("-")
-                        .foregroundStyle(.red)
-                }
-            }
-            .frame(maxWidth: .infinity)
         }
-        .frame(maxWidth: .infinity)
+    }
+    
+    // MARK: - Navigation toolbar buttons
+    
+    private var closeButton: some View {
+        Button(action: { dismiss() }) {
+            Image(systemName: "xmark")
+        }
+    }
+    
+    private var saveButton: some View {
+        Button(action: {
+            viewModel.isSaved ? viewModel.removeTrip() : viewModel.saveTrip()
+        }) {
+            Image(systemName: viewModel.isSaved ? "bookmark.fill" : "bookmark")
+                .disabled(viewModel.isLoading)
+        }
     }
 }
-
-
