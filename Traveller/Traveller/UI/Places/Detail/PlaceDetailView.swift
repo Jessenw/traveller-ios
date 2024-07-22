@@ -5,6 +5,9 @@ struct PlaceDetailView: View {
     @StateObject private var viewModel: PlaceDetailViewModel
     @Environment(\.dismiss) private var dismiss
     
+    @State private var statusMessage: String = ""
+    @State private var showStatusBar: Bool = false
+    
     init(placeId: String, trip: Trip?) {
         _viewModel = StateObject(wrappedValue: PlaceDetailViewModel(placeId: placeId, trip: trip))
     }
@@ -19,10 +22,15 @@ struct PlaceDetailView: View {
             }
             .redacted(reason: viewModel.isLoading ? .placeholder : [])
             .animation(.smooth, value: viewModel.isLoading)
-            .navigationBarItems(
-                leading: closeButton,
-                trailing: saveButton
-            )
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    closeButton
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    saveButton
+                }
+                    
+            }
         }
     }
     
