@@ -48,4 +48,19 @@ struct PlaceSearchList: View {
             }
         }
     }
+    
+    private func placeRow(place: Place) -> some View {
+        HStack(alignment: .firstTextBaseline) {
+            Image(systemName: "mappin.circle.fill")
+                .foregroundStyle(.primary)
+            
+            VStack(alignment: .leading) {
+                Text(place.name)
+                    .boldSubheadline()
+                Text(place.subtitle.replacingOccurrences(of: "_", with: " ").capitalizingFirstLetter())
+                    .secondaryCaption()
+            }
+            .lineLimit(2)
+        }
+    }
 }

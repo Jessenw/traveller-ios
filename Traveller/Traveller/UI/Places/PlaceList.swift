@@ -9,8 +9,6 @@ import SwiftData
 import SwiftUI
 
 struct PlaceList: View {
-    @Environment(\.modelContext) private var modelContext
-    
     @State private var searchText: String = ""
     @State private var searchIsFocused = false
     @State private var selectedItem: Place?
@@ -28,7 +26,7 @@ struct PlaceList: View {
                 } else {
                     List {
                         ForEach(trip.places) { place in
-                            PlaceRow(place: place)
+                            placeRow(place: place)
                                 .onTapGesture {
                                     selectedItem = place
                                 }
@@ -42,27 +40,19 @@ struct PlaceList: View {
             }
         }
     }
-}
-
-fileprivate struct CreateTaskButton: View {
-    @Binding var showingCreateDialog: Bool
     
-    private static let size: CGFloat = 24
-    
-    var body: some View {
-        VStack {
-            Spacer()
-            HStack {
-                Spacer()
-                Button(action: {
-                    showingCreateDialog = true
-                }) {
-                    Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .frame(width: Self.size, height: Self.size)
-                }
+    private func placeRow(place: Place) -> some View {
+        HStack(alignment: .firstTextBaseline) {
+            Image(systemName: "mappin.circle.fill")
+                .foregroundStyle(.primary)
+            
+            VStack(alignment: .leading) {
+                Text(place.name)
+                    .boldSubheadline()
+                Text(place.subtitle.replacingOccurrences(of: "_", with: " ").capitalizingFirstLetter())
+                    .secondaryCaption()
             }
+            .lineLimit(2)
         }
     }
 }
-
