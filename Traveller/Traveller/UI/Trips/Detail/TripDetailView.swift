@@ -10,6 +10,11 @@ import Combine
 import GooglePlacesSwift
 import GoogleMaps
 
+enum SheetScreen: Equatable {
+    case places
+    case todos
+}
+
 struct TripDetailView: View {
     // Properties
     @ObservedObject private var placesService = PlacesService.shared
@@ -17,12 +22,11 @@ struct TripDetailView: View {
     let trip: Trip
     
     // State
-    @State private var todoSheetPresented = false
-    @State private var addSheetPresented = true
     @State private var selectedDetent: PresentationDetent = .fraction(1/4)
+    @State private var sheetScreen: SheetScreen = .places
     
     // Constants
-    private let availableDetents: Set<PresentationDetent> = [.fraction(1/4), .medium, .fraction(0.999)]
+    private let availableDetents: Set<PresentationDetent> = [.fraction(1/4), .fraction(0.8)]
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
@@ -38,62 +42,42 @@ struct TripDetailView: View {
                 todoButton
             }
         }
-        .sheet(isPresented: $addSheetPresented) { addSheet }
-        .sheet(isPresented: $todoSheetPresented, onDismiss: {
-            selectedDetent = .fraction(1/4)
-            addSheetPresented = true
-        }, content: {
-            todoSheet
+        .onChange(of: sheetScreen, { oldValue, newValue in
+            switch sheetScreen {
+            case .places:
+                selectedDetent = .fraction(1/4)
+            case .todos:
+                selectedDetent = .fraction(0.8)
+            }
         })
+        .sheet(isPresented: .constant(true)) {
+            NavigationStack {
+                switch sheetScreen {
+                case .places:
+                    PlaceList(trip: trip)
+                case .todos:
+                    TodoListView(tripId: trip.persistentModelID)
+                }
+            }
+            .presentationDetents(availableDetents, selection: $selectedDetent)
+            .presentationBackgroundInteraction(.enabled)
+        }
     }
     
     // MARK: - Subviews
     private var todoButton: some View {
         Button {
-            todoSheetPresented.toggle()
+            withAnimation {
+                sheetScreen = sheetScreen == .places ? .todos : .places
+            }
         } label: {
-            Image(systemName: todoSheetPresented
+            Image(systemName: sheetScreen == .todos
                   ? "chevron.down.circle.fill"
                   : "checklist")
             .resizable()
-            .animation(.smooth, value: todoSheetPresented)
+            .animation(.smooth, value: sheetScreen)
             .aspectRatio(contentMode: .fit)
             .frame(width: 25, height: 25)
         }
-    }
-    
-    private var todoSheet: some View {
-        NavigationStack {
-            TodoListView(tripId: trip.persistentModelID)
-        }
-        .presentationDetents(availableDetents, selection: $selectedDetent)
-        .presentationBackgroundInteraction(.enabled)
-    }
-    
-    private var addSheet: some View {
-        NavigationStack {
-            PlaceList(trip: trip)
-        }
-        .presentationDetents(availableDetents, selection: $selectedDetent)
-        .presentationBackgroundInteraction(.enabled)
-    }
-}
-
-struct FloatingActionButton: View {
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            Image(systemName: "plus")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 24, height: 24)
-                .padding()
-                .background(.blue)
-                .foregroundColor(.white)
-                .clipShape(Circle())
-                .shadow(radius: 5)
-        }
-        .padding()
     }
 }
