@@ -19,6 +19,7 @@ struct TripDetailView: View {
     // State
     @State private var todoSheetPresented = false
     @State private var addSheetPresented = false
+    @State private var placesSheetPresented = false
     @State private var selectedDetent: PresentationDetent = .medium
     
     // Constants
@@ -30,9 +31,6 @@ struct TripDetailView: View {
                 trip: trip,
                 startDate: trip.startDate ?? .now,
                 endDate: trip.endDate ?? .now)
-            FloatingActionButton {
-                addSheetPresented = true
-            }
         }
         .navigationTitle(trip.name)
         .navigationBarTitleDisplayMode(.inline)

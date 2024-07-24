@@ -37,6 +37,7 @@
 		A4D085912C4E5E7200A82ACB /* GooglePlacesSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D085902C4E5E7200A82ACB /* GooglePlacesSwift.swift */; };
 		A4D085942C4E6F8B00A82ACB /* TripItineraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D085932C4E6F8B00A82ACB /* TripItineraryView.swift */; };
 		A4D085972C4F300F00A82ACB /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D085962C4F300F00A82ACB /* Text.swift */; };
+		A4D085992C5054E500A82ACB /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A4D085982C5054E500A82ACB /* Localizable.xcstrings */; };
 		A4EA6EA92C2F80040058D9BE /* TripDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EA82C2F80040058D9BE /* TripDetailView.swift */; };
 		A4EA6EAF2C2F87E20058D9BE /* CreateTaskDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EAE2C2F87E20058D9BE /* CreateTaskDialog.swift */; };
 		A4EA6EB22C2FCF1F0058D9BE /* Date+Formatted.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EB12C2FCF1F0058D9BE /* Date+Formatted.swift */; };
@@ -103,6 +104,7 @@
 		A4D085902C4E5E7200A82ACB /* GooglePlacesSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlacesSwift.swift; sourceTree = "<group>"; };
 		A4D085932C4E6F8B00A82ACB /* TripItineraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripItineraryView.swift; sourceTree = "<group>"; };
 		A4D085962C4F300F00A82ACB /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		A4D085982C5054E500A82ACB /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		A4EA6EA82C2F80040058D9BE /* TripDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailView.swift; sourceTree = "<group>"; };
 		A4EA6EAE2C2F87E20058D9BE /* CreateTaskDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskDialog.swift; sourceTree = "<group>"; };
 		A4EA6EB12C2FCF1F0058D9BE /* Date+Formatted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatted.swift"; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				A4CF851B2C297F7B0037EE27 /* Traveller.entitlements */,
 				A4CF851C2C297F7B0037EE27 /* Preview Content */,
 				A42CADE52C2A908F00F6E936 /* Utilities.swift */,
+				A4D085982C5054E500A82ACB /* Localizable.xcstrings */,
 			);
 			path = Traveller;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 			files = (
 				A4CF851E2C297F7B0037EE27 /* Preview Assets.xcassets in Resources */,
 				A4CF851A2C297F7B0037EE27 /* Assets.xcassets in Resources */,
+				A4D085992C5054E500A82ACB /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,88 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "-" : {
+
+    },
+    "%@ - %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ - %2$@"
+          }
+        }
+      }
+    },
+    "•" : {
+
+    },
+    "+ %lld more" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Closed" : {
+
+    },
+    "Completed" : {
+
+    },
+    "Create" : {
+
+    },
+    "Description (Optional)" : {
+
+    },
+    "End Date" : {
+
+    },
+    "Include Dates" : {
+
+    },
+    "Name" : {
+
+    },
+    "New date" : {
+
+    },
+    "New Task" : {
+
+    },
+    "New Trip" : {
+
+    },
+    "Open" : {
+
+    },
+    "Opening hours" : {
+
+    },
+    "Outstanding" : {
+
+    },
+    "Price" : {
+
+    },
+    "Rating" : {
+
+    },
+    "Search places..." : {
+
+    },
+    "Start Date" : {
+
+    },
+    "Todos" : {
+
+    },
+    "Trip Details" : {
+
+    },
+    "Trips" : {
+
+    }
+  },
+  "version" : "1.0"
+}

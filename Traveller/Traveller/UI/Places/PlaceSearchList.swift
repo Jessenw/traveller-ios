@@ -25,7 +25,7 @@ struct PlaceSearchList: View {
     var body: some View {
         NavigationStack {
             List(places) { place in
-                PlaceSearchRow(place: place)
+                placeRow(place: place)
                     .onTapGesture {
                         selectedItem = place
                     }
@@ -49,7 +49,7 @@ struct PlaceSearchList: View {
         }
     }
     
-    private func placeRow(place: Place) -> some View {
+    private func placeRow(place: AutocompletePlace) -> some View {
         HStack(alignment: .firstTextBaseline) {
             Image(systemName: "mappin.circle.fill")
                 .foregroundStyle(.primary)
@@ -57,8 +57,10 @@ struct PlaceSearchList: View {
             VStack(alignment: .leading) {
                 Text(place.name)
                     .boldSubheadline()
-                Text(place.subtitle.replacingOccurrences(of: "_", with: " ").capitalizingFirstLetter())
-                    .secondaryCaption()
+                if let subtitle = place.subtitle {
+                    Text(subtitle)
+                        .secondaryCaption()
+                }
             }
             .lineLimit(2)
         }
