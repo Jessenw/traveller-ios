@@ -1,5 +1,5 @@
 //
-//  TaskRow.swift
+//  TodoRow.swift
 //  Traveller
 //
 //  Created by Jesse Williams on 25/06/2024.
@@ -8,18 +8,18 @@
 import SwiftData
 import SwiftUI
 
-struct TaskRow: View {
+struct TodoRow: View {
     @Environment(\.modelContext) private var modelContext
     
-    var task: Task
+    var todo: Todo
 
     var body: some View {
-        let isChecked = task.isChecked
+        let isChecked = todo.isChecked
         
         HStack {
             // Checked button
             Button(action: {
-                withAnimation { task.isChecked.toggle() }
+                withAnimation { todo.isChecked.toggle() }
             }) {
                 Image(systemName: isChecked ? "checkmark.circle.fill" : "circle")
                     .foregroundColor(isChecked ? .green : .secondary)
@@ -27,9 +27,9 @@ struct TaskRow: View {
             .buttonStyle(PlainButtonStyle())
             
             VStack(alignment: .leading) {
-                Text(task.title)
+                Text(todo.title)
                     .font(.headline)
-                if let notes = task.notes {
+                if let notes = todo.notes {
                     Text(notes)
                         .font(.subheadline)
                         .foregroundColor(.secondary)

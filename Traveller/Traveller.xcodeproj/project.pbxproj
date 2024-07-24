@@ -13,9 +13,9 @@
 		A42CADE22C2A8DC300F6E936 /* MapContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADE12C2A8DC300F6E936 /* MapContainerView.swift */; };
 		A42CADE42C2A8EF400F6E936 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADE32C2A8EF400F6E936 /* Configuration.swift */; };
 		A42CADE62C2A908F00F6E936 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADE52C2A908F00F6E936 /* Utilities.swift */; };
-		A42CADEA2C2AA20D00F6E936 /* TaskRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADE92C2AA20D00F6E936 /* TaskRow.swift */; };
-		A42CADEC2C2AA2A400F6E936 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADEB2C2AA2A400F6E936 /* Task.swift */; };
-		A42CADEE2C2AA3B400F6E936 /* TaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADED2C2AA3B400F6E936 /* TaskList.swift */; };
+		A42CADEA2C2AA20D00F6E936 /* TodoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADE92C2AA20D00F6E936 /* TodoRow.swift */; };
+		A42CADEC2C2AA2A400F6E936 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADEB2C2AA2A400F6E936 /* Todo.swift */; };
+		A42CADEE2C2AA3B400F6E936 /* TodoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CADED2C2AA3B400F6E936 /* TodoListView.swift */; };
 		A49160B52C492C3C007B9025 /* MijickCalendarView in Frameworks */ = {isa = PBXBuildFile; productRef = A49160B42C492C3C007B9025 /* MijickCalendarView */; };
 		A49160C02C49EF79007B9025 /* AirportDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49160BF2C49EF79007B9025 /* AirportDateView.swift */; };
 		A4918FCB2C368EA6001B45EE /* AutocompletePlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4918FCA2C368EA6001B45EE /* AutocompletePlace.swift */; };
@@ -39,7 +39,7 @@
 		A4D085972C4F300F00A82ACB /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D085962C4F300F00A82ACB /* Text.swift */; };
 		A4D085992C5054E500A82ACB /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A4D085982C5054E500A82ACB /* Localizable.xcstrings */; };
 		A4EA6EA92C2F80040058D9BE /* TripDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EA82C2F80040058D9BE /* TripDetailView.swift */; };
-		A4EA6EAF2C2F87E20058D9BE /* CreateTaskDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EAE2C2F87E20058D9BE /* CreateTaskDialog.swift */; };
+		A4EA6EAF2C2F87E20058D9BE /* CreateTodoDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EAE2C2F87E20058D9BE /* CreateTodoDialog.swift */; };
 		A4EA6EB22C2FCF1F0058D9BE /* Date+Formatted.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EB12C2FCF1F0058D9BE /* Date+Formatted.swift */; };
 		A4EA6EB42C2FD0450058D9BE /* Collection+Separate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EB32C2FD0450058D9BE /* Collection+Separate.swift */; };
 		A4EA6EB62C314FCD0058D9BE /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA6EB52C314FCD0058D9BE /* Place.swift */; };
@@ -77,9 +77,9 @@
 		A42CADE12C2A8DC300F6E936 /* MapContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapContainerView.swift; sourceTree = "<group>"; };
 		A42CADE32C2A8EF400F6E936 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		A42CADE52C2A908F00F6E936 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		A42CADE92C2AA20D00F6E936 /* TaskRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskRow.swift; sourceTree = "<group>"; };
-		A42CADEB2C2AA2A400F6E936 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		A42CADED2C2AA3B400F6E936 /* TaskList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskList.swift; sourceTree = "<group>"; };
+		A42CADE92C2AA20D00F6E936 /* TodoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRow.swift; sourceTree = "<group>"; };
+		A42CADEB2C2AA2A400F6E936 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
+		A42CADED2C2AA3B400F6E936 /* TodoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListView.swift; sourceTree = "<group>"; };
 		A49160BF2C49EF79007B9025 /* AirportDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirportDateView.swift; sourceTree = "<group>"; };
 		A4918FCA2C368EA6001B45EE /* AutocompletePlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutocompletePlace.swift; sourceTree = "<group>"; };
 		A4918FCD2C373B89001B45EE /* PlaceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailView.swift; sourceTree = "<group>"; };
@@ -106,7 +106,7 @@
 		A4D085962C4F300F00A82ACB /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		A4D085982C5054E500A82ACB /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		A4EA6EA82C2F80040058D9BE /* TripDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripDetailView.swift; sourceTree = "<group>"; };
-		A4EA6EAE2C2F87E20058D9BE /* CreateTaskDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskDialog.swift; sourceTree = "<group>"; };
+		A4EA6EAE2C2F87E20058D9BE /* CreateTodoDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTodoDialog.swift; sourceTree = "<group>"; };
 		A4EA6EB12C2FCF1F0058D9BE /* Date+Formatted.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Formatted.swift"; sourceTree = "<group>"; };
 		A4EA6EB32C2FD0450058D9BE /* Collection+Separate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Separate.swift"; sourceTree = "<group>"; };
 		A4EA6EB52C314FCD0058D9BE /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -251,7 +251,7 @@
 			children = (
 				A4918FCF2C373BDB001B45EE /* Place */,
 				A4CF85412C29850B0037EE27 /* Trip.swift */,
-				A42CADEB2C2AA2A400F6E936 /* Task.swift */,
+				A42CADEB2C2AA2A400F6E936 /* Todo.swift */,
 				A4EA6EBA2C3155D00058D9BE /* Member.swift */,
 				A4918FCA2C368EA6001B45EE /* AutocompletePlace.swift */,
 			);
@@ -320,8 +320,8 @@
 			isa = PBXGroup;
 			children = (
 				A4EA6EAD2C2F87990058D9BE /* Create */,
-				A42CADE92C2AA20D00F6E936 /* TaskRow.swift */,
-				A42CADED2C2AA3B400F6E936 /* TaskList.swift */,
+				A42CADE92C2AA20D00F6E936 /* TodoRow.swift */,
+				A42CADED2C2AA3B400F6E936 /* TodoListView.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -337,7 +337,7 @@
 		A4EA6EAD2C2F87990058D9BE /* Create */ = {
 			isa = PBXGroup;
 			children = (
-				A4EA6EAE2C2F87E20058D9BE /* CreateTaskDialog.swift */,
+				A4EA6EAE2C2F87E20058D9BE /* CreateTodoDialog.swift */,
 			);
 			path = Create;
 			sourceTree = "<group>";
@@ -539,13 +539,13 @@
 				A427B3732C4D150800AC8930 /* PlaceDetailViewModel.swift in Sources */,
 				A4CF85162C297F7A0037EE27 /* ContentView.swift in Sources */,
 				A4EA6EBD2C3156840058D9BE /* TripDatesView.swift in Sources */,
-				A42CADEE2C2AA3B400F6E936 /* TaskList.swift in Sources */,
+				A42CADEE2C2AA3B400F6E936 /* TodoListView.swift in Sources */,
 				A4EA6EDE2C3564250058D9BE /* PlacesService.swift in Sources */,
 				A4EA6EA92C2F80040058D9BE /* TripDetailView.swift in Sources */,
 				A4CF85142C297F7A0037EE27 /* TravellerApp.swift in Sources */,
 				A4918FD12C373BFB001B45EE /* PlaceDetail.swift in Sources */,
-				A42CADEA2C2AA20D00F6E936 /* TaskRow.swift in Sources */,
-				A4EA6EAF2C2F87E20058D9BE /* CreateTaskDialog.swift in Sources */,
+				A42CADEA2C2AA20D00F6E936 /* TodoRow.swift in Sources */,
+				A4EA6EAF2C2F87E20058D9BE /* CreateTodoDialog.swift in Sources */,
 				A4EA6EB22C2FCF1F0058D9BE /* Date+Formatted.swift in Sources */,
 				A4EA6ECF2C326E690058D9BE /* PlaceSearchListViewModel.swift in Sources */,
 				A42CADE02C2A8DA600F6E936 /* MapViewController.swift in Sources */,
@@ -556,7 +556,7 @@
 				A4EA6EC52C3180FA0058D9BE /* PlaceList.swift in Sources */,
 				A4CF854C2C298DCC0037EE27 /* CreateTripDialog.swift in Sources */,
 				A4EA6EC02C315DAA0058D9BE /* PlaceSearchList.swift in Sources */,
-				A42CADEC2C2AA2A400F6E936 /* Task.swift in Sources */,
+				A42CADEC2C2AA2A400F6E936 /* Todo.swift in Sources */,
 				A4D085942C4E6F8B00A82ACB /* TripItineraryView.swift in Sources */,
 				A4D0858F2C4E5D8300A82ACB /* RemoteImageView.swift in Sources */,
 				A4EA6EBB2C3155D00058D9BE /* Member.swift in Sources */,

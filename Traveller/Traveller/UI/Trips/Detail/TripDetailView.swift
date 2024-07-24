@@ -67,7 +67,7 @@ struct TripDetailView: View {
     
     private var todoSheet: some View {
         NavigationStack {
-            TaskList(tripId: trip.persistentModelID)
+            TodoListView(tripId: trip.persistentModelID)
         }
         .presentationDetents(availableDetents, selection: $selectedDetent)
         .presentationBackgroundInteraction(.enabled)

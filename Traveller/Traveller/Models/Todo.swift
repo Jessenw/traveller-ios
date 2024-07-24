@@ -1,5 +1,5 @@
 //
-//  Task.swift
+//  Todo.swift
 //  Traveller
 //
 //  Created by Jesse Williams on 25/06/2024.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftData
 
-@Model class Task {
+@Model class Todo {
     var title: String
     var notes: String?
     var deadline: Date?

@@ -36,7 +36,7 @@ struct PlaceSearchList: View {
             }
             .presentationDetents([.medium], selection: $sheetDetent)
             .onChange(of: searchText) { _, newValue in
-                _Concurrency.Task {
+                Task {
                     do {
                         if !searchText.isEmpty {
                             places = try await placesService.fetchAutocompletePredictions(query: searchText)

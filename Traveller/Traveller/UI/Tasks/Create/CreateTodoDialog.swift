@@ -1,5 +1,5 @@
 //
-//  CreateTaskDialog.swift
+//  CreateTodoDialog.swift
 //  Traveller
 //
 //  Created by Jesse Williams on 29/06/2024.
@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct CreateTaskDialog: View {
+struct CreateTodoDialog: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.modelContext) private var modelContext: ModelContext
     @State private var title: String = ""
@@ -26,13 +26,13 @@ struct CreateTaskDialog: View {
                         TextField("Description (Optional)", text: $notes)
                     }
 
-                    Button(action: { createTask(trip: trip) }) {
+                    Button(action: { createTodo(trip: trip) }) {
                         Text("Create")
                             .frame(maxWidth: .infinity, alignment: .center)
                     }
                     .disabled(title.isEmpty)
                 }
-                .navigationBarTitle("New Task", displayMode: .inline)
+                .navigationBarTitle("New Todo", displayMode: .inline)
                 .navigationBarItems(leading: Button("Cancel") {
                     presentationMode.wrappedValue.dismiss()
                 })
@@ -40,13 +40,13 @@ struct CreateTaskDialog: View {
         }
     }
 
-    private func createTask(trip: Trip) {
-        let newTask = Task(
+    private func createTodo(trip: Trip) {
+        let newTodo = Todo(
             title: title,
             notes: notes,
             deadline: deadline)
         
-        trip.tasks.append(newTask)
+        trip.todos.append(newTodo)
         presentationMode.wrappedValue.dismiss()
     }
 }

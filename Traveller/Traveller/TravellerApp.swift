@@ -25,7 +25,7 @@ struct TravellerApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Trip.self,
-            Task.self,
+            Todo.self,
             Place.self,
             Member.self
         ])

@@ -1,5 +1,5 @@
 //
-//  TaskList.swift
+//  TodoListView.swift
 //  Traveller
 //
 //  Created by Jesse Williams on 25/06/2024.
@@ -8,7 +8,7 @@
 import SwiftUI
 import SwiftData
 
-struct TaskList: View {
+struct TodoListView: View {
     @Environment(\.modelContext) private var modelContext
 
     let tripId: PersistentIdentifier
@@ -19,15 +19,15 @@ struct TaskList: View {
     var body: some View {
         List {
             if let trip: Trip = modelContext.registeredModel(for: tripId) {
-                let (completed, notCompleted) = trip.tasks.separate { $0.isChecked }
+                let (completed, notCompleted) = trip.todos.separate { $0.isChecked }
                 
-                outstandingTasksSection(tasks: notCompleted)
-                completedTasksSection(tasks: completed)
+                todosSection(title: "Outstanding", todos: notCompleted)
+                todosSection(title: "Completed", todos: completed)
             }
         }
         .listStyle(PlainListStyle())
         .sheet(isPresented: $showingCreateDialog) {
-            CreateTaskDialog(tripId: tripId)
+            CreateTodoDialog(tripId: tripId)
         }
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -38,15 +38,9 @@ struct TaskList: View {
     }
     
     // MARK: - Subviews
-    private func outstandingTasksSection(tasks: [Task]) -> some View {
-        Section("Outstanding") {
-            ForEach(tasks) { TaskRow(task: $0) }
-        }
-    }
-    
-    private func completedTasksSection(tasks: [Task]) -> some View {
-        Section("Completed") {
-            ForEach(tasks) { TaskRow(task: $0) }
+    private func todosSection(title: String, todos: [Todo]) -> some View {
+        Section(title) {
+            ForEach(todos) { TodoRow(todo: $0) }
         }
     }
     

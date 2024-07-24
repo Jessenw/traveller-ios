@@ -27,7 +27,7 @@ class PlaceDetailViewModel: ObservableObject {
     }
     
     func fetchPlaceDetails() {
-        _Concurrency.Task {
+        Task {
             do {
                 let placeDetails = try await placesService.fetchPlaceDetails(placeId: placeId)
                 DispatchQueue.main.async {
