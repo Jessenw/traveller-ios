@@ -18,12 +18,11 @@ struct TripDetailView: View {
     
     // State
     @State private var todoSheetPresented = false
-    @State private var addSheetPresented = false
-    @State private var placesSheetPresented = false
-    @State private var selectedDetent: PresentationDetent = .medium
+    @State private var addSheetPresented = true
+    @State private var selectedDetent: PresentationDetent = .fraction(1/4)
     
     // Constants
-    private let availableDetents: Set<PresentationDetent> = [.medium, .large]
+    private let availableDetents: Set<PresentationDetent> = [.fraction(1/4), .medium, .fraction(0.999)]
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
@@ -39,27 +38,25 @@ struct TripDetailView: View {
                 todoButton
             }
         }
-        .sheet(isPresented: $todoSheetPresented) { todoSheet }
         .sheet(isPresented: $addSheetPresented) { addSheet }
+        .sheet(isPresented: $todoSheetPresented, onDismiss: {
+            selectedDetent = .fraction(1/4)
+            addSheetPresented = true
+        }, content: {
+            todoSheet
+        })
     }
     
     // MARK: - Subviews
     private var todoButton: some View {
         Button {
-            if todoSheetPresented || addSheetPresented {
-                // Dismiss all sheets
-                todoSheetPresented = false
-                addSheetPresented = false
-            } else if !todoSheetPresented {
-                todoSheetPresented = true
-            }
+            todoSheetPresented.toggle()
         } label: {
-            Image(systemName: (todoSheetPresented || addSheetPresented)
+            Image(systemName: todoSheetPresented
                   ? "chevron.down.circle.fill"
                   : "checklist")
             .resizable()
             .animation(.smooth, value: todoSheetPresented)
-            .animation(.smooth, value: addSheetPresented)
             .aspectRatio(contentMode: .fit)
             .frame(width: 25, height: 25)
         }

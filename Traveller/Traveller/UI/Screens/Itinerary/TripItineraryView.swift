@@ -70,20 +70,17 @@ struct TripItineraryView: View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 0) {
                 ForEach(events[selectedDate] ?? [], id: \.title) { event in
-                    EventRow(event: event)
+                    eventRow(event: event)
                 }
             }
             .padding()
         }
     }
-}
-
-struct EventRow: View {
-    let event: Event
-    let iconSize: CGFloat = 20
     
-    var body: some View {
-        HStack(alignment: .top, spacing: 15) {
+    func eventRow(event: Event) -> some View {
+        let iconSize: CGFloat = 20
+        
+        return HStack(alignment: .top, spacing: 15) {
             Image(systemName: event.icon)
                 .resizable()
                 .foregroundColor(.blue)
@@ -91,13 +88,10 @@ struct EventRow: View {
             
             VStack(alignment: .leading) {
                 Text(event.title)
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                Text(event.subtitle)
-                    .font(.caption)
-                    .foregroundColor(.secondary)
+                    .boldSubheadline()
+                Text(event.subtitle.replacingOccurrences(of: "_", with: " ").capitalizingFirstLetter())
+                    .secondaryCaption()
             }
-            
             
             Image("eventImage") // Replace with actual image
                 .resizable()
@@ -107,7 +101,7 @@ struct EventRow: View {
         }
         .background() {
             GeometryReader { geometry in
-                if event != Event.mockEvents.last {
+                if event != (events[selectedDate] ?? []).last {
                     Rectangle()
                         .fill(.separator)
                         .position(
