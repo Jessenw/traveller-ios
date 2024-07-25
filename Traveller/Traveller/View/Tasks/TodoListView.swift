@@ -29,11 +29,6 @@ struct TodoListView: View {
         .sheet(isPresented: $showingCreateDialog) {
             CreateTodoDialog(tripId: tripId)
         }
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                createButton
-            }
-        }
         .navigationTitle("Todos")
     }
     
@@ -41,17 +36,6 @@ struct TodoListView: View {
     private func todosSection(title: String, todos: [Todo]) -> some View {
         Section(title) {
             ForEach(todos) { TodoRow(todo: $0) }
-        }
-    }
-    
-    private var createButton: some View {
-        Button(action: {
-            showingCreateDialog = true
-        }) {
-            Image(systemName: "plus.circle.fill")
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 25, height: 25)
         }
     }
 }
