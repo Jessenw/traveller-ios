@@ -20,7 +20,7 @@ final class PlacesService: ObservableObject {
     /// Given a queryQuery Google Places to retrieve a list of autocomplete place suggestions
     /// - Parameter query: The string given to Google for autocomplete
     /// - Returns: A list of autocomplete places. Provides enough information to render a preview
-    func fetchAutocompletePredictions(query: String) async throws -> [AutocompletePlace] {
+    func fetchAutocompletePredictions(query: String) async throws -> [Place] {
         let request = AutocompleteRequest(query: query, filter: nil)
         
         return switch await placesClient.fetchAutocompleteSuggestions(with: request) {
@@ -28,12 +28,15 @@ final class PlacesService: ObservableObject {
             try suggestions.map { suggestion in
                 switch suggestion {
                 case .place(let place):
-                    return AutocompletePlace(
-                        placeId: place.placeID,
-                        name: place.attributedPrimaryText,
-                        subtitle: place.attributedSecondaryText,
-                        distance: place.distance
-                    )
+                    var secondaryText: String? = nil
+                    if let attributedSecondaryText = place.attributedSecondaryText {
+                        secondaryText = NSAttributedString(attributedSecondaryText).string
+                    }
+
+                    return Place(
+                        googleId: place.placeID,
+                        name: NSAttributedString(place.attributedFullText).string,
+                        subtitle: secondaryText)
                 @unknown default:
                     throw(PlacesError.internal("Unknown AutocompleteSuggestion type"))
                 }

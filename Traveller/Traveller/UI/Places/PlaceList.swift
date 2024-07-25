@@ -26,7 +26,7 @@ struct PlaceList: View {
                 } else {
                     List {
                         ForEach(trip.places) { place in
-                            placeRow(place: place)
+                            PlaceRow(place: place)
                                 .onTapGesture {
                                     selectedItem = place
                                 }
@@ -38,21 +38,6 @@ struct PlaceList: View {
             .sheet(item: $selectedItem) { place in
                 PlaceDetailView(placeId: place.googleId, trip: trip)
             }
-        }
-    }
-    
-    private func placeRow(place: Place) -> some View {
-        HStack(alignment: .firstTextBaseline) {
-            Image(systemName: "mappin.circle.fill")
-                .foregroundStyle(.primary)
-            
-            VStack(alignment: .leading) {
-                Text(place.name)
-                    .boldSubheadline()
-                Text(place.subtitle.replacingOccurrences(of: "_", with: " ").capitalizingFirstLetter())
-                    .secondaryCaption()
-            }
-            .lineLimit(2)
         }
     }
 }

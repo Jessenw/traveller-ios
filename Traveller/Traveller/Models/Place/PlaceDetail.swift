@@ -30,7 +30,7 @@ struct PlaceDetail {
             return nil
         }
         let replacedString = type.replacingOccurrences(of: "_", with: " ")
-        return replacedString.capitalizingFirstLetter()
+        return replacedString.capitalizingFirstLetter
     }
 }
 

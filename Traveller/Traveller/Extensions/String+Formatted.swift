@@ -6,7 +6,11 @@
 //
 
 extension String {
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).capitalized + dropFirst()
+    var capitalizingFirstLetter: String {
+        prefix(1).capitalized + dropFirst()
+    }
+    
+    var formattedPlaceSubtitle: String {
+        self.replacingOccurrences(of: "_", with: " ").capitalizingFirstLetter
     }
 }

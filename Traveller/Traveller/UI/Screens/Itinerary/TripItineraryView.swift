@@ -10,7 +10,7 @@ import SwiftUI
 struct TripItineraryView: View {
     @State private var selectedDate: Date
     let tripDates: [Date]
-    var events: [Date: [Event]]
+    var places: [Place]
     
     var trip: Trip
     
@@ -18,15 +18,7 @@ struct TripItineraryView: View {
         self.trip = trip
         self.tripDates = Date.dates(from: startDate, to: endDate)
         self._selectedDate = State(initialValue: startDate)
-        
-        let tripEvents = trip.places.map { place in
-            Event(title: place.name, subtitle: place.subtitle, icon: "bed.double.circle.fill")
-        }
-        
-        self.events = [:]
-        for date in tripDates {
-            events[date] = tripEvents
-        }
+        self.places = trip.places
     }
     
     var body: some View {
@@ -69,61 +61,16 @@ struct TripItineraryView: View {
     var itineraryList: some View {
         ScrollView {
             LazyVStack(alignment: .leading, spacing: 0) {
-                ForEach(events[selectedDate] ?? [], id: \.title) { event in
-                    eventRow(event: event)
+                ForEach(places) { place in
+                    PlaceRow(
+                        place: place,
+                        showSeparators: true,
+                        isLast: true)
                 }
             }
             .padding()
         }
     }
-    
-    func eventRow(event: Event) -> some View {
-        let iconSize: CGFloat = 20
-        
-        return HStack(alignment: .top, spacing: 15) {
-            Image(systemName: event.icon)
-                .resizable()
-                .foregroundColor(.blue)
-                .frame(width: iconSize, height: iconSize)
-            
-            VStack(alignment: .leading) {
-                Text(event.title)
-                    .boldSubheadline()
-                Text(event.subtitle.replacingOccurrences(of: "_", with: " ").capitalizingFirstLetter())
-                    .secondaryCaption()
-            }
-            
-            Image("eventImage") // Replace with actual image
-                .resizable()
-                .scaledToFill()
-                .frame(width: 60, height: 60)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-        }
-        .background() {
-            GeometryReader { geometry in
-                if event != (events[selectedDate] ?? []).last {
-                    Rectangle()
-                        .fill(.separator)
-                        .position(
-                            x: iconSize / 2,
-                            y: geometry.size.height - iconSize)
-                        .frame(width: 1, height: geometry.size.height - iconSize)
-                }
-            }
-        }
-    }
-}
-
-struct Event: Equatable {
-    let title: String
-    let subtitle: String
-    let icon: String
-    
-    static let mockEvents = [
-        Event(title: "Check-in", subtitle: "Hotel ABC", icon: "bed.double.circle.fill"),
-        Event(title: "City Tour", subtitle: "Downtown", icon: "map.circle.fill"),
-        Event(title: "Dinner", subtitle: "Restaurant XYZ", icon: "fork.knife.circle.fill")
-    ]
 }
 
 extension Date {
