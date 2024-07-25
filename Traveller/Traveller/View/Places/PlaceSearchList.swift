@@ -32,7 +32,7 @@ struct PlaceSearchList: View {
             }
             .listStyle(.plain)
             .sheet(item: $selectedItem) { place in
-                PlaceDetailView(placeId: place.googleId, trip: trip)
+                PlaceDetailView(placeId: place.id, trip: trip)
             }
             .presentationDetents([.medium], selection: $sheetDetent)
             .onChange(of: searchText) { _, newValue in

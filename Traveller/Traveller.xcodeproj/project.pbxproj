@@ -157,14 +157,6 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
-		A4918FC62C3663CF001B45EE /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-				A4D085922C4E6F6B00A82ACB /* Itinerary */,
-			);
-			path = Screens;
-			sourceTree = "<group>";
-		};
 		A4918FCC2C373B7E001B45EE /* Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -206,10 +198,9 @@
 		A4CF85122C297F7A0037EE27 /* Traveller */ = {
 			isa = PBXGroup;
 			children = (
+				A4D085A32C525D5800A82ACB /* Data */,
 				A4EA6EB02C2FCF100058D9BE /* Extensions */,
-				A4CF85402C2985030037EE27 /* Models */,
-				A4EA6EDF2C3566C90058D9BE /* Services */,
-				A4CF85432C2985B70037EE27 /* UI */,
+				A4CF85432C2985B70037EE27 /* View */,
 				A4CF85132C297F7A0037EE27 /* TravellerApp.swift */,
 				A42CADE32C2A8EF400F6E936 /* Configuration.swift */,
 				A4CF85192C297F7B0037EE27 /* Assets.xcassets */,
@@ -257,19 +248,19 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		A4CF85432C2985B70037EE27 /* UI */ = {
+		A4CF85432C2985B70037EE27 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A4D085952C4F300000A82ACB /* Modifiers */,
-				A4918FC62C3663CF001B45EE /* Screens */,
-				A4EA6EB72C31557A0058D9BE /* Views */,
 				A42CADDE2C2A8D9300F6E936 /* Map */,
+				A4D085952C4F300000A82ACB /* Modifiers */,
 				A4EA6EBE2C315D9A0058D9BE /* Places */,
 				A4EA6EAB2C2F805B0058D9BE /* Tasks */,
 				A4CF85442C2986290037EE27 /* Trips */,
+				A4EA6EB72C31557A0058D9BE /* Views */,
 				A4CF85152C297F7A0037EE27 /* ContentView.swift */,
+				A4D085932C4E6F8B00A82ACB /* TripItineraryView.swift */,
 			);
-			path = UI;
+			path = View;
 			sourceTree = "<group>";
 		};
 		A4CF85442C2986290037EE27 /* Trips */ = {
@@ -299,20 +290,21 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
-		A4D085922C4E6F6B00A82ACB /* Itinerary */ = {
-			isa = PBXGroup;
-			children = (
-				A4D085932C4E6F8B00A82ACB /* TripItineraryView.swift */,
-			);
-			path = Itinerary;
-			sourceTree = "<group>";
-		};
 		A4D085952C4F300000A82ACB /* Modifiers */ = {
 			isa = PBXGroup;
 			children = (
 				A4D085962C4F300F00A82ACB /* Text.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		A4D085A32C525D5800A82ACB /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				A4CF85402C2985030037EE27 /* Models */,
+				A4EA6EDF2C3566C90058D9BE /* Services */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		A4EA6EAB2C2F805B0058D9BE /* Tasks */ = {

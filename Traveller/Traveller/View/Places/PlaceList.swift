@@ -36,7 +36,7 @@ struct PlaceList: View {
                 }
             }
             .sheet(item: $selectedItem) { place in
-                PlaceDetailView(placeId: place.googleId, trip: trip)
+                PlaceDetailView(placeId: place.id, trip: trip)
             }
         }
     }

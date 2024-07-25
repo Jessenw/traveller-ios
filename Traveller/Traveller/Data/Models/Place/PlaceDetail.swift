@@ -9,7 +9,7 @@ import Foundation
 import GooglePlacesSwift
 
 struct PlaceDetail {
-    var googleId: String
+    var id: String
     var name: String?
     var formattedAddress: String?
     var priceLevel: PriceLevel
@@ -61,7 +61,7 @@ func isTimeWithinRange(date: Date, startTime: (hour: Int, minute: Int), endTime:
 extension PlaceDetail {
     func toPlace() -> Place {
         Place(
-            googleId: self.googleId,
+            id: self.id,
             name: self.name ?? "",
             subtitle: self.types.first?.rawValue ?? "Outdoors store",
             images: [])

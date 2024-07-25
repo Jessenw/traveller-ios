@@ -32,7 +32,7 @@ class PlaceDetailViewModel: ObservableObject {
                 let placeDetails = try await placesService.fetchPlaceDetails(placeId: placeId)
                 DispatchQueue.main.async {
                     self.place = placeDetails
-                    self.isSaved = self.trip?.places.contains(where: { $0.googleId == self.placeId }) ?? false
+                    self.isSaved = self.trip?.places.contains(where: { $0.id == self.placeId }) ?? false
                     self.isLoading = false
                 }
             } catch {
@@ -52,7 +52,7 @@ class PlaceDetailViewModel: ObservableObject {
     
     func removeTrip() {
         guard let trip else { return }
-        trip.places.removeAll { $0.googleId == placeId }
+        trip.places.removeAll { $0.id == placeId }
         isSaved = false
     }
 }

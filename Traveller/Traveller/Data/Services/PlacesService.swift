@@ -34,7 +34,7 @@ final class PlacesService: ObservableObject {
                     }
 
                     return Place(
-                        googleId: place.placeID,
+                        id: place.placeID,
                         name: NSAttributedString(place.attributedFullText).string,
                         subtitle: secondaryText)
                 @unknown default:
@@ -73,7 +73,7 @@ final class PlacesService: ObservableObject {
                 
         // Build the place search detail
         return PlaceDetail(
-            googleId: placeId,
+            id: placeId,
             name: fetchedPlace.displayName,
             formattedAddress: fetchedPlace.formattedAddress,
             priceLevel: fetchedPlace.priceLevel,

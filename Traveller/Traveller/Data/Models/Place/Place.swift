@@ -10,20 +10,20 @@ import SwiftData
 import SwiftUI
 
 @Model class Place: Hashable {
-    let googleId: String
+    let id: String
     let name: String
     let subtitle: String?
     @Attribute(.externalStorage) let images: [Data]
     var isChecked: Bool
     
     init(
-        googleId: String,
+        id: String,
         name: String,
         subtitle: String?,
         images: [Data] = [],
         isChecked: Bool = false
     ) {
-        self.googleId = googleId
+        self.id = id
         self.name = name
         self.subtitle = subtitle
         self.images = images
