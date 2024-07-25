@@ -48,7 +48,7 @@ struct TripItineraryView: View {
             VStack {
                 Text(date.formatted(.dateTime.day()))
                     .font(.headline)
-                Text(date.formatted(.dateTime.month(.abbreviated)))
+                Text(date.formatted(.dateTime.weekday(.abbreviated)))
                     .font(.subheadline)
             }
             .padding(8)
