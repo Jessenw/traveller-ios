@@ -30,7 +30,7 @@ struct TripItineraryView: View {
     
     var dateScrollView: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(alignment: .center,spacing: 10) {
+            HStack(alignment: .center, spacing: 10) {
                 Spacer()
                 ForEach(tripDates, id: \.self) { date in
                     dateButton(for: date)
@@ -64,11 +64,11 @@ struct TripItineraryView: View {
                 ForEach(places) { place in
                     PlaceRow(
                         place: place,
-                        showSeparators: true,
-                        isLast: true)
+                        showConnectors: true,
+                        isLast: place.id == places.last?.id
+                    )
                 }
             }
-            .padding()
         }
     }
 }

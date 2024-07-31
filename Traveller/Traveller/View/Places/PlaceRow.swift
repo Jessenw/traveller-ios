@@ -8,26 +8,17 @@
 import SwiftUI
 
 struct PlaceRow: View {
+
     // Properties
     var place: Place
-    var showSeparators: Bool
-    var isLast: Bool
+    var showConnectors: Bool = false
+    var isLast: Bool = false
     
     // Constants
     let iconSize: CGFloat = 20
-    
-    init(place: Place, showSeparators: Bool, isLast: Bool) {
-        self.place = place
-        self.showSeparators = showSeparators
-        self.isLast = isLast
-    }
-    
-    init(place: Place) {
-        self.init(place: place, showSeparators: false, isLast: false)
-    }
 
     var body: some View {
-        HStack(alignment: .firstTextBaseline) {
+        HStack(alignment: .top) {
             Image(systemName: "mappin.circle.fill")
                 .resizable()
                 .frame(width: iconSize, height: iconSize)
@@ -36,24 +27,29 @@ struct PlaceRow: View {
             VStack(alignment: .leading) {
                 Text(place.name)
                     .boldSubheadline()
-                if let subtitle = place.subtitle {
-                    Text(subtitle.formattedPlaceSubtitle)
-                        .secondaryCaption()
-                }
+                Text(place.subtitle?.formattedPlaceSubtitle ?? "")
+                    .secondaryCaption()
             }
+            .padding(showConnectors ? [.bottom] : [])
             .lineLimit(2)
         }
-        .background() {
-            GeometryReader { geometry in
-                if !isLast {
+        .background {
+            if showConnectors, !isLast {
+                GeometryReader { geometry in
+                    let connectorHeight = geometry.size.height - iconSize
                     Rectangle()
-                        .fill(.separator)
+                        .foregroundStyle(.separator)
                         .position(
                             x: iconSize / 2,
-                            y: geometry.size.height - iconSize)
-                        .frame(width: 1, height: geometry.size.height - iconSize)
+                            y: iconSize + (connectorHeight / 2)
+                        )
+                        .frame(
+                            width: 1,
+                            height: connectorHeight
+                        )
                 }
             }
         }
+        .padding(showConnectors ? [.horizontal] : [])
     }
 }

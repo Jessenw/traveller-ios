@@ -19,7 +19,7 @@ struct PlaceList: View {
         NavigationStack {
             VStack {
                 SearchBar(searchText: $searchText, isFocused: $searchIsFocused)
-                    .padding()
+                    .padding([.horizontal, .top])
                 
                 if searchIsFocused {
                     PlaceSearchList(searchText: $searchText, trip: trip)

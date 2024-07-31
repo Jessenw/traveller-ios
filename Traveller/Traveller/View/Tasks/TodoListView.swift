@@ -29,7 +29,6 @@ struct TodoListView: View {
         .sheet(isPresented: $showingCreateDialog) {
             CreateTodoDialog(tripId: tripId)
         }
-        .navigationTitle("Todos")
     }
     
     // MARK: - Subviews
